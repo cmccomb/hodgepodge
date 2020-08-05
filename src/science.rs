@@ -14,6 +14,35 @@ pub enum Unit {
     Energy
 }
 
+/// The levels of biological classification
+#[derive(Debug, EnumIter)]
+pub enum TaxonomicRank {
+
+    /// [Domain](https://en.wikipedia.org/wiki/Domain_(biology)) is the top classification level
+    Domain,
+
+    /// [Kingdom](https://en.wikipedia.org/wiki/Kingdom_(biology)) is the level just below Domain
+    Kingdom,
+
+    /// [Phylum](https://en.wikipedia.org/wiki/Phylum) is the level just below Kingdom
+    Phylum,
+
+    /// [Class](https://en.wikipedia.org/wiki/Class_(biology)) is the level just below Phylum
+    Class,
+
+    /// [Order](https://en.wikipedia.org/wiki/Order_(biology)) is the level just below Class
+    Order,
+
+    /// [Family](https://en.wikipedia.org/wiki/Family_(biology)) is the level just below Order
+    Family,
+
+    /// [Genus](https://en.wikipedia.org/wiki/Genus) is the level just below Family
+    Genus,
+
+    /// [Species](https://en.wikipedia.org/wiki/Species) is the basic unit of classification
+    Species
+}
+
 /// Metric units greater the one
 #[derive(Debug, EnumIter)]
 pub enum PrefixLarge {
@@ -49,31 +78,31 @@ pub enum PrefixSmall {
 #[derive(Debug, EnumIter)]
 pub enum Planet {
     /// [Mercury](https://en.wikipedia.org/wiki/Mercury_(planet)) is the closest planet to the sun
-    Mercury,
+    Mercury = 1,
 
     /// [Venus](https://en.wikipedia.org/wiki/Venus) is the second closest planet to the sun
-    Venus,
+    Venus = 2,
 
     /// [Earth](https://en.wikipedia.org/wiki/Earth) is where we live!
-    Earth,
+    Earth = 3,
 
     /// [Mars](https://en.wikipedia.org/wiki/Mars) is the fourth closest planet to the sun
-    Mars,
+    Mars = 4,
 
     /// [Jupiter](https://en.wikipedia.org/wiki/Jupiter) is the fifth closest planet to the sun
-    Jupiter,
+    Jupiter = 5,
 
     /// [Saturn](https://en.wikipedia.org/wiki/Saturn) is the sixth closest planet to the sun
-    Saturn,
+    Saturn = 6,
 
     /// [Uranus](https://en.wikipedia.org/wiki/Uranus) is the seventh closest planet to the sun
-    Uranus,
+    Uranus = 7,
 
     /// [Neptune](https://en.wikipedia.org/wiki/Neptune) is the eighth closest planet to the sun
-    Neptune,
+    Neptune = 8,
 
     /// [Pluto](https://en.wikipedia.org/wiki/Pluto) will always be a planet in my heart and my code
-    Pluto
+    Pluto = 9
 }
 
 /// List of the elements
