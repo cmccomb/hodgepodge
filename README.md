@@ -1,3 +1,5 @@
+![](https://travis-ci.org/cmccomb/hodgepodge.svg?branch=master)
+
 # About
 The name says it all - this crate just a hodgepodge or potentially useful enums.
 
