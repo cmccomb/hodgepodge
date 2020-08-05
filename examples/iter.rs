@@ -1,4 +1,4 @@
-use hodgepodge;
+use hodgepodge::science::Element;
 use strum::IntoEnumIterator;
 
 fn main() {

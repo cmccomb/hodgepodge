@@ -11,7 +11,7 @@ pub enum ROYGBIV {
     /// Orange is the second color in ROYGBIV
     Orange,
 
-    /// Yellow is the thirdcolor in ROYGBIV
+    /// Yellow is the third color in ROYGBIV
     Yellow,
 
     /// Green is the fourth color in ROYGBIV

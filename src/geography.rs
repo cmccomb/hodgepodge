@@ -2,10 +2,16 @@
 
 use strum_macros::EnumIter;
 
-/// States of the USA
+/// Directions
 #[derive(Debug, EnumIter)]
-pub enum States {
-    Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork, NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania, RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
+pub enum Direction {
+    North, South, East, West
+}
+
+/// Countinents of the world
+#[derive(Debug, EnumIter)]
+pub enum Continent {
+    NorthAmerica, SouthAmerica, Asia, Africa, Europe, Antartica, Australia
 }
 
 /// Countries in the EU
@@ -14,10 +20,23 @@ pub enum EU {
     Austria, Belgium, Bulgaria, Croatia, RepublicOfCyprus, CzechRepublic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, SpainAndSweden
 }
 
-/// Countinents of the world
+
+/// States of the USA
 #[derive(Debug, EnumIter)]
-pub enum Continent {
-    NorthAmerica, SouthAmerica, Asia, Africa, Europe, Antartica, Australia
+pub enum States {
+    Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork, NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania, RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
+}
+
+#[cfg(test)]
+mod test_states {
+    use crate::geography::States::*;
+
+    #[test]
+    fn access() {
+        let x = California;
+        let y = Colorado;
+        println!("I like {:?}, but I also like {:?}", x, y)
+    }
 }
 
 /// Countries of the world
