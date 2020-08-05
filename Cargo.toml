@@ -9,7 +9,7 @@ repository = "https://github.com/cmccomb/hodgepodge"
 homepage = "https://github.com/cmccomb/hodgepodge"
 documentation = "https://docs.rs/hodgepodge"
 license = "MIT OR Apache-2.0"
-keywords = ["voting", "preference", "aggregation"]
+keywords = ["enum", "data"]
 categories = ["data-structures", "date-and-time", "rust-patterns", "science"]
 
 
