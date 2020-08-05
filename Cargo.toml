@@ -10,7 +10,7 @@ homepage = "https://github.com/cmccomb/hodgepodge"
 documentation = "https://docs.rs/hodgepodge"
 license = "MIT OR Apache-2.0"
 keywords = ["voting", "preference", "aggregation"]
-categories = ["Data ructures", "Data and Time", "Rust Patterns", "Science"]
+categories = ["data-structures", "date-and-time", "rust-patterns", "science"]
 
 
 [dependencies]
