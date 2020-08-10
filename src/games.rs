@@ -4,7 +4,7 @@
 use strum_macros::{EnumIter, EnumCount};
 
 /// Suits of a standard deck of cards
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum Suit {
     Hearts,
     Clubs,

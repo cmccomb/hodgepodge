@@ -12,13 +12,13 @@ fn main() {
     println!("{:?}, {:?}, and {:?} are RGB colors", RGB::Blue, RGB::Red, RGB::Green);
 }
 ```
-This library works well with [strum](https://crates.io/crates/strum), so you can do things like this:
+This library works well with [`strum`](https://crates.io/crates/strum), so you can do things like this:
 ```
 use hodgepodge::*;
 
 fn main() {
     for member in Element::iter() {
-        println!("{:?}", member);
+        println!("{:?} is element {:?}", member.clone(), member as i32);
     }
 }
 ```

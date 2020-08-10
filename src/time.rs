@@ -4,7 +4,7 @@
 use strum_macros::{EnumIter, EnumCount};
 
 /// The days of the week
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum Day {
     /// [Monday](https://en.wikipedia.org/wiki/) is the first day of the week
     Monday = 1,
@@ -29,7 +29,7 @@ pub enum Day {
 }
 
 /// The months of the year
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum Month {
     /// [January](https://en.wikipedia.org/wiki/January) is the first month of the year
     January = 1,

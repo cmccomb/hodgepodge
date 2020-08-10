@@ -4,26 +4,26 @@
 use strum_macros::{EnumIter, EnumCount};
 
 /// Directions
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum Direction {
     North, South, East, West
 }
 
 /// Countinents of the world
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum Continent {
     NorthAmerica, SouthAmerica, Asia, Africa, Europe, Antartica, Australia
 }
 
 /// Countries in the EU
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum EU {
     Austria, Belgium, Bulgaria, Croatia, RepublicOfCyprus, CzechRepublic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, SpainAndSweden
 }
 
 
 /// States of the USA
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum States {
     Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork, NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania, RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
 }
@@ -41,7 +41,7 @@ mod test_states {
 }
 
 /// Countries of the world
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum Country {
     Afghanistan,
     Albania,

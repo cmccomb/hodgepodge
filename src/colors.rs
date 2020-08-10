@@ -4,7 +4,7 @@
 use strum_macros::{EnumIter, EnumCount};
 
 /// ROYGBIV colors
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum ROYGBIV {
     /// Red is the first color in ROYGBIV
     Red,
@@ -29,7 +29,7 @@ pub enum ROYGBIV {
 }
 
 /// CMYK colors
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum CMYK {
     /// Cyan is the first CMYK channel
     Cyan,
@@ -45,7 +45,7 @@ pub enum CMYK {
 }
 
 /// RGB colors
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum RGB{
     /// Red is the first RGB channel
     Red,
@@ -61,7 +61,8 @@ pub enum RGB{
 /// Color names available in CSS. Fuschia, Aqua, and the colors including the 'grey' spelling of
 /// 'gray' are included as variants but do not evaluate to teh hex code (since those are already
 /// taken).
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[allow(missing_docs)]
 pub enum CSS {
     AliceBlue = 0xF0F8FF,
     AntiqueWhite = 0xFAEBD7,
