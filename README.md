@@ -1,25 +1,32 @@
 [![Build Status](https://travis-ci.org/cmccomb/hodgepodge.svg?branch=master)](https://travis-ci.org/cmccomb/hodgepodge)
 
 # About
-The name says it all - this crate just a hodgepodge or potentially useful enums.
+The name says it all - this crate is just a hodgepodge of potentially useful enums.
 
 # Examples
 Usage is pretty simple. Import, and use to your heart's desire.
 ```
-use hodgepodge::colors::RGB;
+use hodgepodge::*;
 
 fn main() {
-    println!("{:?}, {:?}, and {:?}", RGB::Blue, RGB::Red, RGB::Green);
+    println!("{:?}, {:?}, and {:?} are RGB colors", RGB::Blue, RGB::Red, RGB::Green);
 }
 ```
-If you want to iterate through the members of the enum, do this:
+This library works well with [strum](https://crates.io/crates/strum), so you can do things like this:
 ```
-use hodgepodge;
-use strum::IntoEnumIterator;
+use hodgepodge::*;
 
 fn main() {
-    for member in hodgepodge::science::Element::iter() {
+    for member in Element::iter() {
         println!("{:?}", member);
     }
+}
+```
+And this:
+```
+use hodgepodge::*;
+
+fn main() {
+    println!("There are {:?} elements", Element::iter().count());
 }
 ```

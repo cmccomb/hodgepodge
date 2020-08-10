@@ -1,16 +1,17 @@
 //! A module for miscellaneous enums
 
-use strum_macros::EnumIter;
+// Enables use as an iterable and computation of length
+use strum_macros::{EnumIter, EnumCount};
 
 /// Programming languages better than Rust
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum BetterThanRust {
     /// That's right, there aren't any.
     None
 }
 
 /// Standard medals
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Medal {
     /// A [Gold Medal](https://en.wikipedia.org/wiki/Gold_medal) is typical awarded for first place
     Gold = 1,
@@ -24,7 +25,7 @@ pub enum Medal {
 
 /// An ordinal list for 1-100
 #[allow(missing_docs)]
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Ordinal {
     First = 1,
     Second = 2,

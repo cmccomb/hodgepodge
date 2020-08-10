@@ -1,9 +1,10 @@
 //! A module for science enums
 
-use strum_macros::EnumIter;
+// Enables use as an iterable and computation of length
+use strum_macros::{EnumIter, EnumCount};
 
 /// Metric units
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Unit {
     Mass,
     Volume,
@@ -15,7 +16,7 @@ pub enum Unit {
 }
 
 /// The levels of biological classification
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum TaxonomicRank {
 
     /// [Domain](https://en.wikipedia.org/wiki/Domain_(biology)) is the top classification level
@@ -44,7 +45,7 @@ pub enum TaxonomicRank {
 }
 
 /// Metric units greater the one
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum PrefixLarge {
     Deca = 1,
     Hecto = 2,
@@ -60,7 +61,7 @@ pub enum PrefixLarge {
 
 
 /// Metric units greater the one
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum PrefixSmall {
     Deci = 1,
     Centi = 2,
@@ -75,7 +76,7 @@ pub enum PrefixSmall {
 }
 
 /// Planets of the solar system
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Planet {
     /// [Mercury](https://en.wikipedia.org/wiki/Mercury_(planet)) is the closest planet to the sun
     Mercury = 1,
@@ -106,7 +107,7 @@ pub enum Planet {
 }
 
 /// List of the elements
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Element {
     Hydrogen = 1,
     Helium = 2,

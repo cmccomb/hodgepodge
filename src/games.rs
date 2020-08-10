@@ -1,9 +1,10 @@
 //! A module for games
 
-use strum_macros::EnumIter;
+// Enables use as an iterable and computation of length
+use strum_macros::{EnumIter, EnumCount};
 
 /// Suits of a standard deck of cards
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Suit {
     Hearts,
     Clubs,
@@ -12,7 +13,7 @@ pub enum Suit {
 }
 
 /// Ranks of a standard deck of cards
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Rank {
     Ace = 1,
     Two = 2,

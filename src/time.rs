@@ -1,11 +1,12 @@
 //! A module for time enums
 
-use strum_macros::EnumIter;
+// Enables use as an iterable and computation of length
+use strum_macros::{EnumIter, EnumCount};
 
 /// The days of the week
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Day {
-    /// [](https://en.wikipedia.org/wiki/) is the first day of the week
+    /// [Monday](https://en.wikipedia.org/wiki/) is the first day of the week
     Monday = 1,
 
     /// [Tuesday](https://en.wikipedia.org/wiki/Tuesday) is the second day of the week
@@ -28,7 +29,7 @@ pub enum Day {
 }
 
 /// The months of the year
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum Month {
     /// [January](https://en.wikipedia.org/wiki/January) is the first month of the year
     January = 1,

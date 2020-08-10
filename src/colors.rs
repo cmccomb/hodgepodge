@@ -1,9 +1,10 @@
 //! A module for color enums
 
-use strum_macros::EnumIter;
+// Enables use as an iterable and computation of length
+use strum_macros::{EnumIter, EnumCount};
 
 /// ROYGBIV colors
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum ROYGBIV {
     /// Red is the first color in ROYGBIV
     Red,
@@ -28,7 +29,7 @@ pub enum ROYGBIV {
 }
 
 /// CMYK colors
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum CMYK {
     /// Cyan is the first CMYK channel
     Cyan,
@@ -44,7 +45,7 @@ pub enum CMYK {
 }
 
 /// RGB colors
-#[derive(Debug, EnumIter)]
+#[derive(Debug, EnumIter, EnumCount)]
 pub enum RGB{
     /// Red is the first RGB channel
     Red,

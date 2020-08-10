@@ -1,8 +1,7 @@
-use hodgepodge::science::Element;
-use strum::IntoEnumIterator;
+use hodgepodge::*;
 
 fn main() {
-    for member in hodgepodge::science::Element::iter() {
+    for member in Element::iter() {
         println!("{:?}", member);
     }
 }

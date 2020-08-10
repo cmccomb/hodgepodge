@@ -1,5 +1,5 @@
-use hodgepodge::colors::RGB;
+use hodgepodge::*;
 
 fn main() {
-    println!("{:?}, {:?}, and {:?}", RGB::Blue, RGB::Red, RGB::Green);
+    println!("{:?}, {:?}, and {:?} are RGB colors", RGB::Blue, RGB::Red, RGB::Green);
 }
