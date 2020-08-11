@@ -1,8 +1,8 @@
-//! A module for color enums
+//! A module for color enums. Every one of these enums is C-like, with the hex code for the color
+//! used as the explicit discriminator.
 
 // Enables use as an iterable and computation of length
 use strum_macros::{EnumIter, EnumCount};
-use crate::CSS::Cyan;
 
 /// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
