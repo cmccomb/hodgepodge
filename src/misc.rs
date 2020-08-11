@@ -7,7 +7,22 @@ use strum_macros::{EnumIter, EnumCount};
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum BetterThanRust {
     /// That's right, there aren't any.
-    None
+    None = 0
+}
+
+#[cfg(test)]
+mod better_than_rust {
+    use crate::BetterThanRust as ENUM_TO_TEST;
+
+    #[test]
+    fn accessibility() {
+        println!("How many programming languages are better than rust {:?}", ENUM_TO_TEST::None);
+    }
+
+    #[test]
+    fn int_casting() {
+        println!("How many programming languages are better than rust? {:?}", ENUM_TO_TEST::None as i32);
+    }
 }
 
 /// Standard medals
@@ -47,4 +62,14 @@ pub enum Ordinal {
     Eighteenth = 18,
     Nineteenth = 19,
     Twentieth = 20,
+    Twentyfirst = 21,
+    Twentysecond = 22,
+    Twentythird = 23,
+    Twentyfourth = 24,
+    Twentyfifth = 25,
+    Twentysixth = 26,
+    Twentyseventh = 27,
+    Twentyeighth = 28,
+    Twentyninth = 29,
+    Thirtieth = 30
 }

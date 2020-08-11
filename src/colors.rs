@@ -2,59 +2,139 @@
 
 // Enables use as an iterable and computation of length
 use strum_macros::{EnumIter, EnumCount};
+use crate::CSS::Cyan;
 
-/// ROYGBIV colors
+/// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum ROYGBIV {
     /// Red is the first color in ROYGBIV
-    Red,
+    Red = 0xff0000,
 
     /// Orange is the second color in ROYGBIV
-    Orange,
+    Orange = 0xff7f00,
 
     /// Yellow is the third color in ROYGBIV
-    Yellow,
+    Yellow = 0xffff00,
 
     /// Green is the fourth color in ROYGBIV
-    Green,
+    Green = 0x00ff00,
 
     /// Blue is the fifth color in ROYGBIV
-    Blue,
+    Blue = 0x0000ff,
 
     /// Indigo is the sixth color in ROYGBIV
-    Indigo,
+    Indigo = 0x4b0082,
 
     /// Violet is the seventh color in ROYGBIV
-    Violet
+    Violet = 0x9400d3
+}
+
+#[cfg(test)]
+mod test_roygbiv {
+    use crate::{*, ROYGBIV as ENUM_TO_TEST};
+
+    const X:ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Green;
+
+    #[test]
+    fn accessibility() {
+        println!("I like {:?}, but I also like {:?}", X, Y)
+    }
+
+    #[test]
+    fn int_casting() {
+        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+    }
+
+    #[test]
+    fn strum() {
+        for x in ENUM_TO_TEST::iter() {
+            println!("{:?}", x);
+        }
+        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+    }
 }
 
 /// CMYK colors
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum CMYK {
     /// Cyan is the first CMYK channel
-    Cyan,
+    Cyan = 0x00ffff,
 
     /// Magneta is the second CMYK channel
-    Magenta,
+    Magenta = 0xff00ff,
 
     /// Yellow is the third CMYK channel
-    Yellow,
+    Yellow = 0xffff00,
 
     /// Black is the fourth CMYK channel (also known as Key)
-    Black
+    Black = 0x000000
 }
+
+#[cfg(test)]
+mod test_cmyk {
+    use crate::{*, CMYK as ENUM_TO_TEST};
+
+    const X:ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
+    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+
+    #[test]
+    fn accessibility() {
+        println!("I like {:?}, but I also like {:?}", X, Y)
+    }
+
+    #[test]
+    fn int_casting() {
+        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+    }
+
+    #[test]
+    fn strum() {
+        for x in ENUM_TO_TEST::iter() {
+            println!("{:?}", x);
+        }
+        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+    }
+}
+
 
 /// RGB colors
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 pub enum RGB{
     /// Red is the first RGB channel
-    Red,
+    Red = 0xff0000,
 
     /// Green is the second RGB channel
-    Green,
+    Green = 0x00ff00,
 
     /// Blue is the third RGB channel
-    Blue
+    Blue = 0x0000ff
+}
+
+#[cfg(test)]
+mod test_rgb {
+    use crate::{*, RGB as ENUM_TO_TEST};
+
+    const X:ENUM_TO_TEST = ENUM_TO_TEST::Red;
+    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Green;
+
+    #[test]
+    fn accessibility() {
+        println!("I like {:?}, but I also like {:?}", X, Y)
+    }
+
+    #[test]
+    fn int_casting() {
+        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+    }
+
+    #[test]
+    fn strum() {
+        for x in ENUM_TO_TEST::iter() {
+            println!("{:?}", x);
+        }
+        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+    }
 }
 
 
@@ -212,4 +292,30 @@ pub enum CSS {
     Grey,
     DarkGrey,
     LightGrey
+}
+
+#[cfg(test)]
+mod test_css {
+    use crate::{*, CSS as ENUM_TO_TEST};
+
+    const X:ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
+    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+
+    #[test]
+    fn accessibility() {
+        println!("I like {:?}, but I also like {:?}", X, Y)
+    }
+
+    #[test]
+    fn int_casting() {
+        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+    }
+
+    #[test]
+    fn strum() {
+        for x in ENUM_TO_TEST::iter() {
+            println!("{:?}", x);
+        }
+        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+    }
 }
