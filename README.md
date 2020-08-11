@@ -1,12 +1,4 @@
-> hodge·podge (/ˈhäjˌpäj/)
->
-> _noun_ North American
-> 
-> a confused mixture.
->
-> "Rob's living room was a hodgepodge of modern furniture and antiques"
-
->[![Build Status](https://travis-ci.org/cmccomb/hodgepodge.svg?branch=master)](https://travis-ci.org/cmccomb/hodgepodge)
+[![Build Status](https://travis-ci.org/cmccomb/hodgepodge.svg?branch=master)](https://travis-ci.org/cmccomb/hodgepodge)
 
 # About
 The name says it all - this crate is just a hodgepodge of potentially useful enums.

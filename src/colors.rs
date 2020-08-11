@@ -1,8 +1,18 @@
-//! A module for color enums. Every one of these enums is C-like, with the hex code for the color
-//! used as the explicit discriminator.
+//! A module for color enums.
+//!
+//! Every one of these enums is C-like, with the hex code for the color
+//! used as the explicit discriminator. To get that value, all you have to do is format it like
+//! a hex number:
+//! ```
+//! use hodgepodge::CSS;
+//! println!("The hex code for {:?} is #{:06x}", CSS::GhostWhite, CSS::GhostWhite)
+//! ```
 
 // Enables use as an iterable and computation of length
 use strum_macros::{EnumIter, EnumCount};
+
+// For deriving lowerhex
+use std::fmt;
 
 /// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
@@ -28,6 +38,14 @@ pub enum ROYGBIV {
     /// Violet is the seventh color in ROYGBIV
     Violet = 0x9400d3
 }
+
+impl fmt::LowerHex for ROYGBIV {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let x = *self as i32;
+        write!(f, "{:06x}", x)
+    }
+}
+
 
 #[cfg(test)]
 mod test_roygbiv {
@@ -71,6 +89,14 @@ pub enum CMYK {
     Black = 0x000000
 }
 
+impl fmt::LowerHex for CMYK {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let x = *self as i32;
+        write!(f, "{:06x}", x)
+    }
+}
+
+
 #[cfg(test)]
 mod test_cmyk {
     use crate::{*, CMYK as ENUM_TO_TEST};
@@ -111,6 +137,13 @@ pub enum RGB{
     Blue = 0x0000ff
 }
 
+impl fmt::LowerHex for RGB {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let x = *self as i32;
+        write!(f, "{:06x}", x)
+    }
+}
+
 #[cfg(test)]
 mod test_rgb {
     use crate::{*, RGB as ENUM_TO_TEST};
@@ -138,9 +171,12 @@ mod test_rgb {
 }
 
 
-/// Color names available in CSS. Fuschia, Aqua, and the colors including the 'grey' spelling of
-/// 'gray' are included as variants but do not evaluate to teh hex code (since those are already
-/// taken).
+/// Color names available in CSS.
+///
+/// Fuschia, Aqua, and colors that use the 'gr***e***y' instead of 'gr***a***y'
+/// are included as variants but only evaluate to an approximately correct hex code (since they
+/// share a hex code with other color names). Specifically, the hex code for these variants is
+/// incremented by one in the earliest component (i.e., #00FFFF becomes #01FFFF).
 #[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
 #[allow(missing_docs)]
 pub enum CSS {
@@ -283,15 +319,33 @@ pub enum CSS {
     WhiteSmoke = 0xF5F5F5,
     Yellow = 0xFFFF00,
     YellowGreen = 0x9ACD32,
-    Aqua,
-    DarkSlateGrey,
-    Fuschia,
-    DimGrey,
-    SlateGrey,
-    LightSlateGrey,
-    Grey,
-    DarkGrey,
-    LightGrey
+
+    /// Note that the associated hex value is not exact. For an exact value, use Cyan.
+    Aqua = 0x0100ff,
+
+    /// Note that the associated hex value is not exact. For an exact value, use DarkSlateGr***a***y.
+    DarkSlateGrey = 0x304f4f,
+
+    /// Note that the associated hex value is not exact. For an exact value, use Magenta.
+    Fuschia = 0xff01ff,
+
+    /// Note that the associated hex value is not exact. For an exact value, use DimGr***a***y.
+    DimGrey = 0x706969,
+
+    /// Note that the associated hex value is not exact. For an exact value, use SlateGr***a***y.
+    SlateGrey = 0x718090,
+
+    /// Note that the associated hex value is not exact. For an exact value, use LightSlateGr***a***y.
+    LightSlateGrey = 0x788899,
+
+    /// Note that the associated hex value is not exact. For an exact value, use Gr***a***y.
+    Grey = 0x818080,
+
+    /// Note that the associated hex value is not exact. For an exact value, use DarkGr***a***y.
+    DarkGrey = 0xAAA9A9,
+
+    /// Note that the associated hex value is not exact. For an exact value, use LightGr***a***y.
+    LightGrey = 0xd4d3d3
 }
 
 #[cfg(test)]
@@ -317,5 +371,12 @@ mod test_css {
             println!("{:?}", x);
         }
         println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+    }
+}
+
+impl fmt::LowerHex for CSS {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let x = *self as i32;
+        write!(f, "{:06x}", x)
     }
 }
