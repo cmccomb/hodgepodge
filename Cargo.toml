@@ -1,6 +1,6 @@
 [package]
 name = "hodgepodge"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Chris McComb <ccmcc2012@gmail.com>"]
 description = "A hodgepodge of enums"
 edition = "2018"

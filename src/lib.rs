@@ -1,6 +1,6 @@
-// #![warn(clippy::all)]
-// #![warn(missing_docs)]
-// #![warn(missing_doc_code_examples)]
+#![warn(clippy::all)]
+#![warn(missing_docs)]
+#![warn(missing_doc_code_examples)]
 
 //! This is a crates that just contains a bunch of enums
 
