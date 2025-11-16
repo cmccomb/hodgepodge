@@ -48,6 +48,7 @@ impl fmt::LowerHex for ROYGBIV {
 
 #[cfg(test)]
 mod test_roygbiv {
+    use super::ROYGBIV;
     #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::ROYGBIV as ENUM_TO_TEST;
@@ -103,6 +104,7 @@ impl fmt::LowerHex for CMYK {
 
 #[cfg(test)]
 mod test_cmyk {
+    use super::CMYK;
     #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::CMYK as ENUM_TO_TEST;
@@ -155,6 +157,7 @@ impl fmt::LowerHex for RGB {
 
 #[cfg(test)]
 mod test_rgb {
+    use super::RGB;
     #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::RGB as ENUM_TO_TEST;
@@ -364,6 +367,7 @@ pub enum CSS {
 
 #[cfg(test)]
 mod test_css {
+    use super::CSS;
     #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::CSS as ENUM_TO_TEST;

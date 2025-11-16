@@ -19,6 +19,7 @@ pub enum Suit {
 
 #[cfg(test)]
 mod test_suit {
+    use super::Suit;
     #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::Suit as ENUM_TO_TEST;
@@ -73,6 +74,7 @@ impl Rank {
 
 #[cfg(test)]
 mod test_rank {
+    use super::Rank;
     #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::Rank as ENUM_TO_TEST;
