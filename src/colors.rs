@@ -48,12 +48,7 @@ impl fmt::LowerHex for ROYGBIV {
 
 #[cfg(test)]
 mod test_roygbiv {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::ROYGBIV as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Green;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    use crate::ROYGBIV;
 
     #[test]
     fn discriminants_match_rgb_hex_values() {
@@ -103,12 +98,7 @@ impl fmt::LowerHex for CMYK {
 
 #[cfg(test)]
 mod test_cmyk {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::CMYK as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+    use crate::CMYK;
 
     #[test]
     fn black_is_zero_and_cmy_channels_are_unique() {
@@ -155,12 +145,7 @@ impl fmt::LowerHex for RGB {
 
 #[cfg(test)]
 mod test_rgb {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::RGB as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Red;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    use crate::RGB;
 
     #[test]
     fn rgb_channels_match_expected_hex_values() {
@@ -364,12 +349,7 @@ pub enum CSS {
 
 #[cfg(test)]
 mod test_css {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::CSS as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+    use crate::CSS;
 
     #[test]
     fn canonical_css_colors_match_spec() {

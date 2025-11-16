@@ -19,12 +19,8 @@ pub enum Suit {
 
 #[cfg(test)]
 mod test_suit {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::Suit as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Clubs;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Spades;
+    use crate::Suit;
+    
 
     #[test]
     fn standard_deck_contains_four_suits() {
@@ -73,12 +69,7 @@ impl Rank {
 
 #[cfg(test)]
 mod test_rank {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::Rank as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Two;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Jack;
+    use crate::Rank;
 
     #[test]
     fn ordinal_reflects_blackjack_values() {
