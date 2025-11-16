@@ -20,7 +20,6 @@ pub enum Suit {
 #[cfg(test)]
 mod test_suit {
     use crate::Suit;
-    
 
     #[test]
     fn standard_deck_contains_four_suits() {
