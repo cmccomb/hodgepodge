@@ -28,6 +28,9 @@ default = []
 enum-iter = ["dep:strum", "dep:strum_macros"]
 # Enables helper traits and EnumCount derives from the strum ecosystem.
 enum-count = ["dep:strum", "dep:strum_macros"]
+# Backwards compatibility shim for downstream crates still enabling the old
+# `strum` feature name. It now turns on both enum helper features.
+strum = ["enum-iter", "enum-count"]
 # Enables serde Serialize/Deserialize derives across the enum datasets.
 serde = ["dep:serde"]
 

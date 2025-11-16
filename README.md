@@ -52,6 +52,7 @@ Hodgepodge keeps the default feature set empty so you only pay for what you use:
 
 * `enum-iter` – pulls in [`strum`](https://crates.io/crates/strum) and [`strum_macros`](https://crates.io/crates/strum_macros) to derive `EnumIter` and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html) for each dataset.
 * `enum-count` – derives [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for every dataset and re-exports the trait so you can introspect totals without depending on `strum` directly.
+* `strum` – legacy compatibility feature that simply enables both `enum-iter` and `enum-count` for downstream crates that still expect the original flag.
 * `serde` – derives [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html) so you can serialize the enums into fixtures for teaching materials or quick prototypes.
 
 ## Development
