@@ -48,7 +48,7 @@ impl fmt::LowerHex for ROYGBIV {
 
 #[cfg(test)]
 mod test_roygbiv {
-    use super::ROYGBIV;
+    use crate::ROYGBIV;
 
     #[test]
     fn discriminants_match_rgb_hex_values() {
@@ -98,7 +98,7 @@ impl fmt::LowerHex for CMYK {
 
 #[cfg(test)]
 mod test_cmyk {
-    use super::CMYK;
+    use crate::CMYK;
 
     #[test]
     fn black_is_zero_and_cmy_channels_are_unique() {
@@ -145,7 +145,7 @@ impl fmt::LowerHex for RGB {
 
 #[cfg(test)]
 mod test_rgb {
-    use super::RGB;
+    use crate::RGB;
 
     #[test]
     fn rgb_channels_match_expected_hex_values() {
@@ -349,7 +349,7 @@ pub enum CSS {
 
 #[cfg(test)]
 mod test_css {
-    use super::CSS;
+    use crate::CSS;
 
     #[test]
     fn canonical_css_colors_match_spec() {

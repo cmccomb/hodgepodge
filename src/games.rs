@@ -19,7 +19,7 @@ pub enum Suit {
 
 #[cfg(test)]
 mod test_suit {
-    use super::Suit;
+    use crate::Suit;
 
     #[test]
     fn standard_deck_contains_four_suits() {
@@ -68,7 +68,7 @@ impl Rank {
 
 #[cfg(test)]
 mod test_rank {
-    use super::Rank;
+    use crate::Rank;
 
     #[test]
     fn ordinal_reflects_blackjack_values() {
