@@ -3,15 +3,12 @@
 #![allow(clippy::missing_docs_in_private_items)]
 
 // Enables the optional iterator and variant-count derives.
-#[cfg(feature = "enum-count")]
-use strum_macros::EnumCount;
-#[cfg(feature = "enum-iter")]
-use strum_macros::EnumIter;
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// Suits of a standard deck of cards
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Suit {
     Hearts,
@@ -21,8 +18,13 @@ pub enum Suit {
 }
 
 #[cfg(test)]
-mod suit_tests {
-    use super::Suit;
+mod test_suit {
+    #[cfg(feature = "strum")]
+    use crate::IntoEnumIterator;
+    use crate::Suit as ENUM_TO_TEST;
+
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Clubs;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Spades;
 
     #[test]
     fn standard_deck_contains_four_suits() {
@@ -32,7 +34,7 @@ mod suit_tests {
         assert_eq!(Suit::Diamonds as u8, 3);
     }
 
-    #[cfg(feature = "enum-count")]
+    #[cfg(feature = "strum")]
     #[test]
     fn suit_count_matches_standard_deck() {
         use strum::EnumCount;
@@ -43,8 +45,7 @@ mod suit_tests {
 
 /// Ranks of a standard deck of cards
 #[derive(Debug)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Rank {
     Ace = 1,
@@ -71,8 +72,13 @@ impl Rank {
 }
 
 #[cfg(test)]
-mod rank_tests {
-    use super::Rank;
+mod test_rank {
+    #[cfg(feature = "strum")]
+    use crate::IntoEnumIterator;
+    use crate::Rank as ENUM_TO_TEST;
+
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Two;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Jack;
 
     #[test]
     fn ordinal_reflects_blackjack_values() {
@@ -87,7 +93,7 @@ mod rank_tests {
         assert!(Rank::Jack.ordinal() > Rank::Nine.ordinal());
     }
 
-    #[cfg(feature = "enum-count")]
+    #[cfg(feature = "strum")]
     #[test]
     fn ranks_cover_standard_deck_span() {
         use strum::EnumCount;

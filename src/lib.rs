@@ -4,32 +4,32 @@
 
 //! # Hodgepodge
 //!
-//! `hodgepodge` is a grab bag of enums that double as instant datasets for
-//! lessons, prototypes, and examples. The datasets cover topics like CSS and RGB
-//! colors, geography (continents, states, and EU countries), timekeeping (months
-//! and weekdays), common science mnemonics (the periodic table, SI units, solar
-//! system), game pieces, and even whimsical trivia.
+//! `hodgepodge` bundles ready-made enums you can drop into lessons,
+//! prototypes, demos, and coding exercises. Each enum doubles as a small dataset
+//! (CSS color keywords, RGB swatches, the periodic table, geography trivia, game
+//! pieces, etc.) so you can focus on explaining a concept instead of inventing
+//! sample data.
 //!
-//! The intended workflow is to add `use hodgepodge::*;` at the top of your file
-//! so all of the enums are in scope. From there you can immediately iterate
-//! through the variants, serialize them (with the `serde` feature), or format
-//! them however your demo requires.
+//! Bring everything into scope with `use hodgepodge::*;`, then iterate over the
+//! variants (with the `strum` feature), format their values, or serialize them
+//! (with the `serde` feature) depending on what the example calls for.
 //!
 //! ## Feature-gated helpers
 //!
-//! * `enum-iter` – derives [`strum_macros::EnumIter`] for every dataset and
-//!   re-exports [`IntoEnumIterator`] so you can write
-//!   `use hodgepodge::IntoEnumIterator;` without pulling `strum` directly.
-//! * `enum-count` – derives [`strum_macros::EnumCount`] across the crate and
-//!   re-exports [`EnumCount`] so you can introspect the total number of variants
-//!   in a dataset.
-//! * `serde` – derives [`serde::Serialize`] and [`serde::Deserialize`] to help
-//!   you capture the datasets in fixtures.
+//! * `strum` – derives [`strum_macros::EnumIter`] and
+//!   [`strum_macros::EnumCount`] for every dataset, re-exporting
+//!   [`IntoEnumIterator`] and [`EnumCount`] so you can iterate over or count the
+//!   variants without depending on `strum` directly.
+//! * `enum-iter` / `enum-count` – legacy compatibility feature names that now
+//!   simply forward to `strum`.
+//! * `serde` – derives [`serde::Serialize`] and [`serde::Deserialize`] so the
+//!   enums can be persisted in fixtures for tutorials or quick prototypes.
 //!
 //! ## Examples
 //!
+//! ### Iterate through datasets
 //! ```rust
-//! # #[cfg(feature = "enum-iter")]
+//! # #[cfg(feature = "strum")]
 //! # {
 //! use hodgepodge::{Element, IntoEnumIterator};
 //!
@@ -38,9 +38,33 @@
 //!     println!("{element:?} is element {atomic_number}");
 //! }
 //! # }
-//! # #[cfg(not(feature = "enum-iter"))]
+//! # #[cfg(not(feature = "strum"))]
 //! # {
-//! # // Enable the `enum-iter` feature to run this example.
+//! # // Enable the `strum` feature to run this example.
+//! # }
+//! ```
+//!
+//! ### Format CSS color hex values
+//! ```rust
+//! use hodgepodge::CSS;
+//!
+//! let swatch = CSS::Tomato;
+//! println!("{swatch:?} renders as #{swatch:06x}");
+//! ```
+//!
+//! ### Serialize and deserialize enums
+//! ```rust
+//! # #[cfg(feature = "serde")]
+//! # {
+//! use hodgepodge::Day;
+//!
+//! let json = serde_json::to_string(&Day::Friday).expect("serialize Day");
+//! let day: Day = serde_json::from_str(&json).expect("deserialize Day");
+//! assert_eq!(day, Day::Friday);
+//! # }
+//! # #[cfg(not(feature = "serde"))]
+//! # {
+//! # // Enable the `serde` feature to run this example.
 //! # }
 //! ```
 
@@ -69,8 +93,5 @@ pub mod misc;
 pub use misc::*;
 
 /// Re-export helper traits from `strum` when the relevant feature is enabled.
-#[cfg(feature = "enum-count")]
-pub use strum::EnumCount;
-/// Re-export helper traits from `strum` when the relevant feature is enabled.
-#[cfg(feature = "enum-iter")]
-pub use strum::IntoEnumIterator;
+#[cfg(feature = "strum")]
+pub use strum::{EnumCount, IntoEnumIterator};
