@@ -21,6 +21,9 @@ strum_macros = { version = "0.27.2", optional = true }
 # Optional serialization support for exporting the enum datasets.
 serde = { version = "1.0", features = ["derive"], optional = true }
 
+[dev-dependencies]
+serde_json = "1.0"
+
 [features]
 # Keep the default feature set minimal so downstream users opt-in explicitly.
 default = []
@@ -42,6 +45,3 @@ required-features = ["strum"]
 [[example]]
 name = "len"
 required-features = ["strum"]
-
-[dev-dependencies]
-serde_json = "1.0"
