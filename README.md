@@ -1,83 +1,91 @@
 [![CI](https://github.com/cmccomb/hodgepodge/actions/workflows/ci.yml/badge.svg)](https://github.com/cmccomb/hodgepodge/actions/workflows/ci.yml)
 [![Crates.io](https://img.shields.io/crates/v/hodgepodge.svg)](https://crates.io/crates/hodgepodge)
 [![docs.rs](https://docs.rs/hodgepodge/badge.svg)](https://docs.rs/hodgepodge)
-# About
-The name says it all – this crate is a hodgepodge of lightweight enums you can use as ready-made datasets when prototyping, teaching, or experimenting with Rust.
 
-# Examples
-Usage is pretty simple. Import, and use to your heart's desire.
-```rust
-use hodgepodge::RGB;
+# About hodgepodge
+`hodgepodge` is a grab bag of ready-made enums you can drop into lessons, prototypes, demos, and coding exercises. Each enum doubles as a tiny dataset—covering CSS color keywords, RGB swatches, the periodic table, continents, SI prefixes, solar-system trivia, decks of cards, and more—so you can focus on teaching a concept instead of inventing boilerplate data.
 
-fn main() {
-    let blue = RGB::Blue;
-    let red = RGB::Red;
-    let green = RGB::Green;
-    println!("{blue:?}, {red:?}, and {green:?} are RGB colors");
-}
-```
-To use the iterator helpers shown below, enable the optional `strum` feature:
+The crate shines when you need to illustrate iteration, formatting, serialization, or pattern matching without stopping to build sample inputs.
+
+## Install
+Add `hodgepodge` to your `Cargo.toml` using the latest published version:
 
 ```toml
 [dependencies]
-hodgepodge = { version = "0.2", features = ["strum"] }
+hodgepodge = "0.2"
 ```
 
-With that feature enabled, you can do things like this:
-```rust
-use hodgepodge::Element;
-use hodgepodge::IntoEnumIterator;
-
-fn main() {
-    for member in Element::iter() {
-        let atomic_number = member as i32;
-        println!("{member:?} is element {atomic_number}");
-    }
-}
-```
-And this:
-```rust
-use hodgepodge::Element;
-use hodgepodge::IntoEnumIterator;
-
-fn main() {
-    let element_count = Element::iter().count();
-    println!("There are {element_count} elements");
-}
-```
-
-To serialize one of the enums, enable the `serde` feature alongside your
-serializer of choice (such as [`serde_json`](https://crates.io/crates/serde_json)):
+Enable optional helpers (such as iteration or serialization) by listing the relevant Cargo features:
 
 ```toml
 [dependencies]
-hodgepodge = { version = "0.2", features = ["serde"] }
+hodgepodge = { version = "0.2", features = ["strum", "serde"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 ```
+
+## Usage
+### Iterate through datasets
+Enable the `strum` feature to derive `EnumIter`/`EnumCount` for each dataset and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html). That makes it easy to loop through everything, such as the periodic table:
+
+```rust
+use hodgepodge::{Element, IntoEnumIterator};
+
+fn main() {
+    for element in Element::iter() {
+        let atomic_number = element as u16;
+        println!("{element:?} is element {atomic_number}");
+    }
+}
+```
+
+### Format CSS colors
+Enums such as `CSS` implement `LowerHex`, so you can turn a variant into its hexadecimal color code without extra helpers:
+
+```rust
+use hodgepodge::CSS;
+
+fn main() {
+    let swatch = CSS::Tomato;
+    println!("{swatch:?} renders as #{swatch:06x}");
+}
+```
+
+### Serialize and deserialize with `serde`
+All enums derive `serde::Serialize` and `serde::Deserialize` when the `serde` feature is active, so shipping fixtures for tutorials is a one-liner:
 
 ```rust
 use hodgepodge::Day;
 
 fn main() -> Result<(), serde_json::Error> {
     let json = serde_json::to_string(&Day::Saturday)?;
-    println!("{json}");
+    let day: Day = serde_json::from_str(&json)?;
+    assert_eq!(day, Day::Saturday);
     Ok(())
 }
 ```
 
 ## Features
+Feature | Default | Description
+--- | --- | ---
+`strum` | Disabled | Derives [`EnumIter`](https://docs.rs/strum/latest/strum/trait.EnumIter.html) and [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for every dataset and re-exports the helper traits so you can iterate without depending on `strum` directly.
+`enum-iter`, `enum-count` | Disabled | Legacy compatibility feature names that simply forward to `strum`.
+`serde` | Disabled | Adds `serde::Serialize` and `serde::Deserialize` to every enum so they can be written to JSON, TOML, etc.
 
-Hodgepodge keeps the default feature set empty so you only pay for what you use:
+Enable any combination of these features with `cargo` flags:
 
-* `strum` – pulls in [`strum`](https://crates.io/crates/strum) and [`strum_macros`](https://crates.io/crates/strum_macros) to derive `EnumIter`/`EnumCount` and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html) plus [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for each dataset.
-* `enum-iter` / `enum-count` – compatibility aliases that now simply forward to `strum`.
-* `serde` – derives [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html) so you can serialize the enums into fixtures for teaching materials or quick prototypes.
+```shell
+cargo add hodgepodge --features "strum serde"
+# or
+cargo test --features "strum"
+```
+
+## Use cases
+* **Education:** quickly demonstrate iteration, pattern matching, or formatting with realistic data.
+* **Prototyping:** plug in enums representing colors, locations, or science mnemonics without maintaining bespoke fixtures.
+* **Testing:** serialize enums with `serde` to build deterministic fixtures for integration tests.
 
 ## Development
-
-This repository keeps contributor workflows aligned with CI. Please run the same commands locally before pushing:
-
 1. `cargo fmt --all --check`
 2. `cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic`
 3. `cargo test --all-targets`
