@@ -1,14 +1,17 @@
-//! A module for time enums
+//! Timekeeping datasets including weekdays and months.
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 
-// Enables use as an iterable and computation of length
-#[cfg(feature = "strum")]
-use strum_macros::{EnumCount, EnumIter};
+// Enables the optional iterator and variant-count derives.
+#[cfg(feature = "enum-count")]
+use strum_macros::EnumCount;
+#[cfg(feature = "enum-iter")]
+use strum_macros::EnumIter;
 
 /// The days of the week
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Day {
     /// [Monday](https://en.wikipedia.org/wiki/) is the first day of the week
@@ -35,7 +38,8 @@ pub enum Day {
 
 /// The months of the year
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Month {
     /// [January](https://en.wikipedia.org/wiki/January) is the first month of the year
