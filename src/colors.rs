@@ -5,17 +5,25 @@
 //! a hex number:
 //! ```
 //! use hodgepodge::CSS;
-//! println!("The hex code for {:?} is #{:06x}", CSS::GhostWhite, CSS::GhostWhite)
+//!
+//! let color = CSS::GhostWhite;
+//! println!("The hex code for {color:?} is #{color:06x}");
 //! ```
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
+#![allow(clippy::unreadable_literal)]
 
 // Enables use as an iterable and computation of length
-use strum_macros::{EnumIter, EnumCount};
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 // For deriving lowerhex
 use std::fmt;
 
 /// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum ROYGBIV {
     /// Red is the first color in ROYGBIV
     Red = 0xff0000,
@@ -36,45 +44,52 @@ pub enum ROYGBIV {
     Indigo = 0x4b0082,
 
     /// Violet is the seventh color in ROYGBIV
-    Violet = 0x9400d3
+    Violet = 0x9400d3,
 }
 
 impl fmt::LowerHex for ROYGBIV {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
 
-
 #[cfg(test)]
 mod test_roygbiv {
-    use crate::{*, ROYGBIV as ENUM_TO_TEST};
+    use crate::ROYGBIV as ENUM_TO_TEST;
+    #[cfg(feature = "strum")]
+    use strum::IntoEnumIterator;
 
-    const X:ENUM_TO_TEST = ENUM_TO_TEST::Green;
-    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
 /// CMYK colors
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum CMYK {
     /// Cyan is the first CMYK channel
     Cyan = 0x00ffff,
@@ -86,47 +101,53 @@ pub enum CMYK {
     Yellow = 0xffff00,
 
     /// Black is the fourth CMYK channel (also known as Key)
-    Black = 0x000000
+    Black = 0x000000,
 }
 
 impl fmt::LowerHex for CMYK {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
 
-
 #[cfg(test)]
 mod test_cmyk {
-    use crate::{*, CMYK as ENUM_TO_TEST};
+    use crate::CMYK as ENUM_TO_TEST;
+    #[cfg(feature = "strum")]
+    use strum::IntoEnumIterator;
 
-    const X:ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
-    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
-
 /// RGB colors
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
-pub enum RGB{
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub enum RGB {
     /// Red is the first RGB channel
     Red = 0xff0000,
 
@@ -134,42 +155,47 @@ pub enum RGB{
     Green = 0x00ff00,
 
     /// Blue is the third RGB channel
-    Blue = 0x0000ff
+    Blue = 0x0000ff,
 }
 
 impl fmt::LowerHex for RGB {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
 
 #[cfg(test)]
 mod test_rgb {
-    use crate::{*, RGB as ENUM_TO_TEST};
+    use crate::RGB as ENUM_TO_TEST;
+    #[cfg(feature = "strum")]
+    use strum::IntoEnumIterator;
 
-    const X:ENUM_TO_TEST = ENUM_TO_TEST::Red;
-    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Red;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
-
 
 /// Color names available in CSS.
 ///
@@ -177,7 +203,9 @@ mod test_rgb {
 /// are included as variants but only evaluate to an approximately correct hex code (since they
 /// share a hex code with other color names). Specifically, the hex code for these variants is
 /// incremented by one in the earliest component (i.e., #00FFFF becomes #01FFFF).
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(missing_docs)]
 pub enum CSS {
     AliceBlue = 0xF0F8FF,
@@ -320,63 +348,69 @@ pub enum CSS {
     Yellow = 0xFFFF00,
     YellowGreen = 0x9ACD32,
 
-    /// Note that the associated hex value is not exact. For an exact value, use Cyan.
+    /// Note that the associated hex value is not exact. For an exact value, use `Cyan`.
     Aqua = 0x0100ff,
 
-    /// Note that the associated hex value is not exact. For an exact value, use DarkSlateGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `DarkSlateGray`.
     DarkSlateGrey = 0x304f4f,
 
-    /// Note that the associated hex value is not exact. For an exact value, use Magenta.
+    /// Note that the associated hex value is not exact. For an exact value, use `Magenta`.
     Fuschia = 0xff01ff,
 
-    /// Note that the associated hex value is not exact. For an exact value, use DimGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `DimGray`.
     DimGrey = 0x706969,
 
-    /// Note that the associated hex value is not exact. For an exact value, use SlateGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `SlateGray`.
     SlateGrey = 0x718090,
 
-    /// Note that the associated hex value is not exact. For an exact value, use LightSlateGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `LightSlateGray`.
     LightSlateGrey = 0x788899,
 
-    /// Note that the associated hex value is not exact. For an exact value, use Gr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `Gray`.
     Grey = 0x818080,
 
-    /// Note that the associated hex value is not exact. For an exact value, use DarkGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `DarkGray`.
     DarkGrey = 0xAAA9A9,
 
-    /// Note that the associated hex value is not exact. For an exact value, use LightGr***a***y.
-    LightGrey = 0xd4d3d3
+    /// Note that the associated hex value is not exact. For an exact value, use `LightGray`.
+    LightGrey = 0xd4d3d3,
 }
 
 #[cfg(test)]
 mod test_css {
-    use crate::{*, CSS as ENUM_TO_TEST};
+    use crate::CSS as ENUM_TO_TEST;
+    #[cfg(feature = "strum")]
+    use strum::IntoEnumIterator;
 
-    const X:ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
-    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
 impl fmt::LowerHex for CSS {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }

@@ -1,10 +1,15 @@
 //! A module for time enums
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
-use strum_macros::{EnumIter, EnumCount};
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// The days of the week
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Day {
     /// [Monday](https://en.wikipedia.org/wiki/) is the first day of the week
     Monday = 1,
@@ -29,7 +34,9 @@ pub enum Day {
 }
 
 /// The months of the year
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Month {
     /// [January](https://en.wikipedia.org/wiki/January) is the first month of the year
     January = 1,

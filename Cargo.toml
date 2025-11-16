@@ -1,18 +1,38 @@
 [package]
 name = "hodgepodge"
-version = "0.1.5"
+version = "0.2.0"
 authors = ["Chris McComb <ccmcc2012@gmail.com>"]
-description = "A hodgepodge of enums"
-edition = "2018"
+description = "Lightweight dataset crate of enums for prototyping, teaching, and experimentation"
+edition = "2021"
+rust-version = "1.66.1"
 readme = "README.md"
 repository = "https://github.com/cmccomb/hodgepodge"
 homepage = "https://github.com/cmccomb/hodgepodge"
 documentation = "https://docs.rs/hodgepodge"
 license = "MIT OR Apache-2.0"
-keywords = ["enum", "data"]
-categories = ["data-structures", "date-and-time", "rust-patterns", "science"]
+keywords = ["enum", "dataset", "prototype", "teaching", "education"]
+categories = ["data-structures", "development-tools::testing", "rust-patterns", "science"]
 
 
 [dependencies]
-strum = "0.19.1"
-strum_macros = "0.19.1"
+# Optional enum helpers for iterating and deriving utilities.
+strum = { version = "0.27.2", optional = true }
+strum_macros = { version = "0.27.2", optional = true }
+# Optional serialization support for exporting the enum datasets.
+serde = { version = "1.0", features = ["derive"], optional = true }
+
+[features]
+# Keep the default feature set minimal so downstream users opt-in explicitly.
+default = []
+# Enables helper traits and derive macros from the strum ecosystem.
+strum = ["dep:strum", "dep:strum_macros"]
+# Enables serde Serialize/Deserialize derives across the enum datasets.
+serde = ["dep:serde"]
+
+[[example]]
+name = "iter"
+required-features = ["strum"]
+
+[[example]]
+name = "len"
+required-features = ["strum"]

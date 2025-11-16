@@ -1,40 +1,51 @@
 //! A module for games
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
-use strum_macros::{EnumIter, EnumCount};
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// Suits of a standard deck of cards
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Suit {
     Hearts,
     Clubs,
     Spades,
-    Diamonds
+    Diamonds,
 }
 
 #[cfg(test)]
 mod test_suit {
-    use crate::{*, Suit as ENUM_TO_TEST};
+    use crate::Suit as ENUM_TO_TEST;
+    #[cfg(feature = "strum")]
+    use strum::IntoEnumIterator;
 
-    const X:ENUM_TO_TEST = ENUM_TO_TEST::Clubs;
-    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Spades;
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Clubs;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Spades;
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
 /// Ranks of a standard deck of cards
-#[derive(Debug, EnumIter, EnumCount)]
+#[derive(Debug)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Rank {
     Ace = 1,
     Two = 2,
@@ -48,42 +59,45 @@ pub enum Rank {
     Ten = 10,
     Jack = 11,
     Queen = 12,
-    King = 13
+    King = 13,
 }
 
 impl Rank {
-    fn value(self) -> u8 {
-        let mut value = self as u8;
-        if value > 10 {
-            value = 10;
-        }
-        value
+    /// Returns the ordinal position of the rank (Ace = 1, ..., King = 13).
+    #[must_use]
+    pub const fn ordinal(self) -> u8 {
+        self as u8
     }
 }
 
-
 #[cfg(test)]
 mod test_rank {
-    use crate::{*, Rank as ENUM_TO_TEST};
+    use crate::Rank as ENUM_TO_TEST;
+    #[cfg(feature = "strum")]
+    use strum::IntoEnumIterator;
 
-    const X:ENUM_TO_TEST = ENUM_TO_TEST::Two;
-    const Y:ENUM_TO_TEST = ENUM_TO_TEST::Jack;
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Two;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Jack;
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("{:?} are worth {:?}, but {:?} are worth {:?}", X, X.value(), Y, Y.value())
+        let x_value = X.ordinal();
+        let y_value = Y.ordinal();
+        println!("{X:?} are worth {x_value}, but {Y:?} are worth {y_value}");
     }
 
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }

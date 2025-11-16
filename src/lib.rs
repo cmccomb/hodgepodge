@@ -28,11 +28,11 @@ pub use time::*;
 pub mod games;
 pub use games::*;
 
-// Import and re-export strum
-extern crate strum;
+// Import and re-export strum when the feature flag is enabled.
+#[cfg(feature = "strum")]
 pub use strum::*;
 
-// Import and re-export strum_macros
-#[macro_use]
-extern crate strum_macros;
+// Import and re-export strum_macros when the feature flag is enabled so
+// downstream users can derive EnumIter/EnumCount via this crate.
+#[cfg(feature = "strum")]
 pub use strum_macros::*;

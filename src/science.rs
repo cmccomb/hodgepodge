@@ -1,10 +1,15 @@
 //! A module for science enums
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
-use strum_macros::{EnumIter, EnumCount};
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// Metric units
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Unit {
     Mass,
     Volume,
@@ -12,13 +17,14 @@ pub enum Unit {
     Time,
     Angle,
     Temperature,
-    Energy
+    Energy,
 }
 
 /// The levels of biological classification
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum TaxonomicRank {
-
     /// [Domain](https://en.wikipedia.org/wiki/Domain_(biology)) is the top classification level
     Domain,
 
@@ -41,11 +47,13 @@ pub enum TaxonomicRank {
     Genus,
 
     /// [Species](https://en.wikipedia.org/wiki/Species) is the basic unit of classification
-    Species
+    Species,
 }
 
 /// Metric units greater the one
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum PrefixLarge {
     Deca = 1,
     Hecto = 2,
@@ -59,9 +67,10 @@ pub enum PrefixLarge {
     Yotta = 24,
 }
 
-
 /// Metric units greater the one
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum PrefixSmall {
     Deci = 1,
     Centi = 2,
@@ -76,7 +85,9 @@ pub enum PrefixSmall {
 }
 
 /// Planets of the solar system
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Planet {
     /// [Mercury](https://en.wikipedia.org/wiki/Mercury_(planet)) is the closest planet to the sun
     Mercury = 1,
@@ -103,11 +114,13 @@ pub enum Planet {
     Neptune = 8,
 
     /// [Pluto](https://en.wikipedia.org/wiki/Pluto) will always be a planet in my heart and my code
-    Pluto = 9
+    Pluto = 9,
 }
 
 /// List of the elements
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(missing_docs)]
 pub enum Element {
     Hydrogen = 1,

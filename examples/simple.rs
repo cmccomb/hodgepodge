@@ -1,7 +1,10 @@
 // Import hodgepodge.
-use hodgepodge::*;
+use hodgepodge::RGB;
 
 fn main() {
     // Print some colors
-    println!("{:?}, {:?}, and {:?} are RGB colors", RGB::Blue, RGB::Red, RGB::Green);
+    let blue = RGB::Blue;
+    let red = RGB::Red;
+    let green = RGB::Green;
+    println!("{blue:?}, {red:?}, and {green:?} are RGB colors");
 }
