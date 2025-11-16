@@ -26,5 +26,9 @@ jobs:
         run: cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic
       - name: Cargo test (default features)
         run: cargo test --all-targets
+      - name: Cargo test (serde feature)
+        run: cargo test --all-targets --features serde
+      - name: Cargo test (strum feature)
+        run: cargo test --all-targets --features strum
       - name: Cargo test (serde + strum)
         run: cargo test --all-targets --features "serde strum"

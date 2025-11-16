@@ -16,19 +16,20 @@ pub enum BetterThanRust {
 }
 
 #[cfg(test)]
-mod better_than_rust {
-    use crate::BetterThanRust as ENUM_TO_TEST;
+mod better_than_rust_tests {
+    use super::BetterThanRust;
 
     #[test]
-    fn accessibility() {
-        let better = ENUM_TO_TEST::None;
-        println!("How many programming languages are better than rust {better:?}");
+    fn there_are_no_languages_better_than_rust() {
+        assert_eq!(BetterThanRust::None as i32, 0);
     }
 
+    #[cfg(feature = "enum-count")]
     #[test]
-    fn int_casting() {
-        let better = ENUM_TO_TEST::None as i32;
-        println!("How many programming languages are better than rust? {better}");
+    fn enum_contains_single_variant() {
+        use strum::EnumCount;
+
+        assert_eq!(<BetterThanRust as EnumCount>::COUNT, 1);
     }
 }
 

@@ -19,26 +19,22 @@ pub enum Suit {
 
 #[cfg(test)]
 mod test_suit {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::Suit as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Clubs;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Spades;
+    use crate::Suit;
 
     #[test]
-    fn accessibility() {
-        println!("I like {X:?}, but I also like {Y:?}");
+    fn standard_deck_contains_four_suits() {
+        assert_eq!(Suit::Hearts as u8, 0);
+        assert_eq!(Suit::Clubs as u8, 1);
+        assert_eq!(Suit::Spades as u8, 2);
+        assert_eq!(Suit::Diamonds as u8, 3);
     }
 
     #[cfg(feature = "strum")]
     #[test]
-    fn strum() {
-        for x in ENUM_TO_TEST::iter() {
-            println!("{x:?}");
-        }
-        let variant_count = ENUM_TO_TEST::iter().count();
-        println!("There are {variant_count} variants");
+    fn suit_count_matches_standard_deck() {
+        use strum::EnumCount;
+
+        assert_eq!(<Suit as EnumCount>::COUNT, 4);
     }
 }
 
@@ -72,32 +68,26 @@ impl Rank {
 
 #[cfg(test)]
 mod test_rank {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::Rank as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Two;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Jack;
+    use crate::Rank;
 
     #[test]
-    fn accessibility() {
-        println!("I like {X:?}, but I also like {Y:?}");
+    fn ordinal_reflects_blackjack_values() {
+        assert_eq!(Rank::Ace.ordinal(), 1);
+        assert_eq!(Rank::Ten.ordinal(), 10);
+        assert_eq!(Rank::King.ordinal(), 13);
     }
 
     #[test]
-    fn int_casting() {
-        let x_value = X.ordinal();
-        let y_value = Y.ordinal();
-        println!("{X:?} are worth {x_value}, but {Y:?} are worth {y_value}");
+    fn face_cards_are_higher_than_number_cards() {
+        assert!(Rank::Queen.ordinal() > Rank::Ten.ordinal());
+        assert!(Rank::Jack.ordinal() > Rank::Nine.ordinal());
     }
 
     #[cfg(feature = "strum")]
     #[test]
-    fn strum() {
-        for x in ENUM_TO_TEST::iter() {
-            println!("{x:?}");
-        }
-        let variant_count = ENUM_TO_TEST::iter().count();
-        println!("There are {variant_count} variants");
+    fn ranks_cover_standard_deck_span() {
+        use strum::EnumCount;
+
+        assert_eq!(<Rank as EnumCount>::COUNT, 13);
     }
 }

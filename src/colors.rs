@@ -48,33 +48,26 @@ impl fmt::LowerHex for ROYGBIV {
 
 #[cfg(test)]
 mod test_roygbiv {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::ROYGBIV as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Green;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    use crate::ROYGBIV;
 
     #[test]
-    fn accessibility() {
-        println!("I like {X:?}, but I also like {Y:?}");
+    fn discriminants_match_rgb_hex_values() {
+        assert_eq!(ROYGBIV::Red as i32, 0xff0000);
+        assert_eq!(ROYGBIV::Green as i32, 0x00ff00);
+        assert_eq!(ROYGBIV::Violet as i32, 0x9400d3);
     }
 
     #[test]
-    fn int_casting() {
-        let x_value = X as i32;
-        let y_value = Y as i32;
-        println!("I like {x_value}, but I also like {y_value}");
+    fn formatting_uses_lower_hex() {
+        assert_eq!(format!("{:x}", ROYGBIV::Blue), "0000ff");
     }
 
     #[cfg(feature = "strum")]
     #[test]
-    fn strum() {
-        for x in ENUM_TO_TEST::iter() {
-            println!("{x:?}");
-        }
-        let variant_count = ENUM_TO_TEST::iter().count();
-        println!("There are {variant_count} variants");
+    fn roygbiv_has_seven_variants() {
+        use strum::EnumCount;
+
+        assert_eq!(<ROYGBIV as EnumCount>::COUNT, 7);
     }
 }
 
@@ -105,33 +98,26 @@ impl fmt::LowerHex for CMYK {
 
 #[cfg(test)]
 mod test_cmyk {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::CMYK as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+    use crate::CMYK;
 
     #[test]
-    fn accessibility() {
-        println!("I like {X:?}, but I also like {Y:?}");
+    fn black_is_zero_and_cmy_channels_are_unique() {
+        assert_eq!(CMYK::Black as i32, 0x000000);
+        assert_ne!(CMYK::Cyan as i32, CMYK::Magenta as i32);
+        assert_ne!(CMYK::Yellow as i32, CMYK::Cyan as i32);
     }
 
     #[test]
-    fn int_casting() {
-        let x_value = X as i32;
-        let y_value = Y as i32;
-        println!("I like {x_value}, but I also like {y_value}");
+    fn lower_hex_representation_zero_pads() {
+        assert_eq!(format!("{:x}", CMYK::Black), "000000");
     }
 
     #[cfg(feature = "strum")]
     #[test]
-    fn strum() {
-        for x in ENUM_TO_TEST::iter() {
-            println!("{x:?}");
-        }
-        let variant_count = ENUM_TO_TEST::iter().count();
-        println!("There are {variant_count} variants");
+    fn has_four_printing_channels() {
+        use strum::EnumCount;
+
+        assert_eq!(<CMYK as EnumCount>::COUNT, 4);
     }
 }
 
@@ -159,33 +145,26 @@ impl fmt::LowerHex for RGB {
 
 #[cfg(test)]
 mod test_rgb {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::RGB as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Red;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    use crate::RGB;
 
     #[test]
-    fn accessibility() {
-        println!("I like {X:?}, but I also like {Y:?}");
+    fn rgb_channels_match_expected_hex_values() {
+        assert_eq!(RGB::Red as i32, 0xff0000);
+        assert_eq!(RGB::Green as i32, 0x00ff00);
+        assert_eq!(RGB::Blue as i32, 0x0000ff);
     }
 
     #[test]
-    fn int_casting() {
-        let x_value = X as i32;
-        let y_value = Y as i32;
-        println!("I like {x_value}, but I also like {y_value}");
+    fn rgb_hex_formatting_zero_pads() {
+        assert_eq!(format!("{:x}", RGB::Blue), "0000ff");
     }
 
     #[cfg(feature = "strum")]
     #[test]
-    fn strum() {
-        for x in ENUM_TO_TEST::iter() {
-            println!("{x:?}");
-        }
-        let variant_count = ENUM_TO_TEST::iter().count();
-        println!("There are {variant_count} variants");
+    fn exactly_three_rgb_channels_exist() {
+        use strum::EnumCount;
+
+        assert_eq!(<RGB as EnumCount>::COUNT, 3);
     }
 }
 
@@ -370,33 +349,29 @@ pub enum CSS {
 
 #[cfg(test)]
 mod test_css {
-    #[cfg(feature = "strum")]
-    use crate::IntoEnumIterator;
-    use crate::CSS as ENUM_TO_TEST;
-
-    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
-    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
+    use crate::CSS;
 
     #[test]
-    fn accessibility() {
-        println!("I like {X:?}, but I also like {Y:?}");
+    fn canonical_css_colors_match_spec() {
+        assert_eq!(CSS::RebeccaPurple as i32, 0x663399);
+        assert_eq!(CSS::White as i32, 0xffffff);
+        assert_eq!(CSS::Black as i32, 0x000000);
     }
 
     #[test]
-    fn int_casting() {
-        let x_value = X as i32;
-        let y_value = Y as i32;
-        println!("I like {x_value}, but I also like {y_value}");
+    fn approximate_aliases_are_distinct_from_canonical_values() {
+        assert_eq!(CSS::Cyan as i32, 0x00ffff);
+        assert_eq!(CSS::Aqua as i32, 0x0100ff);
+        assert_ne!(CSS::Aqua as i32, CSS::Cyan as i32);
+        assert_ne!(CSS::Grey as i32, CSS::Gray as i32);
     }
 
     #[cfg(feature = "strum")]
     #[test]
-    fn strum() {
-        for x in ENUM_TO_TEST::iter() {
-            println!("{x:?}");
-        }
-        let variant_count = ENUM_TO_TEST::iter().count();
-        println!("There are {variant_count} variants");
+    fn css_keyword_list_contains_expected_entries() {
+        use strum::EnumCount;
+
+        assert_eq!(<CSS as EnumCount>::COUNT, 148);
     }
 }
 
