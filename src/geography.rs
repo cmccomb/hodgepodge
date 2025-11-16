@@ -128,14 +128,22 @@ pub enum States {
 }
 
 #[cfg(test)]
-mod test_states {
-    use crate::geography::States::*;
+mod states_tests {
+    use super::States;
 
     #[test]
-    fn access() {
-        let x = California;
-        let y = Colorado;
-        println!("I like {x:?}, but I also like {y:?}");
+    fn states_follow_alphabetical_discriminants() {
+        assert_eq!(States::Alabama as usize, 0);
+        assert!(States::California as usize > States::Alabama as usize);
+        assert_eq!(States::Wyoming as usize, 49);
+    }
+
+    #[cfg(feature = "enum-count")]
+    #[test]
+    fn united_states_has_fifty_states() {
+        use strum::EnumCount;
+
+        assert_eq!(<States as EnumCount>::COUNT, 50);
     }
 }
 
