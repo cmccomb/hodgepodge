@@ -12,24 +12,24 @@
 //!
 //! The intended workflow is to add `use hodgepodge::*;` at the top of your file
 //! so all of the enums are in scope. From there you can immediately iterate
-//! through the variants, serialize them (with the `serde` feature), or format
-//! them however your demo requires.
+//! through the variants (with the `strum` feature), serialize them (with the
+//! `serde` feature), or format them however your demo requires.
 //!
 //! ## Feature-gated helpers
 //!
-//! * `enum-iter` – derives [`strum_macros::EnumIter`] for every dataset and
-//!   re-exports [`IntoEnumIterator`] so you can write
-//!   `use hodgepodge::IntoEnumIterator;` without pulling `strum` directly.
-//! * `enum-count` – derives [`strum_macros::EnumCount`] across the crate and
-//!   re-exports [`EnumCount`] so you can introspect the total number of variants
-//!   in a dataset.
+//! * `strum` – derives [`strum_macros::EnumIter`] and
+//!   [`strum_macros::EnumCount`] for every dataset, re-exporting
+//!   [`IntoEnumIterator`] and [`EnumCount`] so you can iterate over the variants
+//!   or count them without depending on `strum` directly.
+//! * `enum-iter` / `enum-count` – legacy compatibility feature names that now
+//!   simply forward to `strum`.
 //! * `serde` – derives [`serde::Serialize`] and [`serde::Deserialize`] to help
 //!   you capture the datasets in fixtures.
 //!
 //! ## Examples
 //!
 //! ```rust
-//! # #[cfg(feature = "enum-iter")]
+//! # #[cfg(feature = "strum")]
 //! # {
 //! use hodgepodge::{Element, IntoEnumIterator};
 //!
@@ -38,9 +38,23 @@
 //!     println!("{element:?} is element {atomic_number}");
 //! }
 //! # }
-//! # #[cfg(not(feature = "enum-iter"))]
+//! # #[cfg(not(feature = "strum"))]
 //! # {
-//! # // Enable the `enum-iter` feature to run this example.
+//! # // Enable the `strum` feature to run this example.
+//! # }
+//! ```
+//!
+//! ```rust
+//! # #[cfg(feature = "serde")]
+//! # {
+//! use hodgepodge::Day;
+//!
+//! let json = serde_json::to_string(&Day::Friday).expect("serialize Day");
+//! assert_eq!(json, "\"Friday\"");
+//! # }
+//! # #[cfg(not(feature = "serde"))]
+//! # {
+//! # // Enable the `serde` feature to run this example.
 //! # }
 //! ```
 
@@ -69,8 +83,5 @@ pub mod misc;
 pub use misc::*;
 
 /// Re-export helper traits from `strum` when the relevant feature is enabled.
-#[cfg(feature = "enum-count")]
-pub use strum::EnumCount;
-/// Re-export helper traits from `strum` when the relevant feature is enabled.
-#[cfg(feature = "enum-iter")]
-pub use strum::IntoEnumIterator;
+#[cfg(feature = "strum")]
+pub use strum::{EnumCount, IntoEnumIterator};

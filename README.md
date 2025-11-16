@@ -16,11 +16,11 @@ fn main() {
     println!("{blue:?}, {red:?}, and {green:?} are RGB colors");
 }
 ```
-To use the iterator helpers shown below, enable the optional `enum-iter` feature:
+To use the iterator helpers shown below, enable the optional `strum` feature:
 
 ```toml
 [dependencies]
-hodgepodge = { version = "0.2", features = ["enum-iter"] }
+hodgepodge = { version = "0.2", features = ["strum"] }
 ```
 
 With that feature enabled, you can do things like this:
@@ -46,13 +46,32 @@ fn main() {
 }
 ```
 
+To serialize one of the enums, enable the `serde` feature alongside your
+serializer of choice (such as [`serde_json`](https://crates.io/crates/serde_json)):
+
+```toml
+[dependencies]
+hodgepodge = { version = "0.2", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+```
+
+```rust
+use hodgepodge::Day;
+
+fn main() -> Result<(), serde_json::Error> {
+    let json = serde_json::to_string(&Day::Saturday)?;
+    println!("{json}");
+    Ok(())
+}
+```
+
 ## Features
 
 Hodgepodge keeps the default feature set empty so you only pay for what you use:
 
-* `enum-iter` – pulls in [`strum`](https://crates.io/crates/strum) and [`strum_macros`](https://crates.io/crates/strum_macros) to derive `EnumIter` and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html) for each dataset.
-* `enum-count` – derives [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for every dataset and re-exports the trait so you can introspect totals without depending on `strum` directly.
-* `strum` – legacy compatibility feature that simply enables both `enum-iter` and `enum-count` for downstream crates that still expect the original flag.
+* `strum` – pulls in [`strum`](https://crates.io/crates/strum) and [`strum_macros`](https://crates.io/crates/strum_macros) to derive `EnumIter`/`EnumCount` and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html) plus [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for each dataset.
+* `enum-iter` / `enum-count` – compatibility aliases that now simply forward to `strum`.
 * `serde` – derives [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html) so you can serialize the enums into fixtures for teaching materials or quick prototypes.
 
 ## Development
@@ -62,4 +81,4 @@ This repository keeps contributor workflows aligned with CI. Please run the same
 1. `cargo fmt --all --check`
 2. `cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic`
 3. `cargo test --all-targets`
-4. `cargo test --all-targets --features "serde enum-iter enum-count"`
+4. `cargo test --all-targets --features "serde strum"`
