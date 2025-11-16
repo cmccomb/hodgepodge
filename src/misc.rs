@@ -1,13 +1,16 @@
 //! A module for miscellaneous enums
 
 // Enables use as an iterable and computation of length
-use strum_macros::{EnumIter, EnumCount};
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// Programming languages better than Rust
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum BetterThanRust {
     /// That's right, there aren't any.
-    None = 0
+    None = 0,
 }
 
 #[cfg(test)]
@@ -16,17 +19,25 @@ mod better_than_rust {
 
     #[test]
     fn accessibility() {
-        println!("How many programming languages are better than rust {:?}", ENUM_TO_TEST::None);
+        println!(
+            "How many programming languages are better than rust {:?}",
+            ENUM_TO_TEST::None
+        );
     }
 
     #[test]
     fn int_casting() {
-        println!("How many programming languages are better than rust? {:?}", ENUM_TO_TEST::None as i32);
+        println!(
+            "How many programming languages are better than rust? {:?}",
+            ENUM_TO_TEST::None as i32
+        );
     }
 }
 
 /// Standard medals
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Medal {
     /// A [Gold Medal](https://en.wikipedia.org/wiki/Gold_medal) is typical awarded for first place
     Gold = 1,
@@ -40,7 +51,9 @@ pub enum Medal {
 
 /// An ordinal list for 1-100
 #[allow(missing_docs)]
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Ordinal {
     First = 1,
     Second = 2,
@@ -71,5 +84,5 @@ pub enum Ordinal {
     Twentyseventh = 27,
     Twentyeighth = 28,
     Twentyninth = 29,
-    Thirtieth = 30
+    Thirtieth = 30,
 }

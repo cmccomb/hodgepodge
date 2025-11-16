@@ -1,31 +1,122 @@
 //! A module for geographic enums
 
 // Enables use as an iterable and computation of length
-use strum_macros::{EnumIter, EnumCount};
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// Directions
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Direction {
-    North, South, East, West
+    North,
+    South,
+    East,
+    West,
 }
 
 /// Countinents of the world
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Continent {
-    NorthAmerica, SouthAmerica, Asia, Africa, Europe, Antartica, Australia
+    NorthAmerica,
+    SouthAmerica,
+    Asia,
+    Africa,
+    Europe,
+    Antartica,
+    Australia,
 }
 
 /// Countries in the EU
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum EU {
-    Austria, Belgium, Bulgaria, Croatia, RepublicOfCyprus, CzechRepublic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, SpainAndSweden
+    Austria,
+    Belgium,
+    Bulgaria,
+    Croatia,
+    RepublicOfCyprus,
+    CzechRepublic,
+    Denmark,
+    Estonia,
+    Finland,
+    France,
+    Germany,
+    Greece,
+    Hungary,
+    Ireland,
+    Italy,
+    Latvia,
+    Lithuania,
+    Luxembourg,
+    Malta,
+    Netherlands,
+    Poland,
+    Portugal,
+    Romania,
+    Slovakia,
+    Slovenia,
+    SpainAndSweden,
 }
 
-
 /// States of the USA
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum States {
-    Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork, NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania, RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
+    Alabama,
+    Alaska,
+    Arizona,
+    Arkansas,
+    California,
+    Colorado,
+    Connecticut,
+    Delaware,
+    Florida,
+    Georgia,
+    Hawaii,
+    Idaho,
+    Illinois,
+    Indiana,
+    Iowa,
+    Kansas,
+    Kentucky,
+    Louisiana,
+    Maine,
+    Maryland,
+    Massachusetts,
+    Michigan,
+    Minnesota,
+    Mississippi,
+    Missouri,
+    Montana,
+    Nebraska,
+    Nevada,
+    NewHampshire,
+    NewJersey,
+    NewMexico,
+    NewYork,
+    NorthCarolina,
+    NorthDakota,
+    Ohio,
+    Oklahoma,
+    Oregon,
+    Pennsylvania,
+    RhodeIsland,
+    SouthCarolina,
+    SouthDakota,
+    Tennessee,
+    Texas,
+    Utah,
+    Vermont,
+    Virginia,
+    Washington,
+    WestVirginia,
+    Wisconsin,
+    Wyoming,
 }
 
 #[cfg(test)]
@@ -41,7 +132,9 @@ mod test_states {
 }
 
 /// Countries of the world
-#[derive(Debug, EnumIter, EnumCount, Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Country {
     Afghanistan,
     Albania,
@@ -241,4 +334,3 @@ pub enum Country {
     Zambia,
     Zimbabwe,
 }
-
