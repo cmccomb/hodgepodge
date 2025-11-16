@@ -17,16 +17,16 @@ fn planets_follow_orbital_order() {
 
 #[test]
 fn roygbiv_hex_values_are_consistent() {
-    assert_eq!(ROYGBIV::Red as i32, 0xff0000);
-    assert_eq!(ROYGBIV::Indigo as i32, 0x4b0082);
-    assert_eq!(ROYGBIV::Violet as i32, 0x9400d3);
+    assert_eq!(ROYGBIV::Red as i32, 0x00ff_0000);
+    assert_eq!(ROYGBIV::Indigo as i32, 0x004b_0082);
+    assert_eq!(ROYGBIV::Violet as i32, 0x0094_00d3);
 }
 
 #[test]
 fn css_colors_match_documented_hex_codes() {
-    assert_eq!(CSS::Tomato as i32, 0xff6347);
-    assert_eq!(CSS::RebeccaPurple as i32, 0x663399);
-    assert_eq!(CSS::DarkSlateGrey as i32, 0x304f4f);
+    assert_eq!(CSS::Tomato as i32, 0x00ff_6347);
+    assert_eq!(CSS::RebeccaPurple as i32, 0x0066_3399);
+    assert_eq!(CSS::DarkSlateGrey as i32, 0x0030_4f4f);
 }
 
 #[test]
