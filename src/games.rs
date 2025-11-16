@@ -3,15 +3,12 @@
 #![allow(clippy::missing_docs_in_private_items)]
 
 // Enables the optional iterator and variant-count derives.
-#[cfg(feature = "enum-count")]
-use strum_macros::EnumCount;
-#[cfg(feature = "enum-iter")]
-use strum_macros::EnumIter;
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 /// Suits of a standard deck of cards
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Suit {
     Hearts,
@@ -22,7 +19,7 @@ pub enum Suit {
 
 #[cfg(test)]
 mod test_suit {
-    #[cfg(feature = "enum-iter")]
+    #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::Suit as ENUM_TO_TEST;
 
@@ -34,7 +31,7 @@ mod test_suit {
         println!("I like {X:?}, but I also like {Y:?}");
     }
 
-    #[cfg(feature = "enum-iter")]
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
@@ -47,8 +44,7 @@ mod test_suit {
 
 /// Ranks of a standard deck of cards
 #[derive(Debug)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Rank {
     Ace = 1,
@@ -76,7 +72,7 @@ impl Rank {
 
 #[cfg(test)]
 mod test_rank {
-    #[cfg(feature = "enum-iter")]
+    #[cfg(feature = "strum")]
     use crate::IntoEnumIterator;
     use crate::Rank as ENUM_TO_TEST;
 
@@ -95,7 +91,7 @@ mod test_rank {
         println!("{X:?} are worth {x_value}, but {Y:?} are worth {y_value}");
     }
 
-    #[cfg(feature = "enum-iter")]
+    #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
