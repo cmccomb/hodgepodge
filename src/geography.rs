@@ -1,14 +1,17 @@
-//! A module for geographic enums
+//! Geographic datasets covering directions, continents, and civic regions.
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 
-// Enables use as an iterable and computation of length
-#[cfg(feature = "strum")]
-use strum_macros::{EnumCount, EnumIter};
+// Enables the optional iterator and variant-count derives.
+#[cfg(feature = "enum-count")]
+use strum_macros::EnumCount;
+#[cfg(feature = "enum-iter")]
+use strum_macros::EnumIter;
 
 /// Directions
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Direction {
     North,
@@ -19,7 +22,8 @@ pub enum Direction {
 
 /// Countinents of the world
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Continent {
     NorthAmerica,
@@ -33,7 +37,8 @@ pub enum Continent {
 
 /// Countries in the EU
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum EU {
     Austria,
@@ -66,7 +71,8 @@ pub enum EU {
 
 /// States of the USA
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum States {
     Alabama,
@@ -135,7 +141,8 @@ mod test_states {
 
 /// Countries of the world
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Country {
     Afghanistan,

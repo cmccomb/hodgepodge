@@ -16,17 +16,17 @@ fn main() {
     println!("{blue:?}, {red:?}, and {green:?} are RGB colors");
 }
 ```
-To use the iterator helpers shown below, enable the optional `strum` feature:
+To use the iterator helpers shown below, enable the optional `enum-iter` feature:
 
 ```toml
 [dependencies]
-hodgepodge = { version = "0.2", features = ["strum"] }
+hodgepodge = { version = "0.2", features = ["enum-iter"] }
 ```
 
 With that feature enabled, you can do things like this:
 ```rust
 use hodgepodge::Element;
-use strum::IntoEnumIterator;
+use hodgepodge::IntoEnumIterator;
 
 fn main() {
     for member in Element::iter() {
@@ -38,7 +38,7 @@ fn main() {
 And this:
 ```rust
 use hodgepodge::Element;
-use strum::IntoEnumIterator;
+use hodgepodge::IntoEnumIterator;
 
 fn main() {
     let element_count = Element::iter().count();
@@ -50,7 +50,9 @@ fn main() {
 
 Hodgepodge keeps the default feature set empty so you only pay for what you use:
 
-* `strum` – pulls in [`strum`](https://crates.io/crates/strum) and [`strum_macros`](https://crates.io/crates/strum_macros) to derive `EnumIter`/`EnumCount` for every dataset enum.
+* `enum-iter` – pulls in [`strum`](https://crates.io/crates/strum) and [`strum_macros`](https://crates.io/crates/strum_macros) to derive `EnumIter` and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html) for each dataset.
+* `enum-count` – derives [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for every dataset and re-exports the trait so you can introspect totals without depending on `strum` directly.
+* `strum` – legacy compatibility feature that simply enables both `enum-iter` and `enum-count` for downstream crates that still expect the original flag.
 * `serde` – derives [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html) so you can serialize the enums into fixtures for teaching materials or quick prototypes.
 
 ## Development
@@ -60,4 +62,4 @@ This repository keeps contributor workflows aligned with CI. Please run the same
 1. `cargo fmt --all --check`
 2. `cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic`
 3. `cargo test --all-targets`
-4. `cargo test --all-targets --features "serde strum"`
+4. `cargo test --all-targets --features "serde enum-iter enum-count"`

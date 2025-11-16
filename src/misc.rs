@@ -1,14 +1,17 @@
-//! A module for miscellaneous enums
+//! Miscellaneous datasets such as medals, ordinals, and programming trivia.
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 
-// Enables use as an iterable and computation of length
-#[cfg(feature = "strum")]
-use strum_macros::{EnumCount, EnumIter};
+// Enables the optional iterator and variant-count derives.
+#[cfg(feature = "enum-count")]
+use strum_macros::EnumCount;
+#[cfg(feature = "enum-iter")]
+use strum_macros::EnumIter;
 
 /// Programming languages better than Rust
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum BetterThanRust {
     /// That's right, there aren't any.
@@ -34,7 +37,8 @@ mod better_than_rust {
 
 /// Standard medals
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Medal {
     /// A [Gold Medal](https://en.wikipedia.org/wiki/Gold_medal) is typical awarded for first place
@@ -50,7 +54,8 @@ pub enum Medal {
 /// An ordinal list for 1-100
 #[allow(missing_docs)]
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Ordinal {
     First = 1,

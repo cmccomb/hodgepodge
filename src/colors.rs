@@ -1,28 +1,23 @@
-//! A module for color enums.
-//!
-//! Every one of these enums is C-like, with the hex code for the color
-//! used as the explicit discriminator. To get that value, all you have to do is format it like
-//! a hex number:
-//! ```
-//! use hodgepodge::CSS;
-//!
-//! let color = CSS::GhostWhite;
-//! println!("The hex code for {color:?} is #{color:06x}");
-//! ```
+//! Color datasets ranging from rainbow mnemonics (ROYGBIV) to CMYK, RGB, and
+//! curated CSS keyword lists. All enums are C-like, so their discriminants are
+//! the RGB hex codes.
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 #![allow(clippy::unreadable_literal)]
 
-// Enables use as an iterable and computation of length
-#[cfg(feature = "strum")]
-use strum_macros::{EnumCount, EnumIter};
+// Enables the optional iterator and variant-count derives.
+#[cfg(feature = "enum-count")]
+use strum_macros::EnumCount;
+#[cfg(feature = "enum-iter")]
+use strum_macros::EnumIter;
 
 // For deriving lowerhex
 use std::fmt;
 
 /// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum ROYGBIV {
     /// Red is the first color in ROYGBIV
@@ -56,9 +51,9 @@ impl fmt::LowerHex for ROYGBIV {
 
 #[cfg(test)]
 mod test_roygbiv {
+    #[cfg(feature = "enum-iter")]
+    use crate::IntoEnumIterator;
     use crate::ROYGBIV as ENUM_TO_TEST;
-    #[cfg(feature = "strum")]
-    use strum::IntoEnumIterator;
 
     const X: ENUM_TO_TEST = ENUM_TO_TEST::Green;
     const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
@@ -75,7 +70,7 @@ mod test_roygbiv {
         println!("I like {x_value}, but I also like {y_value}");
     }
 
-    #[cfg(feature = "strum")]
+    #[cfg(feature = "enum-iter")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
@@ -88,7 +83,8 @@ mod test_roygbiv {
 
 /// CMYK colors
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum CMYK {
     /// Cyan is the first CMYK channel
@@ -113,9 +109,9 @@ impl fmt::LowerHex for CMYK {
 
 #[cfg(test)]
 mod test_cmyk {
+    #[cfg(feature = "enum-iter")]
+    use crate::IntoEnumIterator;
     use crate::CMYK as ENUM_TO_TEST;
-    #[cfg(feature = "strum")]
-    use strum::IntoEnumIterator;
 
     const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
     const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
@@ -132,7 +128,7 @@ mod test_cmyk {
         println!("I like {x_value}, but I also like {y_value}");
     }
 
-    #[cfg(feature = "strum")]
+    #[cfg(feature = "enum-iter")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
@@ -145,7 +141,8 @@ mod test_cmyk {
 
 /// RGB colors
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum RGB {
     /// Red is the first RGB channel
@@ -167,9 +164,9 @@ impl fmt::LowerHex for RGB {
 
 #[cfg(test)]
 mod test_rgb {
+    #[cfg(feature = "enum-iter")]
+    use crate::IntoEnumIterator;
     use crate::RGB as ENUM_TO_TEST;
-    #[cfg(feature = "strum")]
-    use strum::IntoEnumIterator;
 
     const X: ENUM_TO_TEST = ENUM_TO_TEST::Red;
     const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
@@ -186,7 +183,7 @@ mod test_rgb {
         println!("I like {x_value}, but I also like {y_value}");
     }
 
-    #[cfg(feature = "strum")]
+    #[cfg(feature = "enum-iter")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
@@ -204,7 +201,8 @@ mod test_rgb {
 /// share a hex code with other color names). Specifically, the hex code for these variants is
 /// incremented by one in the earliest component (i.e., #00FFFF becomes #01FFFF).
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
+#[cfg_attr(feature = "enum-count", derive(EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(missing_docs)]
 pub enum CSS {
@@ -378,9 +376,9 @@ pub enum CSS {
 
 #[cfg(test)]
 mod test_css {
+    #[cfg(feature = "enum-iter")]
+    use crate::IntoEnumIterator;
     use crate::CSS as ENUM_TO_TEST;
-    #[cfg(feature = "strum")]
-    use strum::IntoEnumIterator;
 
     const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
     const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
@@ -397,7 +395,7 @@ mod test_css {
         println!("I like {x_value}, but I also like {y_value}");
     }
 
-    #[cfg(feature = "strum")]
+    #[cfg(feature = "enum-iter")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
