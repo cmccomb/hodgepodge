@@ -1,4 +1,6 @@
 //! A module for miscellaneous enums
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
 #[cfg(feature = "strum")]
@@ -19,18 +21,14 @@ mod better_than_rust {
 
     #[test]
     fn accessibility() {
-        println!(
-            "How many programming languages are better than rust {:?}",
-            ENUM_TO_TEST::None
-        );
+        let better = ENUM_TO_TEST::None;
+        println!("How many programming languages are better than rust {better:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!(
-            "How many programming languages are better than rust? {:?}",
-            ENUM_TO_TEST::None as i32
-        );
+        let better = ENUM_TO_TEST::None as i32;
+        println!("How many programming languages are better than rust? {better}");
     }
 }
 

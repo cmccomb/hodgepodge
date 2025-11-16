@@ -1,4 +1,6 @@
 //! A module for time enums
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
 #[cfg(feature = "strum")]

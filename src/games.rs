@@ -1,4 +1,6 @@
 //! A module for games
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
 #[cfg(feature = "strum")]
@@ -26,16 +28,17 @@ mod test_suit {
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
@@ -60,12 +63,10 @@ pub enum Rank {
 }
 
 impl Rank {
-    fn value(self) -> u8 {
-        let mut value = self as u8;
-        if value > 10 {
-            value = 10;
-        }
-        value
+    /// Returns the ordinal position of the rank (Ace = 1, ..., King = 13).
+    #[must_use]
+    pub const fn ordinal(self) -> u8 {
+        self as u8
     }
 }
 
@@ -80,26 +81,23 @@ mod test_rank {
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!(
-            "{:?} are worth {:?}, but {:?} are worth {:?}",
-            X,
-            X.value(),
-            Y,
-            Y.value()
-        )
+        let x_value = X.ordinal();
+        let y_value = Y.ordinal();
+        println!("{X:?} are worth {x_value}, but {Y:?} are worth {y_value}");
     }
 
     #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }

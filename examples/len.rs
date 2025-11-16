@@ -1,7 +1,9 @@
 // Import hodgepodge. Be sure to import all if you want to use iters.
-use hodgepodge::*;
+use hodgepodge::Element;
+use strum::IntoEnumIterator;
 
 fn main() {
     // How many elements are there?
-    println!("There are {:?} elements", Element::iter().count());
+    let element_count = Element::iter().count();
+    println!("There are {element_count} elements");
 }

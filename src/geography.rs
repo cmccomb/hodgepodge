@@ -1,4 +1,6 @@
 //! A module for geographic enums
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
 
 // Enables use as an iterable and computation of length
 #[cfg(feature = "strum")]
@@ -127,7 +129,7 @@ mod test_states {
     fn access() {
         let x = California;
         let y = Colorado;
-        println!("I like {:?}, but I also like {:?}", x, y)
+        println!("I like {x:?}, but I also like {y:?}");
     }
 }
 

@@ -1,10 +1,12 @@
 // Import hodgepodge. Be sure to import all if you want to use iters.
-use hodgepodge::*;
+use hodgepodge::Element;
+use strum::IntoEnumIterator;
 
 fn main() {
     // Iterate
     for member in Element::iter() {
         // All the elements!
-        println!("{:?} is element {:?}", member.clone(), member as i32);
+        let atomic_number = member as i32;
+        println!("{member:?} is element {atomic_number}");
     }
 }

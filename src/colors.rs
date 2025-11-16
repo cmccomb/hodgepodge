@@ -5,8 +5,13 @@
 //! a hex number:
 //! ```
 //! use hodgepodge::CSS;
-//! println!("The hex code for {:?} is #{:06x}", CSS::GhostWhite, CSS::GhostWhite)
+//!
+//! let color = CSS::GhostWhite;
+//! println!("The hex code for {color:?} is #{color:06x}");
 //! ```
+#![allow(missing_docs)]
+#![allow(clippy::missing_docs_in_private_items)]
+#![allow(clippy::unreadable_literal)]
 
 // Enables use as an iterable and computation of length
 #[cfg(feature = "strum")]
@@ -45,7 +50,7 @@ pub enum ROYGBIV {
 impl fmt::LowerHex for ROYGBIV {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
 
@@ -60,21 +65,24 @@ mod test_roygbiv {
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
     #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
@@ -99,7 +107,7 @@ pub enum CMYK {
 impl fmt::LowerHex for CMYK {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
 
@@ -114,21 +122,24 @@ mod test_cmyk {
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
     #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
@@ -150,7 +161,7 @@ pub enum RGB {
 impl fmt::LowerHex for RGB {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
 
@@ -165,21 +176,24 @@ mod test_rgb {
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
     #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
@@ -334,31 +348,31 @@ pub enum CSS {
     Yellow = 0xFFFF00,
     YellowGreen = 0x9ACD32,
 
-    /// Note that the associated hex value is not exact. For an exact value, use Cyan.
+    /// Note that the associated hex value is not exact. For an exact value, use `Cyan`.
     Aqua = 0x0100ff,
 
-    /// Note that the associated hex value is not exact. For an exact value, use DarkSlateGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `DarkSlateGray`.
     DarkSlateGrey = 0x304f4f,
 
-    /// Note that the associated hex value is not exact. For an exact value, use Magenta.
+    /// Note that the associated hex value is not exact. For an exact value, use `Magenta`.
     Fuschia = 0xff01ff,
 
-    /// Note that the associated hex value is not exact. For an exact value, use DimGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `DimGray`.
     DimGrey = 0x706969,
 
-    /// Note that the associated hex value is not exact. For an exact value, use SlateGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `SlateGray`.
     SlateGrey = 0x718090,
 
-    /// Note that the associated hex value is not exact. For an exact value, use LightSlateGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `LightSlateGray`.
     LightSlateGrey = 0x788899,
 
-    /// Note that the associated hex value is not exact. For an exact value, use Gr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `Gray`.
     Grey = 0x818080,
 
-    /// Note that the associated hex value is not exact. For an exact value, use DarkGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `DarkGray`.
     DarkGrey = 0xAAA9A9,
 
-    /// Note that the associated hex value is not exact. For an exact value, use LightGr***a***y.
+    /// Note that the associated hex value is not exact. For an exact value, use `LightGray`.
     LightGrey = 0xd4d3d3,
 }
 
@@ -373,27 +387,30 @@ mod test_css {
 
     #[test]
     fn accessibility() {
-        println!("I like {:?}, but I also like {:?}", X, Y)
+        println!("I like {X:?}, but I also like {Y:?}");
     }
 
     #[test]
     fn int_casting() {
-        println!("I like {:?}, but I also like {:?}", X as i32, Y as i32)
+        let x_value = X as i32;
+        let y_value = Y as i32;
+        println!("I like {x_value}, but I also like {y_value}");
     }
 
     #[cfg(feature = "strum")]
     #[test]
     fn strum() {
         for x in ENUM_TO_TEST::iter() {
-            println!("{:?}", x);
+            println!("{x:?}");
         }
-        println!("There are {:?} variants", ENUM_TO_TEST::iter().count())
+        let variant_count = ENUM_TO_TEST::iter().count();
+        println!("There are {variant_count} variants");
     }
 }
 
 impl fmt::LowerHex for CSS {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let x = *self as i32;
-        write!(f, "{:06x}", x)
+        write!(f, "{x:06x}")
     }
 }
