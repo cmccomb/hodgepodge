@@ -6,18 +6,15 @@
 #![allow(clippy::unreadable_literal)]
 
 // Enables the optional iterator and variant-count derives.
-#[cfg(feature = "enum-count")]
-use strum_macros::EnumCount;
-#[cfg(feature = "enum-iter")]
-use strum_macros::EnumIter;
+#[cfg(feature = "strum")]
+use strum_macros::{EnumCount, EnumIter};
 
 // For deriving lowerhex
 use std::fmt;
 
 /// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum ROYGBIV {
     /// Red is the first color in ROYGBIV
@@ -50,8 +47,13 @@ impl fmt::LowerHex for ROYGBIV {
 }
 
 #[cfg(test)]
-mod roygbiv_tests {
-    use super::ROYGBIV;
+mod test_roygbiv {
+    #[cfg(feature = "strum")]
+    use crate::IntoEnumIterator;
+    use crate::ROYGBIV as ENUM_TO_TEST;
+
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Green;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
 
     #[test]
     fn discriminants_match_rgb_hex_values() {
@@ -65,7 +67,7 @@ mod roygbiv_tests {
         assert_eq!(format!("{:x}", ROYGBIV::Blue), "0000ff");
     }
 
-    #[cfg(feature = "enum-count")]
+    #[cfg(feature = "strum")]
     #[test]
     fn roygbiv_has_seven_variants() {
         use strum::EnumCount;
@@ -76,8 +78,7 @@ mod roygbiv_tests {
 
 /// CMYK colors
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum CMYK {
     /// Cyan is the first CMYK channel
@@ -101,8 +102,13 @@ impl fmt::LowerHex for CMYK {
 }
 
 #[cfg(test)]
-mod cmyk_tests {
-    use super::CMYK;
+mod test_cmyk {
+    #[cfg(feature = "strum")]
+    use crate::IntoEnumIterator;
+    use crate::CMYK as ENUM_TO_TEST;
+
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
 
     #[test]
     fn black_is_zero_and_cmy_channels_are_unique() {
@@ -116,7 +122,7 @@ mod cmyk_tests {
         assert_eq!(format!("{:x}", CMYK::Black), "000000");
     }
 
-    #[cfg(feature = "enum-count")]
+    #[cfg(feature = "strum")]
     #[test]
     fn has_four_printing_channels() {
         use strum::EnumCount;
@@ -127,8 +133,7 @@ mod cmyk_tests {
 
 /// RGB colors
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum RGB {
     /// Red is the first RGB channel
@@ -149,8 +154,13 @@ impl fmt::LowerHex for RGB {
 }
 
 #[cfg(test)]
-mod rgb_tests {
-    use super::RGB;
+mod test_rgb {
+    #[cfg(feature = "strum")]
+    use crate::IntoEnumIterator;
+    use crate::RGB as ENUM_TO_TEST;
+
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Red;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Green;
 
     #[test]
     fn rgb_channels_match_expected_hex_values() {
@@ -164,7 +174,7 @@ mod rgb_tests {
         assert_eq!(format!("{:x}", RGB::Blue), "0000ff");
     }
 
-    #[cfg(feature = "enum-count")]
+    #[cfg(feature = "strum")]
     #[test]
     fn exactly_three_rgb_channels_exist() {
         use strum::EnumCount;
@@ -180,8 +190,7 @@ mod rgb_tests {
 /// share a hex code with other color names). Specifically, the hex code for these variants is
 /// incremented by one in the earliest component (i.e., #00FFFF becomes #01FFFF).
 #[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "enum-iter", derive(EnumIter))]
-#[cfg_attr(feature = "enum-count", derive(EnumCount))]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(missing_docs)]
 pub enum CSS {
@@ -354,8 +363,13 @@ pub enum CSS {
 }
 
 #[cfg(test)]
-mod css_tests {
-    use super::CSS;
+mod test_css {
+    #[cfg(feature = "strum")]
+    use crate::IntoEnumIterator;
+    use crate::CSS as ENUM_TO_TEST;
+
+    const X: ENUM_TO_TEST = ENUM_TO_TEST::Cyan;
+    const Y: ENUM_TO_TEST = ENUM_TO_TEST::Magenta;
 
     #[test]
     fn canonical_css_colors_match_spec() {
@@ -372,7 +386,7 @@ mod css_tests {
         assert_ne!(CSS::Grey as i32, CSS::Gray as i32);
     }
 
-    #[cfg(feature = "enum-count")]
+    #[cfg(feature = "strum")]
     #[test]
     fn css_keyword_list_contains_expected_entries() {
         use strum::EnumCount;
