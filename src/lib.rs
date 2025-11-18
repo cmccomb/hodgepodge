@@ -67,6 +67,17 @@
 //! # // Enable the `serde` feature to run this example.
 //! # }
 //! ```
+//!
+//! ### Work with seasons and fiscal quarters
+//! ```rust
+//! use hodgepodge::{Quarter, Season};
+//!
+//! let midyear = Season::Summer;
+//! let fiscal = Quarter::Q4;
+//!
+//! assert_eq!(midyear as u8, 3);
+//! assert_eq!(fiscal as u8, 4);
+//! ```
 
 /// Color palettes ranging from ROYGBIV to CSS keywords.
 pub mod colors;
