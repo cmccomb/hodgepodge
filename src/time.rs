@@ -7,7 +7,7 @@
 use strum_macros::{EnumCount, EnumIter};
 
 /// The days of the week
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Day {

@@ -39,6 +39,18 @@ fn main() {
 }
 ```
 
+You can iterate through game pieces the same way. For example, to print the relative value of each chess piece:
+
+```rust
+use hodgepodge::{ChessPiece, IntoEnumIterator};
+
+fn main() {
+    for piece in ChessPiece::iter() {
+        println!("{piece:?} is valued at {}", piece.ordinal());
+    }
+}
+```
+
 ### Format CSS colors
 Enums such as `CSS` implement `LowerHex`, so you can turn a variant into its hexadecimal color code without extra helpers:
 
