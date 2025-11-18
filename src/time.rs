@@ -74,3 +74,83 @@ pub enum Month {
     /// [December](https://en.wikipedia.org/wiki/December) is the twelfth month of the year
     December = 12,
 }
+
+/// The four meteorological seasons in calendar order.
+///
+/// # Examples
+/// ```
+/// use hodgepodge::Season;
+///
+/// let vacation = Season::Summer;
+/// assert_eq!(vacation as u8, 3);
+/// ```
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub enum Season {
+    /// [Winter](https://en.wikipedia.org/wiki/Winter) is the first season of the year.
+    Winter = 1,
+
+    /// [Spring](https://en.wikipedia.org/wiki/Spring_(season)) is the second season of the year.
+    Spring = 2,
+
+    /// [Summer](https://en.wikipedia.org/wiki/Summer) is the third season of the year.
+    Summer = 3,
+
+    /// [Fall](https://en.wikipedia.org/wiki/Autumn) (autumn) is the fourth season of the year.
+    Fall = 4,
+}
+
+/// Fiscal quarters in chronological order.
+///
+/// # Examples
+/// ```
+/// use hodgepodge::Quarter;
+///
+/// let reporting_period = Quarter::Q4;
+/// assert_eq!(reporting_period as u8, 4);
+/// ```
+#[derive(Debug, Copy, Clone)]
+#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub enum Quarter {
+    /// The first quarter of the fiscal year.
+    Q1 = 1,
+
+    /// The second quarter of the fiscal year.
+    Q2 = 2,
+
+    /// The third quarter of the fiscal year.
+    Q3 = 3,
+
+    /// The fourth quarter of the fiscal year.
+    Q4 = 4,
+}
+
+#[cfg(all(test, feature = "strum"))]
+mod tests {
+    use super::{Quarter, Season};
+    use crate::{EnumCount, IntoEnumIterator};
+
+    #[test]
+    fn seasons_iterate_in_calendar_order() {
+        let observed: Vec<u8> = Season::iter().map(|season| season as u8).collect();
+        assert_eq!(observed, vec![1, 2, 3, 4]);
+    }
+
+    #[test]
+    fn seasons_count_matches_four() {
+        assert_eq!(<Season as EnumCount>::COUNT, 4);
+    }
+
+    #[test]
+    fn quarters_iterate_in_chronological_order() {
+        let observed: Vec<u8> = Quarter::iter().map(|quarter| quarter as u8).collect();
+        assert_eq!(observed, vec![1, 2, 3, 4]);
+    }
+
+    #[test]
+    fn quarters_count_matches_four() {
+        assert_eq!(<Quarter as EnumCount>::COUNT, 4);
+    }
+}
