@@ -12,24 +12,19 @@ Every dataset supports `Copy`, `Clone`, `PartialEq`, `Eq`, `Hash`, `Display`,
 `FromStr`, and an allocation-free `as_str()`. The default build has no dependencies.
 Iteration and serialization are optional.
 
-This checkout prepares **0.3.0**. See [the migration guide](MIGRATION.md) for
-changes from 0.2, [the changelog](CHANGELOG.md) for release status, and
-[dataset scope](DATASETS.md) for sources and teaching conventions.
+Version **0.3.0** introduces consistent enum APIs and corrects dataset values.
+See [the migration guide](https://github.com/cmccomb/hodgepodge/blob/v0.3.0/MIGRATION.md)
+for changes from 0.2, [the changelog](https://github.com/cmccomb/hodgepodge/blob/v0.3.0/CHANGELOG.md)
+for release details, and [dataset scope](https://github.com/cmccomb/hodgepodge/blob/v0.3.0/DATASETS.md)
+for sources and teaching conventions.
 
 ## Installation
 
-Version 0.3 requires Rust 1.71 or newer. Once 0.3 is published:
+Version 0.3 requires Rust 1.71 or newer. Add it to your dependencies:
 
 ```toml
 [dependencies]
 hodgepodge = "0.3"
-```
-
-To use the release candidate before publication, use a local path dependency:
-
-```toml
-[dependencies]
-hodgepodge = { path = "../hodgepodge" }
 ```
 
 Enable `strum` for iteration and `serde` for serialization:

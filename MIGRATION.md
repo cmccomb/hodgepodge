@@ -1,8 +1,8 @@
 # Migrating from 0.2 to 0.3
 
 Version 0.3 corrects dataset values and names and gives every enum the same basic
-API. It is a breaking release. Update the dependency to `hodgepodge = "0.3"` after
-publication and use Rust 1.71 or newer.
+API. It is a breaking release. Update the dependency to `hodgepodge = "0.3"`
+and use Rust 1.71 or newer.
 
 ## Replace color casts with `rgb()`
 
@@ -75,7 +75,7 @@ abbreviations, numeric values, and inserted separators. Errors use the shared
 
 ## Use the additional datasets
 
-The following enums were merged after 0.2.0 and are included in the 0.3.0 candidate:
+The following enums were merged after 0.2.0 and are included in 0.3.0:
 
 | Module | Enums |
 | --- | --- |

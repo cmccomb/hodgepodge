@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 — Unreleased
+## 0.3.0 — 2026-09-19
 
 This release corrects CSS colors and EU membership and gives every enum a common
 API for examples, lookup, and fixtures. See [MIGRATION.md](MIGRATION.md) before
