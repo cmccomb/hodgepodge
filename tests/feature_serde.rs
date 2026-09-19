@@ -11,7 +11,7 @@ fn rank_round_trips_through_json() {
 }
 
 #[test]
-fn suit_serializes_to_numeric_discriminant() {
+fn suit_serializes_to_variant_name() {
     let suit_json = to_string(&Suit::Spades).expect("serialize suit");
     assert_eq!(suit_json, "\"Spades\"");
     let suit: Suit = from_str(&suit_json).expect("deserialize suit");

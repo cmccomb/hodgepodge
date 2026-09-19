@@ -2,103 +2,153 @@
 [![Crates.io](https://img.shields.io/crates/v/hodgepodge.svg)](https://crates.io/crates/hodgepodge)
 [![docs.rs](https://docs.rs/hodgepodge/badge.svg)](https://docs.rs/hodgepodge)
 
-# About hodgepodge
-`hodgepodge` is a grab bag of ready-made enums you can drop into lessons, prototypes, demos, and coding exercises. Each enum doubles as a tiny dataset—covering CSS color keywords, RGB swatches, the periodic table, continents, SI prefixes, solar-system trivia, decks of cards, and more—so you can focus on teaching a concept instead of inventing boilerplate data.
+# hodgepodge
 
-The crate shines when you need to illustrate iteration, formatting, serialization, or pattern matching without stopping to build sample inputs.
+Ready-made Rust enums for lessons, prototypes, and test fixtures. Use colors,
+calendar names, chemical elements, places, and game pieces to demonstrate
+iteration, pattern matching, lookup, and serialization with familiar inputs.
 
-## Install
-Add `hodgepodge` to your `Cargo.toml` using the latest published version:
+Every dataset supports `Copy`, `Clone`, `PartialEq`, `Eq`, `Hash`, `Display`,
+`FromStr`, and an allocation-free `as_str()`. The default build has no dependencies.
+Iteration and serialization are optional.
+
+This checkout prepares **0.3.0**. See [the migration guide](MIGRATION.md) for
+changes from 0.2, [the changelog](CHANGELOG.md) for release status, and
+[dataset scope](DATASETS.md) for sources and teaching conventions.
+
+## Installation
+
+Version 0.3 requires Rust 1.71 or newer. Once 0.3 is published:
 
 ```toml
 [dependencies]
-hodgepodge = "0.2"
+hodgepodge = "0.3"
 ```
 
-Enable optional helpers (such as iteration or serialization) by listing the relevant Cargo features:
+To use the release candidate before publication, use a local path dependency:
 
 ```toml
 [dependencies]
-hodgepodge = { version = "0.2", features = ["strum", "serde"] }
-serde = { version = "1.0", features = ["derive"] }
+hodgepodge = { path = "../hodgepodge" }
+```
+
+Enable `strum` for iteration and `serde` for serialization:
+
+```toml
+[dependencies]
+hodgepodge = { version = "0.3", features = ["strum", "serde"] }
 serde_json = "1.0"
 ```
 
-## Usage
-### Iterate through datasets
-Enable the `strum` feature to derive `EnumIter`/`EnumCount` for each dataset and re-export [`IntoEnumIterator`](https://docs.rs/strum/latest/strum/iter/trait.IntoEnumIterator.html). That makes it easy to loop through everything, such as the periodic table:
+## Parse names and use them as keys
+
+`Display` and `as_str()` return the Rust variant name, such as `NorthAmerica`.
+Parsing ignores ASCII case and otherwise requires that complete name. Whitespace,
+spaces between words, numeric strings, and abbreviations are rejected; call
+`trim()` explicitly when processing whitespace-delimited input.
 
 ```rust
-use hodgepodge::{Element, IntoEnumIterator};
+use hodgepodge::{Month, ParseEnumError};
+use std::collections::HashMap;
 
-fn main() {
-    for element in Element::iter() {
-        let atomic_number = element as u16;
-        println!("{element:?} is element {atomic_number}");
-    }
+fn main() -> Result<(), ParseEnumError> {
+    let month: Month = "september".parse()?;
+    let visits = HashMap::from([(month, 3)]);
+    assert_eq!(visits[&Month::September], 3);
+    println!("{month}: {} visits", visits[&month]);
+    Ok(())
 }
 ```
 
-You can iterate through game pieces the same way. For example, to print the relative value of each chess piece:
+## Work with exact color values
 
-```rust
-use hodgepodge::{ChessPiece, IntoEnumIterator};
-
-fn main() {
-    for piece in ChessPiece::iter() {
-        println!("{piece:?} is valued at {}", piece.ordinal());
-    }
-}
-```
-
-### Format CSS colors
-Enums such as `CSS` implement `LowerHex`, so you can turn a variant into its hexadecimal color code without extra helpers:
+Use `rgb()` to obtain a packed `0xRRGGBB` value from any color enum. Distinct CSS
+names can represent the same RGB value. Hex formatting produces six lowercase
+digits by default; `#` adds the Rust `0x` prefix.
 
 ```rust
 use hodgepodge::CSS;
 
 fn main() {
-    let swatch = CSS::Tomato;
-    println!("{swatch:?} renders as #{swatch:06x}");
+    assert_ne!(CSS::Aqua, CSS::Cyan);
+    assert_eq!(CSS::Aqua.rgb(), CSS::Cyan.rgb());
+    assert_eq!(CSS::Aqua.rgb(), 0x00ffff);
+    println!("{}: #{:x}", CSS::Aqua, CSS::Aqua);
 }
 ```
 
-### Serialize and deserialize with `serde`
-All enums derive `serde::Serialize` and `serde::Deserialize` when the `serde` feature is active, so shipping fixtures for tutorials is a one-liner:
+Color enum discriminants are identifiers. Replace color-to-integer casts with
+`rgb()` when upgrading from 0.2.
+
+## Iterate through a dataset
+
+With the `strum` feature, the helper traits are re-exported by `hodgepodge`:
 
 ```rust
-use hodgepodge::Day;
+use hodgepodge::{Element, EnumCount, IntoEnumIterator};
+
+fn main() {
+    assert_eq!(Element::COUNT, 118);
+    for element in Element::iter() {
+        println!("{element} has atomic number {}", element as u16);
+    }
+}
+```
+
+## Save and recover fixtures
+
+With the `serde` feature, enums serialize to their exact variant names. Serde
+deserialization is case-sensitive even though `FromStr` ignores ASCII case.
+
+```rust
+use hodgepodge::DiceFace;
 
 fn main() -> Result<(), serde_json::Error> {
-    let json = serde_json::to_string(&Day::Saturday)?;
-    let day: Day = serde_json::from_str(&json)?;
-    assert_eq!(day, Day::Saturday);
+    let rolls = vec![DiceFace::One, DiceFace::Six];
+    let json = serde_json::to_string(&rolls)?;
+    let recovered: Vec<DiceFace> = serde_json::from_str(&json)?;
+    assert_eq!(recovered, rolls);
     Ok(())
 }
 ```
 
 ## Features
-Feature | Default | Description
---- | --- | ---
-`strum` | Disabled | Derives [`EnumIter`](https://docs.rs/strum/latest/strum/trait.EnumIter.html) and [`EnumCount`](https://docs.rs/strum/latest/strum/enum_count/trait.EnumCount.html) for every dataset and re-exports the helper traits so you can iterate without depending on `strum` directly.
-`enum-iter`, `enum-count` | Disabled | Legacy compatibility feature names that simply forward to `strum`.
-`serde` | Disabled | Adds `serde::Serialize` and `serde::Deserialize` to every enum so they can be written to JSON, TOML, etc.
 
-Enable any combination of these features with `cargo` flags:
+| Feature | Effect |
+| --- | --- |
+| Default | Common traits, names, parsing, and color conversions; no dependencies |
+| `strum` | `EnumIter`, `EnumCount`, and re-exported helper traits |
+| `enum-iter`, `enum-count` | Compatibility names that each enable `strum` |
+| `serde` | `Serialize` and `Deserialize` on every dataset |
 
-```shell
-cargo add hodgepodge --features "strum serde"
-# or
-cargo test --features "strum"
+## Complete teaching examples
+
+Run these from the checkout:
+
+```sh
+cargo run --example lookup
+cargo run --example palette --features strum
+cargo run --example fixtures --features serde
 ```
 
-## Use cases
-* **Education:** quickly demonstrate iteration, pattern matching, or formatting with realistic data.
-* **Prototyping:** plug in enums representing colors, locations, or science mnemonics without maintaining bespoke fixtures.
-* **Testing:** serialize enums with `serde` to build deterministic fixtures for integration tests.
+- `lookup` parses names and counts visits using enum map keys.
+- `palette` groups the 148 CSS names by exact RGB value, exposing aliases.
+- `fixtures` saves and restores deterministic dice rolls and color names as JSON.
 
 ## Development
-1. `cargo fmt --all --check`
-2. `cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic`
-3. `cargo test --all-targets`
-4. `cargo test --all-targets --features "serde strum"`
+
+```sh
+cargo fmt --all --check
+cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic
+bash scripts/test-features.sh
+RUSTUP_TOOLCHAIN=1.71.0 bash scripts/test-features.sh
+RUSTDOCFLAGS="-D warnings" cargo doc --no-deps --no-default-features
+RUSTDOCFLAGS="-D warnings" cargo doc --no-deps --all-features
+cargo package --all-features
+```
+
+The test script covers standalone and combined features, compatibility feature
+names, every example target, and documentation tests. Reference fixtures are
+checked in; tests do not fetch external data.
+
+Licensed under MIT OR Apache-2.0.

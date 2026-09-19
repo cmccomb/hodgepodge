@@ -2,8 +2,12 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -12,23 +16,42 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        toolchain: [stable, beta, nightly]
+        toolchain: ["1.71.0", stable, beta, nightly]
     steps:
       - uses: actions/checkout@v4
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: ${{ matrix.toolchain }}
+      - name: Test feature combinations and documentation examples
+        run: bash scripts/test-features.sh
+
+  quality:
+    name: Formatting, lints, docs, and package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install stable toolchain
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: stable
           components: rustfmt, clippy
-      - name: Cargo fmt
+      - name: Formatting
         run: cargo fmt --all --check
-      - name: Cargo clippy (all features)
+      - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic
-      - name: Cargo test (default features)
-        run: cargo test --all-targets
-      - name: Cargo test (serde feature)
-        run: cargo test --all-targets --features serde
-      - name: Cargo test (strum feature)
-        run: cargo test --all-targets --features strum
-      - name: Cargo test (serde + strum)
-        run: cargo test --all-targets --features "serde strum"
+      - name: Default documentation
+        run: cargo doc --no-deps --no-default-features
+        env:
+          RUSTDOCFLAGS: -D warnings
+      - name: Complete documentation
+        run: cargo doc --no-deps --all-features
+        env:
+          RUSTDOCFLAGS: -D warnings
+      - name: Run teaching examples
+        run: |
+          cargo run --example lookup
+          cargo run --example palette --features strum
+          cargo run --example fixtures --features serde
+      - name: Verify release package
+        run: cargo package --all-features

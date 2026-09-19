@@ -1,48 +1,33 @@
 //! Color datasets ranging from rainbow mnemonics (ROYGBIV) to CMYK, RGB, and
-//! curated CSS keyword lists. All enums are C-like, so their discriminants are
-//! the RGB hex codes.
+//! CSS keyword lists. Use `rgb()` for packed RGB values; enum discriminants
+//! are identifiers and do not represent colors.
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 #![allow(clippy::unreadable_literal)]
 
-// Enables the optional iterator and variant-count derives.
-#[cfg(feature = "strum")]
-use strum_macros::{EnumCount, EnumIter};
+color_enum! {
+    /// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
+    pub enum ROYGBIV {
+        /// Red is the first color in ROYGBIV
+        Red = 0xff0000,
 
-// For deriving lowerhex
-use std::fmt;
+        /// Orange is the second color in ROYGBIV
+        Orange = 0xff7f00,
 
-/// ROYGBIV colors, with hex codes as found [here](https://www.webnots.com/vibgyor-rainbow-color-codes/)
-#[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum ROYGBIV {
-    /// Red is the first color in ROYGBIV
-    Red = 0xff0000,
+        /// Yellow is the third color in ROYGBIV
+        Yellow = 0xffff00,
 
-    /// Orange is the second color in ROYGBIV
-    Orange = 0xff7f00,
+        /// Green is the fourth color in ROYGBIV
+        Green = 0x00ff00,
 
-    /// Yellow is the third color in ROYGBIV
-    Yellow = 0xffff00,
+        /// Blue is the fifth color in ROYGBIV
+        Blue = 0x0000ff,
 
-    /// Green is the fourth color in ROYGBIV
-    Green = 0x00ff00,
+        /// Indigo is the sixth color in ROYGBIV
+        Indigo = 0x4b0082,
 
-    /// Blue is the fifth color in ROYGBIV
-    Blue = 0x0000ff,
-
-    /// Indigo is the sixth color in ROYGBIV
-    Indigo = 0x4b0082,
-
-    /// Violet is the seventh color in ROYGBIV
-    Violet = 0x9400d3,
-}
-
-impl fmt::LowerHex for ROYGBIV {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let x = *self as i32;
-        write!(f, "{x:06x}")
+        /// Violet is the seventh color in ROYGBIV
+        Violet = 0x9400d3,
     }
 }
 
@@ -51,10 +36,10 @@ mod test_roygbiv {
     use crate::ROYGBIV;
 
     #[test]
-    fn discriminants_match_rgb_hex_values() {
-        assert_eq!(ROYGBIV::Red as i32, 0xff0000);
-        assert_eq!(ROYGBIV::Green as i32, 0x00ff00);
-        assert_eq!(ROYGBIV::Violet as i32, 0x9400d3);
+    fn rgb_values_match_palette_swatches() {
+        assert_eq!(ROYGBIV::Red.rgb(), 0xff0000);
+        assert_eq!(ROYGBIV::Green.rgb(), 0x00ff00);
+        assert_eq!(ROYGBIV::Violet.rgb(), 0x9400d3);
     }
 
     #[test]
@@ -71,28 +56,20 @@ mod test_roygbiv {
     }
 }
 
-/// CMYK colors
-#[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum CMYK {
-    /// Cyan is the first CMYK channel
-    Cyan = 0x00ffff,
+color_enum! {
+    /// CMYK colors
+    pub enum CMYK {
+        /// Cyan is the first CMYK channel
+        Cyan = 0x00ffff,
 
-    /// Magneta is the second CMYK channel
-    Magenta = 0xff00ff,
+        /// Magenta is the second CMYK channel
+        Magenta = 0xff00ff,
 
-    /// Yellow is the third CMYK channel
-    Yellow = 0xffff00,
+        /// Yellow is the third CMYK channel
+        Yellow = 0xffff00,
 
-    /// Black is the fourth CMYK channel (also known as Key)
-    Black = 0x000000,
-}
-
-impl fmt::LowerHex for CMYK {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let x = *self as i32;
-        write!(f, "{x:06x}")
+        /// Black is the fourth CMYK channel (also known as Key)
+        Black = 0x000000,
     }
 }
 
@@ -102,9 +79,9 @@ mod test_cmyk {
 
     #[test]
     fn black_is_zero_and_cmy_channels_are_unique() {
-        assert_eq!(CMYK::Black as i32, 0x000000);
-        assert_ne!(CMYK::Cyan as i32, CMYK::Magenta as i32);
-        assert_ne!(CMYK::Yellow as i32, CMYK::Cyan as i32);
+        assert_eq!(CMYK::Black.rgb(), 0x000000);
+        assert_ne!(CMYK::Cyan.rgb(), CMYK::Magenta.rgb());
+        assert_ne!(CMYK::Yellow.rgb(), CMYK::Cyan.rgb());
     }
 
     #[test]
@@ -121,25 +98,17 @@ mod test_cmyk {
     }
 }
 
-/// RGB colors
-#[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum RGB {
-    /// Red is the first RGB channel
-    Red = 0xff0000,
+color_enum! {
+    /// RGB colors
+    pub enum RGB {
+        /// Red is the first RGB channel
+        Red = 0xff0000,
 
-    /// Green is the second RGB channel
-    Green = 0x00ff00,
+        /// Green is the second RGB channel
+        Green = 0x00ff00,
 
-    /// Blue is the third RGB channel
-    Blue = 0x0000ff,
-}
-
-impl fmt::LowerHex for RGB {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let x = *self as i32;
-        write!(f, "{x:06x}")
+        /// Blue is the third RGB channel
+        Blue = 0x0000ff,
     }
 }
 
@@ -149,9 +118,9 @@ mod test_rgb {
 
     #[test]
     fn rgb_channels_match_expected_hex_values() {
-        assert_eq!(RGB::Red as i32, 0xff0000);
-        assert_eq!(RGB::Green as i32, 0x00ff00);
-        assert_eq!(RGB::Blue as i32, 0x0000ff);
+        assert_eq!(RGB::Red.rgb(), 0xff0000);
+        assert_eq!(RGB::Green.rgb(), 0x00ff00);
+        assert_eq!(RGB::Blue.rgb(), 0x0000ff);
     }
 
     #[test]
@@ -168,183 +137,170 @@ mod test_rgb {
     }
 }
 
-/// Color names available in CSS.
-///
-/// Fuschia, Aqua, and colors that use the 'gr***e***y' instead of 'gr***a***y'
-/// are included as variants but only evaluate to an approximately correct hex code (since they
-/// share a hex code with other color names). Specifically, the hex code for these variants is
-/// incremented by one in the earliest component (i.e., #00FFFF becomes #01FFFF).
-#[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-#[allow(missing_docs)]
-pub enum CSS {
-    AliceBlue = 0xF0F8FF,
-    AntiqueWhite = 0xFAEBD7,
-    Aquamarine = 0x7FFFD4,
-    Azure = 0xF0FFFF,
-    Beige = 0xF5F5DC,
-    Bisque = 0xFFE4C4,
-    Black = 0x000000,
-    BlanchedAlmond = 0xFFEBCD,
-    Blue = 0x0000FF,
-    BlueViolet = 0x8A2BE2,
-    Brown = 0xA52A2A,
-    BurlyWood = 0xDEB887,
-    CadetBlue = 0x5F9EA0,
-    Chartreuse = 0x7FFF00,
-    Chocolate = 0xD2691E,
-    Coral = 0xFF7F50,
-    CornflowerBlue = 0x6495ED,
-    Cornsilk = 0xFFF8DC,
-    Crimson = 0xDC143C,
-    Cyan = 0x00FFFF,
-    DarkBlue = 0x00008B,
-    DarkCyan = 0x008B8B,
-    DarkGoldenRod = 0xB8860B,
-    DarkGray = 0xA9A9A9,
-    DarkGreen = 0x006400,
-    DarkKhaki = 0xBDB76B,
-    DarkMagenta = 0x8B008B,
-    DarkOliveGreen = 0x556B2F,
-    DarkOrange = 0xFF8C00,
-    DarkOrchid = 0x9932CC,
-    DarkRed = 0x8B0000,
-    DarkSalmon = 0xE9967A,
-    DarkSeaGreen = 0x8FBC8F,
-    DarkSlateBlue = 0x483D8B,
-    DarkSlateGray = 0x2F4F4F,
-    DarkTurquoise = 0x00CED1,
-    DarkViolet = 0x9400D3,
-    DeepPink = 0xFF1493,
-    DeepSkyBlue = 0x00BFFF,
-    DimGray = 0x696969,
-    DodgerBlue = 0x1E90FF,
-    FireBrick = 0xB22222,
-    FloralWhite = 0xFFFAF0,
-    ForestGreen = 0x228B22,
-    Gainsboro = 0xDCDCDC,
-    GhostWhite = 0xF8F8FF,
-    Gold = 0xFFD700,
-    GoldenRod = 0xDAA520,
-    Gray = 0x808080,
-    Green = 0x008000,
-    GreenYellow = 0xADFF2F,
-    HoneyDew = 0xF0FFF0,
-    HotPink = 0xFF69B4,
-    IndianRed = 0xCD5C5C,
-    Indigo = 0x4B0082,
-    Ivory = 0xFFFFF0,
-    Khaki = 0xF0E68C,
-    Lavender = 0xE6E6FA,
-    LavenderBlush = 0xFFF0F5,
-    LawnGreen = 0x7CFC00,
-    LemonChiffon = 0xFFFACD,
-    LightBlue = 0xADD8E6,
-    LightCoral = 0xF08080,
-    LightCyan = 0xE0FFFF,
-    LightGoldenRodYellow = 0xFAFAD2,
-    LightGray = 0xD3D3D3,
-    LightGreen = 0x90EE90,
-    LightPink = 0xFFB6C1,
-    LightSalmon = 0xFFA07A,
-    LightSeaGreen = 0x20B2AA,
-    LightSkyBlue = 0x87CEFA,
-    LightSlateGray = 0x778899,
-    LightSteelBlue = 0xB0C4DE,
-    LightYellow = 0xFFFFE0,
-    Lime = 0x00FF00,
-    LimeGreen = 0x32CD32,
-    Linen = 0xFAF0E6,
-    Magenta = 0xFF00FF,
-    Maroon = 0x800000,
-    MediumAquaMarine = 0x66CDAA,
-    MediumBlue = 0x0000CD,
-    MediumOrchid = 0xBA55D3,
-    MediumPurple = 0x9370DB,
-    MediumSeaGreen = 0x3CB371,
-    MediumSlateBlue = 0x7B68EE,
-    MediumSpringGreen = 0x00FA9A,
-    MediumTurquoise = 0x48D1CC,
-    MediumVioletRed = 0xC71585,
-    MidnightBlue = 0x191970,
-    MintCream = 0xF5FFFA,
-    MistyRose = 0xFFE4E1,
-    Moccasin = 0xFFE4B5,
-    NavajoWhite = 0xFFDEAD,
-    Navy = 0x000080,
-    OldLace = 0xFDF5E6,
-    Olive = 0x808000,
-    OliveDrab = 0x6B8E23,
-    Orange = 0xFFA500,
-    OrangeRed = 0xFF4500,
-    Orchid = 0xDA70D6,
-    PaleGoldenRod = 0xEEE8AA,
-    PaleGreen = 0x98FB98,
-    PaleTurquoise = 0xAFEEEE,
-    PaleVioletRed = 0xDB7093,
-    PapayaWhip = 0xFFEFD5,
-    PeachPuff = 0xFFDAB9,
-    Peru = 0xCD853F,
-    Pink = 0xFFC0CB,
-    Plum = 0xDDA0DD,
-    PowderBlue = 0xB0E0E6,
-    Purple = 0x800080,
-    RebeccaPurple = 0x663399,
-    Red = 0xFF0000,
-    RosyBrown = 0xBC8F8F,
-    RoyalBlue = 0x4169E1,
-    SaddleBrown = 0x8B4513,
-    Salmon = 0xFA8072,
-    SandyBrown = 0xF4A460,
-    SeaGreen = 0x2E8B57,
-    SeaShell = 0xFFF5EE,
-    Sienna = 0xA0522D,
-    Silver = 0xC0C0C0,
-    SkyBlue = 0x87CEEB,
-    SlateBlue = 0x6A5ACD,
-    SlateGray = 0x708090,
-    Snow = 0xFFFAFA,
-    SpringGreen = 0x00FF7F,
-    SteelBlue = 0x4682B4,
-    Tan = 0xD2B48C,
-    Teal = 0x008080,
-    Thistle = 0xD8BFD8,
-    Tomato = 0xFF6347,
-    Turquoise = 0x40E0D0,
-    Violet = 0xEE82EE,
-    Wheat = 0xF5DEB3,
-    White = 0xFFFFFF,
-    WhiteSmoke = 0xF5F5F5,
-    Yellow = 0xFFFF00,
-    YellowGreen = 0x9ACD32,
+color_enum! {
+    /// The 148 opaque [CSS named colors](https://www.w3.org/TR/css-color-4/#named-colors).
+    ///
+    /// Aliases such as `Aqua` and `Cyan` remain distinct variants with equal `rgb()`
+    /// values. Hex formatting uses the exact RGB value for every name.
+    pub enum CSS {
+        AliceBlue = 0xf0f8ff,
+        AntiqueWhite = 0xfaebd7,
+        Aquamarine = 0x7fffd4,
+        Azure = 0xf0ffff,
+        Beige = 0xf5f5dc,
+        Bisque = 0xffe4c4,
+        Black = 0x000000,
+        BlanchedAlmond = 0xffebcd,
+        Blue = 0x0000ff,
+        BlueViolet = 0x8a2be2,
+        Brown = 0xa52a2a,
+        BurlyWood = 0xdeb887,
+        CadetBlue = 0x5f9ea0,
+        Chartreuse = 0x7fff00,
+        Chocolate = 0xd2691e,
+        Coral = 0xff7f50,
+        CornflowerBlue = 0x6495ed,
+        Cornsilk = 0xfff8dc,
+        Crimson = 0xdc143c,
+        Cyan = 0x00ffff,
+        DarkBlue = 0x00008b,
+        DarkCyan = 0x008b8b,
+        DarkGoldenRod = 0xb8860b,
+        DarkGray = 0xa9a9a9,
+        DarkGreen = 0x006400,
+        DarkKhaki = 0xbdb76b,
+        DarkMagenta = 0x8b008b,
+        DarkOliveGreen = 0x556b2f,
+        DarkOrange = 0xff8c00,
+        DarkOrchid = 0x9932cc,
+        DarkRed = 0x8b0000,
+        DarkSalmon = 0xe9967a,
+        DarkSeaGreen = 0x8fbc8f,
+        DarkSlateBlue = 0x483d8b,
+        DarkSlateGray = 0x2f4f4f,
+        DarkTurquoise = 0x00ced1,
+        DarkViolet = 0x9400d3,
+        DeepPink = 0xff1493,
+        DeepSkyBlue = 0x00bfff,
+        DimGray = 0x696969,
+        DodgerBlue = 0x1e90ff,
+        FireBrick = 0xb22222,
+        FloralWhite = 0xfffaf0,
+        ForestGreen = 0x228b22,
+        Gainsboro = 0xdcdcdc,
+        GhostWhite = 0xf8f8ff,
+        Gold = 0xffd700,
+        GoldenRod = 0xdaa520,
+        Gray = 0x808080,
+        Green = 0x008000,
+        GreenYellow = 0xadff2f,
+        HoneyDew = 0xf0fff0,
+        HotPink = 0xff69b4,
+        IndianRed = 0xcd5c5c,
+        Indigo = 0x4b0082,
+        Ivory = 0xfffff0,
+        Khaki = 0xf0e68c,
+        Lavender = 0xe6e6fa,
+        LavenderBlush = 0xfff0f5,
+        LawnGreen = 0x7cfc00,
+        LemonChiffon = 0xfffacd,
+        LightBlue = 0xadd8e6,
+        LightCoral = 0xf08080,
+        LightCyan = 0xe0ffff,
+        LightGoldenRodYellow = 0xfafad2,
+        LightGray = 0xd3d3d3,
+        LightGreen = 0x90ee90,
+        LightPink = 0xffb6c1,
+        LightSalmon = 0xffa07a,
+        LightSeaGreen = 0x20b2aa,
+        LightSkyBlue = 0x87cefa,
+        LightSlateGray = 0x778899,
+        LightSteelBlue = 0xb0c4de,
+        LightYellow = 0xffffe0,
+        Lime = 0x00ff00,
+        LimeGreen = 0x32cd32,
+        Linen = 0xfaf0e6,
+        Magenta = 0xff00ff,
+        Maroon = 0x800000,
+        MediumAquaMarine = 0x66cdaa,
+        MediumBlue = 0x0000cd,
+        MediumOrchid = 0xba55d3,
+        MediumPurple = 0x9370db,
+        MediumSeaGreen = 0x3cb371,
+        MediumSlateBlue = 0x7b68ee,
+        MediumSpringGreen = 0x00fa9a,
+        MediumTurquoise = 0x48d1cc,
+        MediumVioletRed = 0xc71585,
+        MidnightBlue = 0x191970,
+        MintCream = 0xf5fffa,
+        MistyRose = 0xffe4e1,
+        Moccasin = 0xffe4b5,
+        NavajoWhite = 0xffdead,
+        Navy = 0x000080,
+        OldLace = 0xfdf5e6,
+        Olive = 0x808000,
+        OliveDrab = 0x6b8e23,
+        Orange = 0xffa500,
+        OrangeRed = 0xff4500,
+        Orchid = 0xda70d6,
+        PaleGoldenRod = 0xeee8aa,
+        PaleGreen = 0x98fb98,
+        PaleTurquoise = 0xafeeee,
+        PaleVioletRed = 0xdb7093,
+        PapayaWhip = 0xffefd5,
+        PeachPuff = 0xffdab9,
+        Peru = 0xcd853f,
+        Pink = 0xffc0cb,
+        Plum = 0xdda0dd,
+        PowderBlue = 0xb0e0e6,
+        Purple = 0x800080,
+        RebeccaPurple = 0x663399,
+        Red = 0xff0000,
+        RosyBrown = 0xbc8f8f,
+        RoyalBlue = 0x4169e1,
+        SaddleBrown = 0x8b4513,
+        Salmon = 0xfa8072,
+        SandyBrown = 0xf4a460,
+        SeaGreen = 0x2e8b57,
+        SeaShell = 0xfff5ee,
+        Sienna = 0xa0522d,
+        Silver = 0xc0c0c0,
+        SkyBlue = 0x87ceeb,
+        SlateBlue = 0x6a5acd,
+        SlateGray = 0x708090,
+        Snow = 0xfffafa,
+        SpringGreen = 0x00ff7f,
+        SteelBlue = 0x4682b4,
+        Tan = 0xd2b48c,
+        Teal = 0x008080,
+        Thistle = 0xd8bfd8,
+        Tomato = 0xff6347,
+        Turquoise = 0x40e0d0,
+        Violet = 0xee82ee,
+        Wheat = 0xf5deb3,
+        White = 0xffffff,
+        WhiteSmoke = 0xf5f5f5,
+        Yellow = 0xffff00,
+        YellowGreen = 0x9acd32,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `Cyan`.
-    Aqua = 0x0100ff,
+        Aqua = 0x00ffff,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `DarkSlateGray`.
-    DarkSlateGrey = 0x304f4f,
+        DarkSlateGrey = 0x2f4f4f,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `Magenta`.
-    Fuschia = 0xff01ff,
+        Fuchsia = 0xff00ff,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `DimGray`.
-    DimGrey = 0x706969,
+        DimGrey = 0x696969,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `SlateGray`.
-    SlateGrey = 0x718090,
+        SlateGrey = 0x708090,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `LightSlateGray`.
-    LightSlateGrey = 0x788899,
+        LightSlateGrey = 0x778899,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `Gray`.
-    Grey = 0x818080,
+        Grey = 0x808080,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `DarkGray`.
-    DarkGrey = 0xAAA9A9,
+        DarkGrey = 0xa9a9a9,
 
-    /// Note that the associated hex value is not exact. For an exact value, use `LightGray`.
-    LightGrey = 0xd4d3d3,
+        LightGrey = 0xd3d3d3,
+    }
 }
 
 #[cfg(test)]
@@ -353,17 +309,18 @@ mod test_css {
 
     #[test]
     fn canonical_css_colors_match_spec() {
-        assert_eq!(CSS::RebeccaPurple as i32, 0x663399);
-        assert_eq!(CSS::White as i32, 0xffffff);
-        assert_eq!(CSS::Black as i32, 0x000000);
+        assert_eq!(CSS::RebeccaPurple.rgb(), 0x663399);
+        assert_eq!(CSS::White.rgb(), 0xffffff);
+        assert_eq!(CSS::Black.rgb(), 0x000000);
     }
 
     #[test]
-    fn approximate_aliases_are_distinct_from_canonical_values() {
-        assert_eq!(CSS::Cyan as i32, 0x00ffff);
-        assert_eq!(CSS::Aqua as i32, 0x0100ff);
-        assert_ne!(CSS::Aqua as i32, CSS::Cyan as i32);
-        assert_ne!(CSS::Grey as i32, CSS::Gray as i32);
+    fn aliases_preserve_names_and_share_rgb_values() {
+        assert_eq!(CSS::Cyan.rgb(), 0x00ffff);
+        assert_eq!(CSS::Aqua.rgb(), 0x00ffff);
+        assert_ne!(CSS::Aqua, CSS::Cyan);
+        assert_eq!(CSS::Aqua.rgb(), CSS::Cyan.rgb());
+        assert_eq!(CSS::Grey.rgb(), CSS::Gray.rgb());
     }
 
     #[cfg(feature = "strum")]
@@ -372,12 +329,5 @@ mod test_css {
         use strum::EnumCount;
 
         assert_eq!(<CSS as EnumCount>::COUNT, 148);
-    }
-}
-
-impl fmt::LowerHex for CSS {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let x = *self as i32;
-        write!(f, "{x:06x}")
     }
 }
