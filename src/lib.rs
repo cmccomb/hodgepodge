@@ -1,6 +1,5 @@
 #![warn(clippy::all)]
 #![warn(missing_docs)]
-#![warn(missing_doc_code_examples)]
 
 //! # Hodgepodge
 //!
@@ -14,15 +13,39 @@
 //! variants (with the `strum` feature), format their values, or serialize them
 //! (with the `serde` feature) depending on what the example calls for.
 //!
+//! ## Names, equality, and lookup
+//!
+//! Every enum implements `Copy`, `Clone`, `PartialEq`, `Eq`, `Hash`, `Display`,
+//! and `FromStr`. `as_str()` and `Display` return the Rust variant name.
+//! Parsing ignores ASCII case but requires the complete name without whitespace.
+//! These operations require no optional features or runtime dependencies.
+//!
+//! ```
+//! use hodgepodge::{Month, CSS};
+//!
+//! let month: Month = "september".parse()?;
+//! assert_eq!(month, Month::September);
+//! assert_eq!(month.to_string(), "September");
+//! assert_eq!(CSS::Aqua.rgb(), CSS::Cyan.rgb());
+//! assert_ne!(CSS::Aqua, CSS::Cyan); // Different names, identical colors.
+//! # Ok::<(), hodgepodge::ParseEnumError>(())
+//! ```
+//!
+//! ## Dataset scope
+//!
+//! CSS colors and EU membership have reference-backed tests. Other datasets
+//! include explicit teaching conventions and legacy snapshots; consult each
+//! enum's documentation before treating it as a current scientific registry.
+//!
 //! ## Feature-gated helpers
 //!
-//! * `strum` – derives [`strum_macros::EnumIter`] and
-//!   [`strum_macros::EnumCount`] for every dataset, re-exporting
-//!   [`IntoEnumIterator`] and [`EnumCount`] so you can iterate over or count the
+//! * `strum` – derives [`EnumIter`](https://docs.rs/strum/latest/strum/derive.EnumIter.html) and
+//!   [`EnumCount`](https://docs.rs/strum/latest/strum/derive.EnumCount.html) for every dataset, re-exporting
+//!   `IntoEnumIterator` and `EnumCount` so you can iterate over or count the
 //!   variants without depending on `strum` directly.
 //! * `enum-iter` / `enum-count` – legacy compatibility feature names that now
 //!   simply forward to `strum`.
-//! * `serde` – derives [`serde::Serialize`] and [`serde::Deserialize`] so the
+//! * `serde` – derives `serde::Serialize` and `serde::Deserialize` so the
 //!   enums can be persisted in fixtures for tutorials or quick prototypes.
 //!
 //! ## Examples
@@ -78,6 +101,20 @@
 //! assert_eq!(midyear as u8, 3);
 //! assert_eq!(fiscal as u8, 4);
 //! ```
+
+#[macro_use]
+mod macros;
+mod parse;
+pub use parse::ParseEnumError;
+
+// Compile the migration and README snippets along with the API examples.
+#[cfg(doctest)]
+#[doc = include_str!("../MIGRATION.md")]
+mod migration {}
+
+#[cfg(all(doctest, feature = "serde", feature = "strum"))]
+#[doc = include_str!("../README.md")]
+mod readme {}
 
 /// Color palettes ranging from ROYGBIV to CSS keywords.
 pub mod colors;

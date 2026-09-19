@@ -2,19 +2,14 @@
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 
-// Enables the optional iterator and variant-count derives.
-#[cfg(feature = "strum")]
-use strum_macros::{EnumCount, EnumIter};
-
-/// Suits of a standard deck of cards
-#[derive(Debug, Copy, Clone)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum Suit {
-    Hearts,
-    Clubs,
-    Spades,
-    Diamonds,
+dataset_enum! {
+    /// Suits of a standard deck of cards
+    pub enum Suit {
+        Hearts,
+        Clubs,
+        Spades,
+        Diamonds,
+    }
 }
 
 #[cfg(test)]
@@ -38,24 +33,23 @@ mod test_suit {
     }
 }
 
-/// Ranks of a standard deck of cards
-#[derive(Debug)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum Rank {
-    Ace = 1,
-    Two = 2,
-    Three = 3,
-    Four = 4,
-    Five = 5,
-    Six = 6,
-    Seven = 7,
-    Eight = 8,
-    Nine = 9,
-    Ten = 10,
-    Jack = 11,
-    Queen = 12,
-    King = 13,
+dataset_enum! {
+    /// Ranks of a standard deck of cards
+    pub enum Rank {
+        Ace = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
+        Ten = 10,
+        Jack = 11,
+        Queen = 12,
+        King = 13,
+    }
 }
 
 impl Rank {
@@ -71,7 +65,7 @@ mod test_rank {
     use crate::Rank;
 
     #[test]
-    fn ordinal_reflects_blackjack_values() {
+    fn ordinal_reflects_rank_positions() {
         assert_eq!(Rank::Ace.ordinal(), 1);
         assert_eq!(Rank::Ten.ordinal(), 10);
         assert_eq!(Rank::King.ordinal(), 13);
@@ -92,18 +86,17 @@ mod test_rank {
     }
 }
 
-/// Faces of a standard six-sided die ordered by pip count.
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-#[repr(u8)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum DiceFace {
-    One = 1,
-    Two = 2,
-    Three = 3,
-    Four = 4,
-    Five = 5,
-    Six = 6,
+dataset_enum! {
+    /// Faces of a standard six-sided die ordered by pip count.
+    #[repr(u8)]
+    pub enum DiceFace {
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+    }
 }
 
 impl DiceFace {
@@ -134,22 +127,23 @@ mod test_dice_face {
     }
 }
 
-/// Pieces in a standard game of chess, ordered by increasing relative value.
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-#[repr(u8)]
-#[cfg_attr(feature = "strum", derive(EnumIter, EnumCount))]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum ChessPiece {
-    Pawn = 1,
-    Knight = 2,
-    Bishop = 3,
-    Rook = 4,
-    Queen = 5,
-    King = 6,
+dataset_enum! {
+    /// The six chess piece types in a fixed teaching order.
+    ///
+    /// Ordinals identify positions in this list, not material point values.
+    #[repr(u8)]
+    pub enum ChessPiece {
+        Pawn = 1,
+        Knight = 2,
+        Bishop = 3,
+        Rook = 4,
+        Queen = 5,
+        King = 6,
+    }
 }
 
 impl ChessPiece {
-    /// Returns an ordinal representing the piece's relative value (Pawn = 1, King = 6).
+    /// Returns the list position (Pawn = 1, King = 6), not a material point value.
     #[must_use]
     pub const fn ordinal(self) -> u8 {
         self as u8
