@@ -1,0 +1,82 @@
+---
+key: 1199
+doi: 10.48580/d3gd
+versionDoi: 10.48580/d3gd.v189
+title: Catalogue of the Pterophoroidea of the World
+alias: Pterophoroidea
+description: "This GSD is derived from C. Gielis (2003) Pterophoroidea & Alucitoidea\
+  \ (Lepidoptera) (World Catalogue of Insects, volume 4). The database has been edited\
+  \ for inclusion in the Catalogue of Life and updated by Donald Hobern. A current\
+  \ version of the dataset is presented as a web document at https://pterophoroidea.hobern.net/.\
+  \ Version 1.1.26.186 includes updates to reflect recent changes in taxonomy and\
+  \ new species."
+issued: 2026-07-05
+version: 1.1.26.186
+contact:
+  orcid: 0000-0001-6492-4016
+  given: Donald
+  family: Hobern
+  rorid: 04m098c22
+  city: Aranda
+  state: ACT
+  country: AU
+  email: donald.hobern@sp2000.org
+  url: https://sp2000.org/
+  address: "Aranda, ACT, Australia"
+  organisation: Species 2000
+creator:
+ -
+  orcid: 0000-0001-6492-4016
+  given: Donald
+  family: Hobern
+  rorid: 04m098c22
+  city: Aranda
+  state: ACT
+  country: AU
+  email: donald.hobern@sp2000.org
+  url: https://sp2000.org/
+  address: "Aranda, ACT, Australia"
+  organisation: Species 2000
+ -
+  orcid: 0000-0003-0857-1679
+  given: Cees
+  family: Gielis
+  rorid: 0566bfb96
+  city: Leiden
+  country: NL
+  url: https://www.naturalis.nl/
+  address: "Leiden, Netherlands"
+  organisation: Naturalis Biodiversity Center
+editor:
+ -
+  orcid: 0000-0001-6492-4016
+  given: Donald
+  family: Hobern
+  rorid: 04m098c22
+  city: Aranda
+  state: ACT
+  country: AU
+  email: donald.hobern@sp2000.org
+  url: https://sp2000.org/
+  address: "Aranda, ACT, Australia"
+  organisation: Species 2000
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: global
+taxonomicScope: Pterophoroidea
+temporalScope: All taxa described to present
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc0
+url: https://pterophoroidea.hobern.net
+logo: https://hobern.net/img/Deuterocopus_ritsemae.png
+source: []

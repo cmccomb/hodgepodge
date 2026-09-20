@@ -19,6 +19,8 @@
 //! and `FromStr`. `as_str()` and `Display` return the Rust variant name.
 //! Parsing ignores ASCII case but requires the complete name without whitespace.
 //! These operations require no optional features or runtime dependencies.
+//! Every enum also exposes `ALL`, `COUNT`, and a human-readable `label()`,
+//! with generic access through [`Dataset`].
 //!
 //! ```
 //! use hodgepodge::{Month, CSS};
@@ -33,20 +35,26 @@
 //!
 //! ## Dataset scope
 //!
-//! CSS colors and EU membership have reference-backed tests. Other datasets
-//! include explicit teaching conventions and legacy snapshots; consult each
-//! enum's documentation before treating it as a current scientific registry.
+//! Reference fixtures cover chemistry, geography, anatomy, ecology, and geologic
+//! time. Bone counts use the conventional 206-bone adult skeleton; muscle names
+//! are a teaching selection. Consult each enum's documentation for its scope.
 //!
 //! ## Feature-gated helpers
 //!
-//! * `strum` – derives [`EnumIter`](https://docs.rs/strum/latest/strum/derive.EnumIter.html) and
-//!   [`EnumCount`](https://docs.rs/strum/latest/strum/derive.EnumCount.html) for every dataset, re-exporting
-//!   `IntoEnumIterator` and `EnumCount` so you can iterate over or count the
-//!   variants without depending on `strum` directly.
+//! * `strum` – enables iteration and variant counts for every dataset, re-exporting
+//!   `IntoEnumIterator` and `EnumCount` so you can use these traits without
+//!   depending on `strum` directly.
 //! * `enum-iter` / `enum-count` – legacy compatibility feature names that now
 //!   simply forward to `strum`.
-//! * `serde` – derives `serde::Serialize` and `serde::Deserialize` so the
-//!   enums can be persisted in fixtures for tutorials or quick prototypes.
+//! * `serde` – enables `serde::Serialize` and `serde::Deserialize` so the
+//!   enums and cards can be persisted in fixtures for tutorials or quick prototypes.
+//! * `rand` – uniform variant sampling and card shuffling with a caller-supplied
+//!   rand 0.9 RNG. Samples use replacement; consume a shuffled deck to deal unique cards.
+//!
+//! * `taxonomy` – a shared `Species` enum with hierarchical aliases, backed by
+//!   source records, ancestry, intermediate ranks, and Wikipedia links; see the
+//!   `taxonomy` module when enabled.
+//!   The data carries CC BY 4.0 attribution in addition to the software license.
 //!
 //! ## Examples
 //!
@@ -57,7 +65,7 @@
 //! use hodgepodge::{Element, IntoEnumIterator};
 //!
 //! for element in Element::iter() {
-//!     let atomic_number = element as u16;
+//!     let atomic_number = element.atomic_number();
 //!     println!("{element:?} is element {atomic_number}");
 //! }
 //! # }
@@ -106,6 +114,23 @@
 mod macros;
 mod parse;
 pub use parse::ParseEnumError;
+mod value;
+pub use value::EnumValueError;
+
+/// Metadata shared by every enum dataset, without optional features.
+///
+/// `ALL` follows declaration order. Labels are presentation text; use `as_str()`
+/// for canonical names accepted by `FromStr` and serialized by Serde.
+pub trait Dataset: Copy + 'static {
+    /// Every variant in declaration order.
+    const ALL: &'static [Self];
+    /// The number of variants.
+    const COUNT: usize;
+    /// The canonical Rust variant name.
+    fn as_str(self) -> &'static str;
+    /// A human-readable label.
+    fn label(self) -> &'static str;
+}
 
 // Compile the migration and README snippets along with the API examples.
 #[cfg(doctest)]
@@ -139,6 +164,30 @@ pub use games::*;
 /// Miscellaneous grab-bag datasets for playful examples.
 pub mod misc;
 pub use misc::*;
+
+/// DNA bases and the twenty standard amino acids.
+pub mod biology;
+pub use biology::*;
+
+/// Individual adult bones and selected skeletal muscle types.
+pub mod anatomy;
+pub use anatomy::*;
+
+/// Terrestrial biome categories.
+pub mod ecology;
+pub use ecology::*;
+
+/// Rocks, Earth layers, and the hierarchy of geologic time.
+pub mod geology;
+pub use geology::*;
+
+/// Literary datasets such as Dante's circles of Hell.
+pub mod literature;
+pub use literature::*;
+
+/// A sourced animal taxonomy with parent/child traversal and Wikipedia links.
+#[cfg(feature = "taxonomy")]
+pub mod taxonomy;
 
 /// Re-export helper traits from `strum` when the relevant feature is enabled.
 #[cfg(feature = "strum")]

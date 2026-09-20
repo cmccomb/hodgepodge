@@ -1,0 +1,84 @@
+---
+key: 1078
+doi: 10.48580/d3b7
+versionDoi: 10.48580/d3b7.v8
+title: Mites GSD Tenuipalpidae
+alias: Mites GSD Tenuipalpidae
+description: "The Tenuipalpidae are phytophagous mites found worldwide. Some of them\
+  \ are important pests and others have been mentioned as vectors of virus affecting\
+  \ many plant species, especially in tropical and subtropical areas. This database\
+  \ was prepared based on information summarized by Mesa et al. (2009). It provides\
+  \ information on 950 species names."
+issued: 2009-11-24
+version: Nov 2009
+contact:
+  given: Gilberto
+  family: de Moraes
+  email: moraesg@usp.br
+creator:
+ -
+  given: N.C.
+  family: Mesa
+  email: ncmesac@unal.edu.com
+ -
+  given: R.
+  family: Ochoa
+  email: Ochoa@ars.usda.go
+ -
+  given: W.C.
+  family: Welbourn
+ -
+  given: G.A.
+  family: Evans
+ -
+  given: R.C.
+  family: Castilho
+ -
+  given: G.J.
+  family: de Moraes
+  email: moraesg@usp.br
+ -
+  given: Elizeu B.
+  family: Castro
+  email: elizeu_unesp@yahoo.com.br
+contributor:
+ -
+  department: Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ)
+  city: São Paulo
+  country: BR
+  address: "São Paulo, Brazil"
+  organisation: Universidade de São Paulo
+ -
+  department: Facultad de Ciencias Agropecuárias
+  country: CO
+  address: Colombia
+  organisation: Universidad Nacional de Colombia sede Palmira
+ -
+  department: Systematic Entomology Laboratory
+  country: US
+  address: United States of America
+  organisation: US Department of Agriculture
+ -
+  department: Division of Plant Industry
+  country: US
+  address: United States of America
+  organisation: Florida Department of Agriculture & Consumer Services
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Tenuipalpid mites
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: https://www.tenuipalpidae.ibilce.unesp.br/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/TenuipalpidBase.png
+source: []

@@ -1,0 +1,12 @@
+{
+  "endpoint": "https://query.wikidata.org/sparql",
+  "license": "CC0-1.0",
+  "first_retrieved_at": "2026-09-19T21:40:28+00:00",
+  "last_retrieved_at": "2026-09-19T22:48:34+00:00",
+  "queried_col_ids": 689062,
+  "batches": 46,
+  "batching": "Up to 15,000 input IDs per logical batch; reuse smaller checkpoints and reduce request size after timeouts.",
+  "query_template_sha256": "e74ec0d9755d2f80c3ba0507c5fb9376f5c04c23a51cf85466cb808d3858c6da",
+  "execution": "Logical query; some batches use optimizer None to evaluate bound IDs first.",
+  "normalized_snapshot_sha256": "9a72b1e0f0ff62a92334a86fb9425700a8752429cf9a10f839520bdd4c3f8fb8"
+}

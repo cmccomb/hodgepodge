@@ -5,10 +5,10 @@
 dataset_enum! {
     /// Suits of a standard deck of cards
     pub enum Suit {
-        Hearts,
-        Clubs,
-        Spades,
-        Diamonds,
+        Hearts => "Hearts",
+        Clubs => "Clubs",
+        Spades => "Spades",
+        Diamonds => "Diamonds",
     }
 }
 
@@ -36,19 +36,19 @@ mod test_suit {
 dataset_enum! {
     /// Ranks of a standard deck of cards
     pub enum Rank {
-        Ace = 1,
-        Two = 2,
-        Three = 3,
-        Four = 4,
-        Five = 5,
-        Six = 6,
-        Seven = 7,
-        Eight = 8,
-        Nine = 9,
-        Ten = 10,
-        Jack = 11,
-        Queen = 12,
-        King = 13,
+        Ace = 1 => "Ace",
+        Two = 2 => "Two",
+        Three = 3 => "Three",
+        Four = 4 => "Four",
+        Five = 5 => "Five",
+        Six = 6 => "Six",
+        Seven = 7 => "Seven",
+        Eight = 8 => "Eight",
+        Nine = 9 => "Nine",
+        Ten = 10 => "Ten",
+        Jack = 11 => "Jack",
+        Queen = 12 => "Queen",
+        King = 13 => "King",
     }
 }
 
@@ -86,16 +86,16 @@ mod test_rank {
     }
 }
 
-dataset_enum! {
+numeric_enum! {
     /// Faces of a standard six-sided die ordered by pip count.
     #[repr(u8)]
     pub enum DiceFace {
-        One = 1,
-        Two = 2,
-        Three = 3,
-        Four = 4,
-        Five = 5,
-        Six = 6,
+        One = 1 => "One",
+        Two = 2 => "Two",
+        Three = 3 => "Three",
+        Four = 4 => "Four",
+        Five = 5 => "Five",
+        Six = 6 => "Six",
     }
 }
 
@@ -133,12 +133,12 @@ dataset_enum! {
     /// Ordinals identify positions in this list, not material point values.
     #[repr(u8)]
     pub enum ChessPiece {
-        Pawn = 1,
-        Knight = 2,
-        Bishop = 3,
-        Rook = 4,
-        Queen = 5,
-        King = 6,
+        Pawn = 1 => "Pawn",
+        Knight = 2 => "Knight",
+        Bishop = 3 => "Bishop",
+        Rook = 4 => "Rook",
+        Queen = 5 => "Queen",
+        King = 6 => "King",
     }
 }
 
@@ -167,5 +167,131 @@ mod test_chess_piece {
         use strum::EnumCount;
 
         assert_eq!(<ChessPiece as EnumCount>::COUNT, 6);
+    }
+}
+
+/// One card in a standard 52-card deck, without jokers.
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct Card {
+    /// The card's suit.
+    pub suit: Suit,
+    /// The card's rank; scoring is left to the game.
+    pub rank: Rank,
+}
+
+/// Returns 52 unique cards, ordered Hearts, Clubs, Spades, Diamonds, then Ace–King.
+///
+/// ```
+/// use hodgepodge::{standard_deck, Card, Rank, Suit};
+/// let deck = standard_deck();
+/// assert_eq!(deck.len(), 52);
+/// assert_eq!(deck[0], Card { suit: Suit::Hearts, rank: Rank::Ace });
+/// ```
+#[must_use]
+pub fn standard_deck() -> [Card; 52] {
+    const SUITS: [Suit; 4] = [Suit::Hearts, Suit::Clubs, Suit::Spades, Suit::Diamonds];
+    const RANKS: [Rank; 13] = [
+        Rank::Ace,
+        Rank::Two,
+        Rank::Three,
+        Rank::Four,
+        Rank::Five,
+        Rank::Six,
+        Rank::Seven,
+        Rank::Eight,
+        Rank::Nine,
+        Rank::Ten,
+        Rank::Jack,
+        Rank::Queen,
+        Rank::King,
+    ];
+    std::array::from_fn(|i| Card {
+        suit: SUITS[i / 13],
+        rank: RANKS[i % 13],
+    })
+}
+
+/// Shuffles a complete deck with the caller's RNG. Consume it to deal without replacement.
+#[cfg(feature = "rand")]
+pub fn shuffled_deck<R: rand::Rng + ?Sized>(rng: &mut R) -> [Card; 52] {
+    use rand::seq::SliceRandom;
+    let mut deck = standard_deck();
+    deck.shuffle(rng);
+    deck
+}
+
+#[cfg(feature = "rand")]
+impl rand::distr::Distribution<Card> for rand::distr::StandardUniform {
+    /// Samples one card uniformly, with replacement between calls.
+    fn sample<R: rand::Rng + ?Sized>(&self, rng: &mut R) -> Card {
+        Card {
+            suit: rng.random(),
+            rank: rng.random(),
+        }
+    }
+}
+
+dataset_enum! {
+    /// The two outcomes of an ideal coin toss.
+    pub enum CoinSide { Heads => "Heads", Tails }
+}
+
+impl CoinSide {
+    /// Returns the other side of the coin.
+    #[must_use]
+    pub const fn opposite(self) -> Self {
+        match self {
+            Self::Heads => Self::Tails,
+            Self::Tails => Self::Heads,
+        }
+    }
+}
+
+dataset_enum! {
+    /// Moves in the standard three-move game.
+    pub enum RockPaperScissors { Rock => "Rock", Paper => "Paper", Scissors }
+}
+
+dataset_enum! {
+    /// A round's result from the current player's perspective.
+    pub enum RoundOutcome { Win => "Win", Loss => "Loss", Draw }
+}
+
+impl RockPaperScissors {
+    /// Returns this move's result against the opponent's move.
+    #[must_use]
+    pub const fn outcome_against(self, opponent: Self) -> RoundOutcome {
+        match (self, opponent) {
+            (Self::Rock, Self::Rock)
+            | (Self::Paper, Self::Paper)
+            | (Self::Scissors, Self::Scissors) => RoundOutcome::Draw,
+            (Self::Rock, Self::Scissors)
+            | (Self::Paper, Self::Rock)
+            | (Self::Scissors, Self::Paper) => RoundOutcome::Win,
+            _ => RoundOutcome::Loss,
+        }
+    }
+}
+
+impl ChessPiece {
+    /// Returns conventional 1/3/3/5/9 material points; the king has no finite value.
+    #[must_use]
+    pub const fn material_value(self) -> Option<u8> {
+        match self {
+            Self::Pawn => Some(1),
+            Self::Knight | Self::Bishop => Some(3),
+            Self::Rook => Some(5),
+            Self::Queen => Some(9),
+            Self::King => None,
+        }
+    }
+}
+
+impl Rank {
+    /// Whether this is Jack, Queen, or King (Ace is not a face card).
+    #[must_use]
+    pub const fn is_face_card(self) -> bool {
+        matches!(self, Self::Jack | Self::Queen | Self::King)
     }
 }

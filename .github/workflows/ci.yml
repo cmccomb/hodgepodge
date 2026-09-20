@@ -36,6 +36,14 @@ jobs:
         with:
           toolchain: stable
           components: rustfmt, clippy
+      - name: Set up Python for offline source validation
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Validate taxonomy sources and importer
+        run: |
+          python -m unittest discover -s scripts -p 'test_*.py'
+          python scripts/import_taxonomy.py --check
       - name: Formatting
         run: cargo fmt --all --check
       - name: Clippy
@@ -53,5 +61,9 @@ jobs:
           cargo run --example lookup
           cargo run --example palette --features strum
           cargo run --example fixtures --features serde
+          cargo run --example dice_simulation --features rand
+          cargo run --example deal_cards --features rand
+          cargo run --example explore_datasets
+          cargo run --example taxonomy_browser --features taxonomy > "$RUNNER_TEMP/animals.html"
       - name: Verify release package
         run: cargo package --all-features

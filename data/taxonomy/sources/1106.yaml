@@ -1,0 +1,61 @@
+---
+key: 1106
+doi: 10.48580/d3c6
+versionDoi: 10.48580/d3c6.v86
+title: World Echinoidea Database
+alias: WoRMS Echinoidea
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Andreas
+  family: Kroh
+  email: andreas.kroh@nhm-wien.ac.at
+editor:
+ -
+  orcid: 0000-0002-8566-8848
+  given: Andreas
+  family: Kroh
+  email: andreas.kroh@nhm-wien.ac.at
+ -
+  orcid: 0000-0003-1533-8488
+  given: Richard
+  family: Mooi
+  email: rmooi@calacademy.org
+contributor:
+ -
+  country: AT
+  address: Austria
+  organisation: Natural History Museum Vienna
+ -
+  country: US
+  address: United States of America
+  organisation: California Academy of Sciences Department of Invertebrate Zoology
+    & Geology
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: sea-urchins
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 5
+completeness: 94
+license: cc by
+url: https://www.marinespecies.org/echinoidea
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

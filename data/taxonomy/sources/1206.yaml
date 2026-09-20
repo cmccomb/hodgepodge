@@ -1,0 +1,116 @@
+---
+key: 1206
+doi: 10.48580/d3gm
+versionDoi: 10.48580/d3gm.v22
+title: "World catalogue of the tribe Sepidiini (Tenebrionidae, Coleoptera)"
+alias: Sepidiini tribe
+description: "The catalogue includes all valid family-group (six subtribes), genus-group\
+  \ (55 genera, 33 subgenera), and species-group names (1009 species and subspecies)\
+  \ of Sepidiini darkling beetles (Coleoptera: Tenebrionidae: Pimeliinae), and their\
+  \ available synonyms. For each name, the author, year, and page number of the description\
+  \ are provided, with additional information (e.g., type species for genus-group\
+  \ names, author of synonymies for invalid taxa, notes) depending on the taxon rank.\
+  \ Verified distributional records (loci typici and data acquired from revisionary\
+  \ publications) for all the species are gathered. The Catalogue is published in\
+  \ ZooKeys 844: 1–121 (2019), https://doi.org/10.3897/zookeys.844.34241."
+issued: 2019-06-13
+version: "22, 2019-04"
+contact:
+  orcid: 0000-0002-2915-0614
+  given: Marcin Jan
+  family: Kamiński
+  city: Warsaw
+  country: PL
+  email: kaminskientomo@gmail.com
+  address: "Warsaw, Poland"
+  organisation: "Museum and Institute of Zoology, Polish Academy of Sciences"
+creator:
+ -
+  orcid: 0000-0002-2915-0614
+  given: Marcin Jan
+  family: Kamiński
+  city: Warsaw
+  country: PL
+  email: kaminskientomo@gmail.com
+  address: "Warsaw, Poland"
+  organisation: "Museum and Institute of Zoology, Polish Academy of Sciences"
+ -
+  given: Kojun
+  family: Kanda
+  city: Flagstaff
+  state: AZ
+  country: US
+  address: "Flagstaff, AZ, United States of America"
+  organisation: Nortern Arizona University
+ -
+  given: Ryan
+  family: Lumen
+  city: Flagstaff
+  state: AZ
+  country: US
+  address: "Flagstaff, AZ, United States of America"
+  organisation: Nortern Arizona University
+ -
+  orcid: 0000-0002-9185-6378
+  given: Jonah M.
+  family: Ulmer
+  state: PA
+  country: US
+  address: "PA, United States of America"
+  organisation: Pennsylvania State University
+ -
+  given: Christopher C.
+  family: Wirth
+  city: Flagstaff
+  state: AZ
+  country: US
+  address: "Flagstaff, AZ, United States of America"
+  organisation: Nortern Arizona University
+ -
+  given: Patrice
+  family: Bouchard
+  city: Ottawa
+  country: CA
+  address: "Ottawa, Canada"
+  organisation: Agriculture and Agri-Food Canada
+ -
+  given: Rolf
+  family: Aalbu
+  city: San Francisco
+  country: US
+  address: "San Francisco, United States of America"
+  organisation: California Academy of Sciences
+ -
+  given: Noel
+  family: Mal
+  city: Brussels
+  country: BE
+  address: "Brussels, Belgium"
+  organisation: Royal Belgian Institute of Natural Sciences
+ -
+  orcid: 0000-0002-1286-950X
+  given: Aaron D.
+  family: Smith
+  city: Flagstaff
+  state: AZ
+  country: US
+  address: "Flagstaff, AZ, United States of America"
+  organisation: Nortern Arizona University
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Toktokkies
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: https://zookeys.pensoft.net/article/34241/
+source: []

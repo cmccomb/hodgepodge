@@ -1,0 +1,68 @@
+---
+key: 1183
+doi: 10.48580/d3ft
+versionDoi: 10.48580/d3ft.v89
+title: "Pycnobase: World Pycnogonida Database"
+alias: WoRMS Pycnogonida
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  given: Romain
+  family: Sabroux
+  email: romain.sabroux@szn.it
+ -
+  given: Roger
+  family: Bamber
+ -
+  given: Aliya
+  family: El Nagar
+  email: A.ElNagar@leeds.ac.uk
+ -
+  given: Claudia
+  family: Arango
+  email: claudia.arango@qm.qld.gov.au
+contributor:
+ -
+  country: IT
+  address: Italy
+  organisation: Stazione Zoologica 'Anton Dohrn' of Naples
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: GB
+  address: United Kingdom
+  organisation: University of Leeds; Faculty of Biological Sciences The School of
+    Biology
+ -
+  country: AU
+  address: Australia
+  organisation: Queensland Museum
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: sea spiders
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 95
+license: cc by
+url: https://www.marinespecies.org/pycnobase
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

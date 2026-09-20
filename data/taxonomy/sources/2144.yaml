@@ -1,0 +1,80 @@
+---
+key: 2144
+doi: 10.48580/d4ky
+versionDoi: 10.48580/d4ky.v120
+title: The Integrated Taxonomic Information System
+alias: ITIS
+description: |-
+  The Integrated Taxonomic Information System (ITIS, www.itis.gov) partners with specialists from around the world to assemble scientific names and their taxonomic relationships, and distributes that data openly through publicly available software. The ITIS mission is to communicate a comprehensive taxonomy of global species that enables biodiversity information to be discovered, indexed, and connected across all human endeavors. ITIS is made up of 11 active MOU partners https://www.itis.gov/mou.html committed to improving and continually updating scientific and common names of all seven Kingdoms of Life (Archaea, Bacteria, Protozoa, Chromista, Fungi, Plantae, and Animalia).
+
+  The full ITIS content is updated regularly in ChecklistBank, and many completed taxonomic subsets are also used in the Catalogue of Life. Although ITIS cannot here summarize the sources and status of the many individual Global Species Databases ITIS contributes to the Catalogue of Life, users interested in additional detail may refer to ITIS' "What's New" page: https://www.itis.gov/whatsnew.html
+
+  ITIS staff have made substantial contributions to the conception and design of the ITIS work product. This includes acquisition, analysis, and interpretation of data, as well as the creation and maintenance of software used to collect and distribute data. The authorship for ITIS - as distinct from stewards and specialists who contribute their taxonomic expertise to segments of ITIS data - is ordered alphabetically by last name because the data herein have been reviewed and approved as a team. As one the ITIS team have agreed to be accountable for the content of ITIS. Questions related to the accuracy or integrity of ITIS data should be directed to the team at itiswebmaster@si.edu. All questions regarding the content of ITIS will be appropriately investigated by the team and resolved and documented openly by the team.
+issued: 2026-08-26
+version: 2026-08-26
+contact:
+  city: Washington
+  state: DC
+  country: US
+  email: itiswebmaster@itis.gov
+  url: https://www.itis.gov
+  address: "Washington, DC, United States of America"
+  organisation: The Integrated Taxonomic Information System
+creator:
+ -
+  organisation: ITIS
+editor:
+ -
+  orcid: 0000-0002-7987-0679
+  given: Dave
+  family: Nicolson
+  email: nicolsod@si.edu
+ -
+  orcid: 0009-0006-7572-6473
+  given: Sara
+  family: Alexander
+  email: alexandersar@si.edu
+ -
+  orcid: 0000-0001-7341-0666
+  given: Alicia
+  family: Hodson
+  email: hodsona@si.edu
+ -
+  orcid: 0000-0002-5418-244X
+  given: David
+  family: Mitchell
+  email: mitchelld@si.edu
+ -
+  orcid: 0000-0003-1038-3028
+  given: Thomas
+  family: Orrell
+  email: orrellt@si.edu
+ -
+  orcid: 0000-0003-3270-9551
+  given: Daniel
+  family: Perez-Gelabert
+  email: perezd@si.edu
+publisher:
+  organisation: ITIS
+contributor:
+ -
+  organisation: The Integrated Taxonomic Information System
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Biota
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc0
+url: https://itis.gov
+logo: https://www.itis.gov/Static/images/ITIS_wordmark.png
+source: []

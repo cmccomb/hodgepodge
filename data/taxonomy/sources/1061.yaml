@@ -1,0 +1,73 @@
+---
+key: 1061
+doi: 10.48580/d39m
+versionDoi: 10.48580/d39m.v50
+title: Aphid Species File
+alias: SF Aphid
+description: "Aphid Species File is a taxonomic, nomenclatural, and bibliographic\
+  \ database of the aphids of the world, including all extant and fossil taxa."
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0003-2639-7520
+  given: Deborah
+  family: Paul
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  email: dlpaul@illinois.edu
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+creator:
+ -
+  orcid: 0000-0001-6243-3184
+  given: Colin
+  family: Favret
+  rorid: 0161xgx34
+  department: Department of Biological Sciences
+  city: Montreal
+  country: CA
+  address: "Montreal, Canada"
+  organisation: University of Montreal
+publisher:
+  city: Champaign
+  state: IL
+  country: US
+  email: SpeciesFileGroup@listserv.illinois.edu
+  url: http://software.speciesfile.org
+  note: Host
+  address: "Champaign, IL, United States of America"
+  organisation: Species File Group
+contributor:
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Principal Database Developer
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Aphids and allied groups
+taxonomicGroupScope: []
+confidence: 4
+completeness: 99
+license: cc by
+feedbackUrl: https://github.com/sfg-taxonpages/aphid/issues
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/SF_Aphid.png
+source: []

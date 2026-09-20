@@ -1,0 +1,97 @@
+---
+key: 1112
+doi: 10.48580/d3cd
+versionDoi: 10.48580/d3cd.v84
+title: World Hydrozoa Database
+alias: WoRMS Hydrozoa
+description: "World Hydrozoa database comes from a list of accumulated taxonomic information\
+  \ assembled over the years from the literature of Wim Vervoort and Peter Schuchert\
+  \ (see Schuchert, 1989). The list of the Siphonophorae was provided by Gill Mapstone\
+  \ who also manages the species of this Order. The number of known hydrozoan species\
+  \ is about 3800, although the status of many nominal species is currently unclear.\
+  \ A considerable number of names also represent synonyms."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Henry
+  family: Choong
+  email: HChoong@royalbcmuseum.bc.ca
+editor:
+ -
+  given: Peter
+  family: Schuchert
+ -
+  given: Henry
+  family: Choong
+  email: HChoong@royalbcmuseum.bc.ca
+ -
+  given: Horia
+  family: Galea
+  email: horia.galea@gmail.com
+ -
+  orcid: 0000-0001-8259-3783
+  given: Bert
+  family: Hoeksema
+  email: bert.hoeksema@naturalis.nl
+ -
+  given: Dhugal
+  family: Lindsay
+  email: dhugal@jamstec.go.jp
+ -
+  orcid: 0000-0001-6872-0256
+  given: Maciej
+  family: Mańko
+  email: maciej.manko@ug.edu.pl
+ -
+  given: Daniela
+  family: Pica
+  email: daniela.pica@gmail.com
+contributor:
+ -
+  country: US
+  address: United States of America
+  organisation: Royal British Columbia Museum
+ -
+  country: FR
+  address: France
+  organisation: Hydrozoan Research Laboratory
+ -
+  country: NL
+  address: Netherlands
+  organisation: Naturalis Biodiversity Center Department of Marine Zoology
+ -
+  country: JP
+  address: Japan
+  organisation: Japan Agency for Marine-Earth Science and Technology
+ -
+  country: PL
+  address: Poland
+  organisation: University of Gdańsk
+ -
+  country: IT
+  address: Italy
+  organisation: Stazione Zoologica 'Anton Dohrn' of Naples Calabria Marine Centre
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: hydroids
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 5
+completeness: 98
+license: cc by
+url: https://www.marinespecies.org/hydrozoa
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

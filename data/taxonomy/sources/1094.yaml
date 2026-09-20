@@ -1,0 +1,104 @@
+---
+key: 1094
+doi: 10.48580/d3br
+versionDoi: 10.48580/d3br.v84
+title: "World Marine, Freshwater and Terrestrial Isopod Crustaceans database"
+alias: WoRMS Isopoda
+description: "This list began as an initiative of the US National Museum of Natural\
+  \ History, Smithsonian Institution, maintained by the late Brian Kensley and Marilyn\
+  \ Schotte. It grew into a valuable resource http://invertebrates.si.edu/isopod/\
+  \ for providing nomenclature on the Isopoda: Schotte, M., B.F. Kensley, and S. Shilling\
+  \ (1995 onwards). World list of Marine, Freshwater and Terrestrial Crustacea Isopoda.\
+  \ National Museum of Natural History Smithsonian Institution: Washington D.C., USA.\
+  \ This list is now reconstructed at http://www.marinespecies.org, with more detailed\
+  \ information on synonymies and distributions, and a capability to host more information,\
+  \ such as images, original literature, and specimen data. This list will be transferred\
+  \ on a monthly basis back to the Smithsonian site. Data have been contributed to\
+  \ the Catalogue of Life via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  orcid: 0000-0002-2205-1488
+  given: Christopher
+  family: Boyko
+  email: cboyko@amnh.org
+ -
+  orcid: 0000-0001-6139-8241
+  given: Ivanklin Soares
+  family: Campos-Filho
+  email: ivanklin.filho@gmail.com
+ -
+  orcid: 0000-0003-1308-6360
+  given: Kerry A.
+  family: Hadfield
+  email: kerryh26@yahoo.com
+ -
+  given: Thomas
+  family: Hughes
+  email: thomas.hughes@nhm.ac.uk
+ -
+  given: Kelly
+  family: Merrin
+  email: kellymerrin@hotmail.com
+ -
+  orcid: 0000-0002-7747-6678
+  given: Yuzo
+  family: Ota
+  email: yota1164@gmail.com
+ -
+  orcid: 0000-0002-7414-183X
+  given: Gary
+  family: Poore
+  email: gpoore@museum.vic.gov.au
+contributor:
+ -
+  organisation: American Museum of Natural History Division of Invertebrate Zoology
+ -
+  country: BR
+  address: Brazil
+  organisation: Universidade Federal de Campina Grande
+ -
+  country: ZA
+  address: South Africa
+  organisation: North-West University Department of Biological Sciences
+ -
+  country: GB
+  address: United Kingdom
+  organisation: Natural History Museum
+ -
+  organisation: Monash University
+ -
+  country: JP
+  address: Japan
+  organisation: University of Ryukyus Graduate School of Engineering and Science
+ -
+  country: AU
+  address: Australia
+  organisation: Museums Victoria
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: isopods
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: https://www.marinespecies.org/isopoda
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

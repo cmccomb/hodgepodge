@@ -1,0 +1,98 @@
+---
+key: 1186
+doi: 10.48580/d3fx
+versionDoi: 10.48580/d3fx.v90
+title: Ascidiacea World Database
+alias: WoRMS Ascidiacea
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Noa
+  family: Shenkar
+  email: noa.shenkar@gmail.com
+editor:
+ -
+  given: Noa
+  family: Shenkar
+  email: noa.shenkar@gmail.com
+ -
+  given: Arjan
+  family: Gittenberger
+  email: Arjan.Gittenberger@naturalis.nl
+ -
+  given: Gretchen
+  family: Lambert
+  email: gretchen.lambert00@gmail.com
+ -
+  orcid: 0000-0002-2195-6605
+  given: Marc
+  family: Rius
+  email: mrius@ceab.csic.es
+ -
+  given: Rosana
+  family: Moreira da Rocha
+  email: rmrocha@ufpr.br
+ -
+  orcid: 0000-0002-4200-2544
+  given: Billie
+  family: Swalla
+  email: bjswalla@u.washington.edu
+ -
+  orcid: 0000-0002-9229-5541
+  given: Xavier
+  family: Turon
+  email: xturon@ceab.csic.es
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: IL
+  address: Israel
+  organisation: Tel-Aviv University; Faculty of Life Sciences School of Zoology
+ -
+  country: NL
+  address: Netherlands
+  organisation: Naturalis Biodiversity Center Department of Marine Zoology
+ -
+  country: US
+  address: United States of America
+  organisation: University of Washington Friday Harbor Laboratories
+ -
+  country: ES
+  address: Spain
+  organisation: Spanish Council for Scientific Research Centre for Advanced Studies
+    of Blanes
+ -
+  country: BR
+  address: Brazil
+  organisation: Universidade Federal do Paraná Departamento de Zoologia
+ -
+  country: US
+  address: United States of America
+  organisation: University of Washington Biology Department
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: sea squirts
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 95
+license: cc by
+url: https://www.marinespecies.org/ascidiacea
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

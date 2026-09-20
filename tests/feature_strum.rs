@@ -16,6 +16,6 @@ fn elements_cover_full_periodic_table() {
 #[test]
 fn iterating_planets_yields_expected_order() {
     let collected: Vec<u8> = Planet::iter().map(|planet| planet as u8).collect();
-    let expected = vec![1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let expected = vec![1, 2, 3, 4, 5, 6, 7, 8];
     assert_eq!(collected, expected);
 }

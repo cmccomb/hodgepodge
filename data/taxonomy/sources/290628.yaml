@@ -1,0 +1,101 @@
+---
+key: 290628
+doi: 10.48580/dfxlp
+title: Coleoptera type genera and family-group names
+alias: Coleoptera type genera
+description: "This dataset is based on the publication: Bouchard,P., Y. Bousquet,\
+  \ A. Davis and C. Cai. 2024. On the nomenclatural status of type genera in Coleoptera\
+  \ (Insecta). Zookeys 1194: 1-981. It includes more than 4,700 nominal family-group\
+  \ names (including names for fossils and ichnotaxa) that are nomenclaturally available\
+  \ in the order Coleoptera. Each family-group name includes the type genus. For each\
+  \ type genus the authorship and year of publication are provided, along with its\
+  \ current status (i.e., whether treated as accepted or synonym) and its current\
+  \ classification. Some other non type-genus were included to complete the synonym\
+  \ relationships. The list of nomenclaturally available family-group names is presented\
+  \ in a classification scheme. \nThis dataset differs slightly from the published\
+  \ article, as certain errors —pertaining to spelling, authorship, or hierarchical\
+  \ relationships— were identified and subsequently corrected.\nThis version of the\
+  \ dataset does not include the type species mentioned in the article nor does it\
+  \ include the supporting references for each name."
+issued: 2025-05-28
+version: 2.2
+contact:
+  orcid: 0000-0001-7443-4547
+  given: Patrice
+  family: Bouchard
+  department: "Canadian National Collection of Insects, Arachnids and Nematodes"
+  city: Ottawa
+  state: Ontario
+  country: CA
+  email: patrice.bouchard@agr.gc.ca
+  address: "Ottawa, Ontario, Canada"
+  organisation: 'Agriculture and Agri-Food Canada '
+creator:
+ -
+  orcid: 0000-0001-7443-4547
+  given: Patrice
+  family: Bouchard
+  department: "Canadian National Collection of Insects, Arachnids and Nematodes"
+  city: Ottawa
+  state: Ontario
+  country: CA
+  email: patrice.bouchard@agr.gc.ca
+  address: "Ottawa, Ontario, Canada"
+  organisation: Agriculture and Agri-Food Canada
+contributor:
+ -
+  given: Yves
+  family: Bosquet
+  state: Quebec
+  country: CA
+  address: "Quebec, Canada"
+ -
+  orcid: 0009-0007-9506-9017
+  given: Anthony
+  family: Davies
+  department: "Canadian National Collection of Insects, Arachnids and Nematodes"
+  city: Ottawa
+  state: Ontario
+  country: CA
+  address: "Ottawa, Ontario, Canada"
+  organisation: 'Agriculture and Agri-Food Canada '
+ -
+  orcid: 0000-0002-9283-8323
+  given: Chenyang
+  family: Cai
+  department: State Key Laboratory of Palaeobiology and Stratigraphy
+  state: Nanjing
+  country: CN
+  address: "Nanjing, China"
+  organisation: "Nanjing Institute of Geology and Palaeontology, and Center for Excellence\
+    \ in Life and Paleoenvironment"
+ -
+  orcid: 0000-0002-3951-4856
+  given: Diana
+  family: Hernández
+  city: Mexico City
+  country: MX
+  email: diana.hernandez@catalogueoflife.org
+  note: COL Editor
+  address: "Mexico City, Mexico"
+  organisation: Catalogue of Life
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Beetles
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc0
+url: https://zookeys.pensoft.net/article/106440/list/9/
+source: []
+notes: The digital version of the Catalogue was prepared by Diana Hernández Robles
+  for Catalogue of Life.

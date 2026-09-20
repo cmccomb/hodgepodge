@@ -1,0 +1,165 @@
+---
+key: 185410
+doi: 10.48580/d9mhh
+versionDoi: 10.48580/d9mhh.v26
+title: Online Taxonomic Facility of Geometridae
+alias: Geometridae
+description: |-
+  Geometrid moths are the second-largest lepidopteran family (after Erebidae) in terms of described species. Rajaei et al. 2022 reported that the family Geometridae had 27,006 valid species-group names, including 23,872 species and 3,123 subspecies. These account for nearly 15% of all Lepidoptera species (Nieukerken et al. 2011). Each year about 80 new species are described, and the real species richness on the global scale is likely to be between 40,000 – 50,000 species (Rajaei et al. 2022).
+
+  These moths are known as inchworms or loopers, referring to the caterpillars that move by “measuring” the earth. This mode of movement is caused by the reduction of ventral prolegs in the abdomen, so that only two pairs are present at the end of the abdomen. Some species have also ventral prolegs available (e.g. several species in Ennominae, Diptychini). A further diagnostic feature of the family includes paired tympanal organs at the base of the abdomen on sternites 1-2, which bear a central rod called ansa (e.g. Cook & Scoble 1992, Minet & Scoble 1999). Externally geometrids, both adults and larvae, are very variable in size, pattern and color.
+
+  Species of this family are distributed globally, and they occur in all continents except Antarctica and in all terrestrial biotopes. The highest described species richness is in the Neotropics (South America) with 6,595 species, followed by the Oriental region (roughly South-East Asia) with 4,969 described species (see more detailed information in Rajaei et al. 2022). Geometrid moths have the highest species richness near the equator and the diversity decreases towards higher latitudes. As regards the altitude, subfamilies Ennominae, Sterrhinae, and Geometrinae significantly decrease, while the proportion of Larentiinae increases with increasing altitude (e.g. Brehm & Fiedler 2003).
+
+  Life histories of many geometrid species are rather poorly known and documented. According to the available information, the majority of caterpillars are external feeders on leaves, including deciduous and conifers trees, ferns, shrubs, and herbs while only a handful of species feed on grasses. Few lineages can survive in dry conditions including even desert oases, and some caterpillars can feed on withered, moldy, decaying, or dry leaves (Hausmann 2004). Of particular interest from the diet point of view are the _Eupithecia_ (pug moths) in Hawaii. These endemic caterpillars are carnivorous feeding on other insects (Montgomery 1983).
+
+  ### References
+
+  1. Brehm, G. & Fiedler, K. (2003): Faunal composition of geometrid moths changes with altitude in an Andean montane rain forest. Journal of Biogeography 30: 431–440. https://doi.org/10.1046/j.1365-2699.2003.00832.x
+  2. Cook, M. A. & Scoble M. J. (1992): Tympanal organs of geometrid moths: a review of their morphology, function, and systematic importance. Systematic Entomology 17: 219–232. https://doi.org/10.1111/j.1365-3113.1992.tb00334.x
+  3. Hausmann, A. (2004): Sterrhinae. The Geometrid Moths of Europe, Vol. 2 (A. Hausmann, ed.), pp. 1–600. Apollo Books, Stenstrup.
+  4. Minet, J. & Scoble, M. J. (1999): The drepanoid/geometroid assemblage. In: Kristensen, N. P. (ed.): Lepidoptera: evolution, systematics and biogeography, pp. 301–320.; Walter de Gruyter, Berlin. https://doi.org/10.1515/9783110804744.301
+  5. Montgomery, S. L. (1983): Carnivorous caterpillars: the behavior, biogeography and conservation of Eupithecia (Lepidoptera: Geometridae) in the Hawaiian Islands. GeoJournal 7: 549–556.
+  6. Nieukerken, E. J. van, Kaila, L., Kitching, I. J., Kristensen, N. P., Lees, D. C. et al. (2011): Order Lepidoptera Linnaeus, 1758. In: Zhang, Z.-Q. (Ed.) Animal biodiversity: An outline of higher-level classification and survey of taxonomic richness. Zootaxa 3148: 212–221. https://www.biotaxa.org/Zootaxa/article/view/zootaxa.3148.1.41/41699
+  7. Rajaei, H., Hausmann, A., Scoble, M., Wanke, D., Plotkin, D., Brehm, G., Murillo-Ramos, L. & Sihvonen, P. (2022): An online taxonomic facility of Geometridae (Lepidoptera), with an overview of global species richness and systematics. Integrative Systematics, 5 (2): 145-192. https://doi.org/10.18476/2022.577933
+issued: 2024-06-06
+version: 1.1.24.158 (6 Jun 2024)
+contact:
+  orcid: 0000-0001-6492-4016
+  given: Donald
+  family: Hobern
+  rorid: 04m098c22
+  city: Aranda
+  state: ACT
+  country: AU
+  email: donald.hobern@sp2000.org
+  url: https://sp2000.org/
+  address: "Aranda, ACT, Australia"
+  organisation: Species 2000
+creator:
+ -
+  orcid: 0000-0002-3940-3734
+  given: Hossein
+  family: Rajaei
+  rorid: 05k35b119
+  department: Entomology
+  city: Stuttgart
+  state: Baden-Württemberg
+  country: DE
+  email: hossein.rajaei@smns-bw.de
+  url: http://www.naturkundemuseum-bw.de/
+  address: "Stuttgart, Baden-Württemberg, Germany"
+  organisation: Staatliches Museum für Naturkunde Stuttgart
+ -
+  orcid: 0000-0002-0358-9928
+  given: Axel
+  family: Hausmann
+  rorid: 04rekk491
+  department: Entomology
+  city: Munich
+  country: DE
+  url: http://www.zsm.mwn.de/e/
+  address: "Munich, Germany"
+  organisation: Bavarian State Collection of Zoology
+ -
+  orcid: 0000-0002-0458-3755
+  given: Malcolm
+  family: Scoble
+  rorid: 039zvsn29
+  department: Science Group
+  city: London
+  country: GB
+  url: http://www.nhm.ac.uk/
+  address: "London, United Kingdom"
+  organisation: Natural History Museum
+ -
+  orcid: 0000-0001-5390-8993
+  given: Dominic
+  family: Wanke
+  rorid: 05k35b119
+  department: Entomology
+  city: Stuttgart
+  state: Baden-Württemberg
+  country: DE
+  email: dominic.wanke@smns-bw.de
+  url: http://www.naturkundemuseum-bw.de/
+  address: "Stuttgart, Baden-Württemberg, Germany"
+  organisation: Staatliches Museum für Naturkunde Stuttgart
+ -
+  orcid: 0000-0002-2339-655X
+  given: David
+  family: Plotkin
+  rorid: 02pjdv450
+  department: McGuire Center for Lepidoptera and Biodiversity
+  city: Gainesville
+  state: Florida
+  country: US
+  url: http://www.flmnh.ufl.edu/
+  address: "Gainesville, Florida, United States of America"
+  organisation: Florida Museum of Natural History
+ -
+  orcid: 0000-0002-7599-2847
+  given: Gunnar
+  family: Brehm
+  rorid: 05qpz1x62
+  department: Phyletisches Museum
+  city: Jena
+  country: DE
+  url: https://www.uni-jena.de/en
+  address: "Jena, Germany"
+  organisation: Friedrich-Schiller Universität Jena
+ -
+  orcid: 0000-0002-8256-105X
+  given: Leidys
+  family: Murillo-Ramos
+  rorid: 04fbb7514
+  department: Departamento de Biología
+  city: Sucre
+  country: CO
+  url: http://www.unisucre.edu.co/
+  address: "Sucre, Colombia"
+  organisation: Universidad de Sucre
+ -
+  orcid: 0000-0003-2237-9325
+  given: Pasi
+  family: Sihvonen
+  rorid: 03tcx6c30
+  department: Finnish Museum of Natural History
+  city: Helsinki
+  country: FI
+  url: https://www.luomus.fi/
+  address: "Helsinki, Finland"
+  organisation: University of Helsinki
+contributor:
+ -
+  orcid: 0000-0001-6492-4016
+  given: Donald
+  family: Hobern
+  rorid: 04m098c22
+  city: Aranda
+  state: ACT
+  country: AU
+  email: donald.hobern@sp2000.org
+  url: https://species2000.org/
+  address: "Aranda, ACT, Australia"
+  organisation: Species 2000
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: global
+taxonomicScope: Geometer moths
+temporalScope: All taxa described to present
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: https://geometroidea.smns-bw.org/introduction
+logo: https://api.checklistbank.org/dataset/185410/logo
+source: []

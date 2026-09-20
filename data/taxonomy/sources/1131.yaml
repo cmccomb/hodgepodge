@@ -1,0 +1,83 @@
+---
+key: 1131
+doi: 10.48580/d3d2
+versionDoi: 10.48580/d3d2.v86
+title: World List of Octocorallia
+alias: WoRMS Octocorallia
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  given: Catherine
+  family: McFadden
+  email: mcfadden@g.hmc.edu
+ -
+  given: Ralf
+  family: Cordeiro
+  email: ralfts@gmail.com
+ -
+  given: Kaveh
+  family: Samimi-Namin
+  email: kaveh.samimi@naturalis.nl
+ -
+  orcid: 0000-0001-8259-3783
+  given: Bert
+  family: Hoeksema
+  email: bert.hoeksema@naturalis.nl
+ -
+  given: Gary
+  family: Williams
+  email: gwilliams@calacademy.org
+ -
+  given: Leen
+  family: van Ofwegen
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: US
+  address: United States of America
+  organisation: Harvey Mudd College Department of Biology
+ -
+  organisation: Universidade Federal de Pernambuco
+ -
+  country: NL
+  address: Netherlands
+  organisation: Naturalis Biodiversity Center
+ -
+  country: NL
+  address: Netherlands
+  organisation: Naturalis Biodiversity Center Department of Marine Zoology
+ -
+  country: US
+  address: United States of America
+  organisation: California Academy of Sciences Department of Invertebrate Zoology
+    & Geology
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: octocorals
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 3
+completeness: 90
+license: cc by
+url: https://www.marinespecies.org/octocorallia
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

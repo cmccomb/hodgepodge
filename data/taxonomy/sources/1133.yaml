@@ -1,0 +1,106 @@
+---
+key: 1133
+doi: 10.48580/d3d4
+versionDoi: 10.48580/d3d4.v46
+title: Psocodea Species File
+alias: SF Psocodea
+description: |-
+  The Psocodea Species File is a taxonomic database that includes data
+  for Psocoptera (bark lice) and Phthiraptera (parasitic lice).
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  rorid: 047426m28
+  city: Ithaca
+  state: NY
+  country: US
+  email: cockroachdoc@gmail.com
+  address: "Ithaca, NY, United States of America"
+  organisation: University of Illinois
+creator:
+ -
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  rorid: 047426m28
+  city: Ithaca
+  state: NY
+  country: US
+  note: Author
+  address: "Ithaca, NY, United States of America"
+  organisation: University of Illinois
+ -
+  given: Kevin P
+  family: Johnson
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Author
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+ -
+  orcid: 0000-0001-5297-7452
+  given: Vincent S
+  family: Smith
+  rorid: 039zvsn29
+  city: London
+  country: GB
+  note: Author
+  address: "London, United Kingdom"
+  organisation: The Natural History Museum
+editor:
+ -
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  email: cockroachdoc@gmail.com
+  organisation: Species File Group/TaxonWorks
+publisher:
+  rorid: 047426m28
+  department: "Species File Group, Illinois Natural History Survey, Prairie Research\
+    \ Institute"
+  city: Champaign
+  state: IL
+  country: US
+  email: dlpaul@illinois.edu
+  url: https://speciesfilegroup.org
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+contributor:
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Principal Database Developer
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Bark lices & parasitic lices
+temporalScope: Carboniferous (Moscovian) to the Mid-Cretaceous (Cenomanian)
+taxonomicGroupScope: []
+confidence: 4
+completeness: 90
+license: cc by
+url: https://psocodea.speciesfile.org
+feedbackUrl: https://www.github.com/sfg-taxonpages/psocodea/issues
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/SF_Psocodea.png
+source: []

@@ -31,13 +31,41 @@ macro_rules! all_datasets {
         $check::<BetterThanRust>();
         $check::<Medal>();
         $check::<Ordinal>();
+        $check::<CoinSide>();
+        $check::<RockPaperScissors>();
+        $check::<RoundOutcome>();
+        $check::<DnaBase>();
+        $check::<AminoAcid>();
+        $check::<BodySide>();
+        $check::<SkeletalDivision>();
+        $check::<BoneRegion>();
+        $check::<Bone>();
+        $check::<MuscleRegion>();
+        $check::<Muscle>();
+        $check::<Biome>();
+        $check::<RockClass>();
+        $check::<Rock>();
+        $check::<EarthLayer>();
+        $check::<AtmosphereLayer>();
+        $check::<GeologicEon>();
+        $check::<GeologicEra>();
+        $check::<GeologicPeriod>();
+        $check::<GeologicEpoch>();
+        $check::<InfernoCircle>();
     };
 }
 
 #[test]
 fn every_dataset_supports_the_default_api() {
     fn check<
-        T: Copy + Clone + Debug + Eq + Hash + std::fmt::Display + FromStr<Err = ParseEnumError>,
+        T: Dataset
+            + Copy
+            + Clone
+            + Debug
+            + Eq
+            + Hash
+            + std::fmt::Display
+            + FromStr<Err = ParseEnumError>,
     >() {
     }
     all_datasets!(check);
@@ -69,23 +97,17 @@ fn invalid_names_return_a_typed_error() {
     );
 }
 
-#[cfg(feature = "strum")]
 #[test]
 fn every_variant_round_trips_through_its_name() {
     fn check<T>()
     where
-        T: Copy
-            + Debug
-            + Eq
-            + Hash
-            + std::fmt::Display
-            + FromStr<Err = ParseEnumError>
-            + IntoEnumIterator
-            + EnumCount,
+        T: Dataset + Debug + Eq + Hash + std::fmt::Display + FromStr<Err = ParseEnumError>,
     {
         let mut seen = std::collections::HashSet::new();
-        for value in T::iter() {
+        for &value in T::ALL {
             let name = value.to_string();
+            assert_eq!(name, value.as_str());
+            assert!(!value.label().is_empty());
             assert_eq!(name.parse::<T>(), Ok(value));
             assert_eq!(name.to_ascii_lowercase().parse::<T>(), Ok(value));
             assert_eq!(name.to_ascii_uppercase().parse::<T>(), Ok(value));
@@ -96,22 +118,53 @@ fn every_variant_round_trips_through_its_name() {
     all_datasets!(check);
 }
 
-#[cfg(all(feature = "serde", feature = "strum"))]
+#[cfg(feature = "serde")]
 #[test]
 fn every_variant_round_trips_through_json() {
     fn check<T>()
     where
-        T: Debug
+        T: Dataset
+            + Debug
             + Eq
             + std::fmt::Display
-            + IntoEnumIterator
             + serde::Serialize
             + serde::de::DeserializeOwned,
     {
-        for value in T::iter() {
+        for &value in T::ALL {
             let json = serde_json::to_string(&value).unwrap();
             assert_eq!(json, format!("\"{value}\""));
             assert_eq!(serde_json::from_str::<T>(&json).unwrap(), value);
+        }
+    }
+    all_datasets!(check);
+}
+
+#[cfg(feature = "strum")]
+#[test]
+fn strum_metadata_agrees_with_default_metadata() {
+    fn check<T: Dataset + IntoEnumIterator + EnumCount + Eq + Debug>() {
+        assert_eq!(<T as Dataset>::COUNT, <T as EnumCount>::COUNT);
+        assert_eq!(T::iter().collect::<Vec<_>>(), T::ALL);
+    }
+    all_datasets!(check);
+}
+
+#[cfg(feature = "rand")]
+#[test]
+fn every_dataset_supports_caller_seeded_sampling() {
+    use rand::{Rng, SeedableRng};
+    use rand_chacha::ChaCha8Rng;
+
+    fn check<T: Dataset + Eq + Debug>()
+    where
+        rand::distr::StandardUniform: rand::distr::Distribution<T>,
+    {
+        let mut first = ChaCha8Rng::seed_from_u64(42);
+        let mut second = ChaCha8Rng::seed_from_u64(42);
+        for _ in 0..100 {
+            let value: T = first.random();
+            assert!(T::ALL.contains(&value));
+            assert_eq!(value, second.random());
         }
     }
     all_datasets!(check);

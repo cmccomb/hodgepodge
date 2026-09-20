@@ -1,0 +1,54 @@
+---
+key: 1161
+doi: 10.48580/d3f3
+versionDoi: 10.48580/d3f3.v13
+title: Brentidae of the World
+alias: Brentids
+description: "A database of all the species described in the family Brentidae sensu\
+  \ stricto (Insecta, Coleoptera). Brentids database replaced WTaxa Brentidae family\
+  \ in the CoL."
+issued: 2019-02-01
+version: Feb 2019
+contact:
+  given: Luca
+  family: Bartolozzi
+  email: luca.bartolozzi@unifi.it
+creator:
+ -
+  given: A.
+  family: Sforzi
+ -
+  given: L.
+  family: Bartolozzi
+  email: luca.bartolozzi@unifi.it
+ -
+  given: F.
+  family: Cianferoni
+ -
+  given: F.
+  family: Zinetti
+contributor:
+ -
+  department: Natural History Museum
+  city: Florence
+  country: IT
+  address: "Florence, Italy"
+  organisation: University of Florence
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Straight-snouted weevils
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/Brentids.png
+source: []

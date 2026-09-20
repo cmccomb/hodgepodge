@@ -1,0 +1,50 @@
+---
+key: 1010
+doi: 10.48580/d37v
+versionDoi: 10.48580/d37v.v30
+title: FishBase
+alias: FishBase
+description: "FishBase is a global biodiversity information system with extensive\
+  \ information on fish species of the world, aiming at all species. In addition to\
+  \ the data contributed to the Catalogue of Life, the original FishBase database\
+  \ also includes descriptive, biological, ecological, physiological and conservation\
+  \ data and more, and onward links to information in many other databases. Data entry\
+  \ and maintenance are done mainly at Quantitative Aquatics, Inc. (Q quatics), an\
+  \ NGO in the Philippines since the 1st January 2017 in collaboration with many colleagues\
+  \ and institutions around the world. The team was started in 1990 at ICLARM that\
+  \ became WorldFish Center (then WorldFish) between 2001-2010, and in FIN, a Philippine\
+  \ NGO, between 2011 and 2016. FishBase is supported by a Consortium of 14 institutions\
+  \ around the world that acts as the Scientific Committee for Q-quatcis. FishBase\
+  \ is funded by various donors. FishBase uses data and information from the Eschmeyer’\
+  s Catalog of Fishes (ECoF) developed by W.N. Eschmeyer at the California Academy\
+  \ of Science. In particular, FishBase uses ECoF as the most complete and up-to-date\
+  \ fish nomenclator, and as a taxonomic authority list in a collaborative work of\
+  \ synchronization of the two databases. However, FishBase now lags 1,000 species\
+  \ behind. Moreover, for this version, due to technical issues, the dataset was imported\
+  \ via the routines of WoRMS that hosts the FishBase taxonomy. We are not sure at\
+  \ this stage if it will be temporary, or if this solution will continue, or even,\
+  \ if a solution with ECoF will be found."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: fishbase@q-quatics.org
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: fish
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 99
+license: cc by
+url: https://www.fishbase.org
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

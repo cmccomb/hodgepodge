@@ -1,0 +1,146 @@
+---
+key: 219318
+doi: 10.48580/dbzsq
+title: World Catalogue of the Tortricidae
+alias: Tortricid.net
+description: |-
+  Tortricid.net is pleased to offer the complete World Catalogue of the Tortricidae. This is a complete list of all world species, utilizing the World Catalogue published in 2005 as the foundation for the database. Version 4.0 of the online catalogue contains 15,634 records representing 11,365 species. More than 800 records have been updated from Version 3.0 (Dec, 2014), and more than 4,000 records have been updated from the original catalogue. The database is completely searchable and contains photos of over 1,200 type specimens.
+
+  This catalogue will be updated regularly both with corrections from the original world catalogue and with additions since its publication. As such, these pages will serve as the most up to date information on current tortricid nomenclature. If you find any errors in the data presented here or have any questions/comments, please use the contact form to send the authors an email.
+
+  We are indebted to all of the original authors of the World Catalogue (J. W. Brown, J. Baixeras, R. Brown, M. Horak, F. Komai, E. Metzler, J. Razowski, and K. Tuck) for providing the basis for this project. We would also like to thank the dozens of individuals who have provided corrections or updates to the database since it was first placed online in 2007.
+issued: 2018-12-31
+version: 4.0
+contact:
+  given: Todd
+  family: Gilligan
+  rorid: 0599wfz09
+  department: "Plant Protection and Quarantine, Science and Technology"
+  city: Fort Collins
+  state: CO
+  country: US
+  email: todd.m.gilligan@usda.gov
+  address: "Fort Collins, CO, United States of America"
+  organisation: USDA APHIS
+editor:
+ -
+  given: Todd
+  family: Gilligan
+  rorid: 0599wfz09
+  department: "Plant Protection and Quarantine, Science and Technology"
+  city: Fort Collins
+  state: CO
+  country: US
+  email: todd.m.gilligan@usda.gov
+  address: "Fort Collins, CO, United States of America"
+  organisation: USDA APHIS
+ -
+  orcid: 0000-0001-5610-9855
+  given: John
+  family: Brown
+  rorid: 00cz47042
+  department: Department of Entomology
+  city: Washington
+  state: DC
+  country: US
+  email: tortricidae.jwb@gmail.com
+  address: "Washington, DC, United States of America"
+  organisation: "National Museum of Natural History, Smithsonian Institution"
+ -
+  orcid: 0000-0002-6092-0496
+  given: Joaquín
+  family: Baixeras
+  rorid: 043nxc105
+  department: Department of Zoology
+  city: Paterna
+  state: València
+  email: joaquin.baixeras@uv.es
+  address: "Paterna, València"
+  organisation: Universitat de València
+contributor:
+ -
+  orcid: 0000-0001-9945-2039
+  given: Richard
+  family: Brown
+  rorid: 0432jq872
+  department: Mississippi Entomological Museum
+  city: Mississippi State
+  state: MS
+  country: US
+  email: moth@ra.msstate.edu
+  address: "Mississippi State, MS, United States of America"
+  organisation: Mississippi State University
+ -
+  orcid: 0000-0003-4445-6037
+  given: Marianne
+  family: Horak
+  rorid: 00c8nx045
+  department: Australian National Insect Collection
+  city: Canberra
+  state: ACT
+  email: marianne.horak@csiro.au
+  address: "Canberra, ACT"
+  organisation: CSIRO
+ -
+  given: Furumi
+  family: Komai
+  rorid: 05qbvwf88
+  department: Art and Primary Education Department
+  city: Osaka
+  state: Kansai
+  country: JP
+  address: "Osaka, Kansai, Japan"
+  organisation: Osaka University of Arts
+ -
+  orcid: 0000-0002-8641-2502
+  given: Eric
+  family: Metzler
+  rorid: 00cz47042
+  department: Department of Entomology
+  city: Alamogordo
+  state: NM
+  country: US
+  email: metzlereh@si.edu
+  address: "Alamogordo, NM, United States of America"
+  organisation: "National Museum of Natural History, Smithsonian Institution"
+ -
+  given: Józef
+  family: Razowski
+  rorid: 01dr6c206
+  department: Institute of Systematic Zoology
+  city: Kraków
+  country: PL
+  address: "Kraków, Poland"
+  organisation: Polish Academy of Sciences
+ -
+  given: Kevin
+  family: Tuck
+  rorid: 039zvsn29
+  department: Department of Entomology
+  city: London
+  state: ACT
+  email: dhobern@gmail.com
+  address: "London, ACT"
+  organisation: Natural History Museum
+keyword:
+ - Tortrix moths
+ - Leafroller moths
+ - Tortricidae
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Leafroller moths
+temporalScope: Recent and fossil
+taxonomicGroupScope: []
+confidence: 5
+completeness: 95
+license: cc by
+url: http://tortricidae.com
+source: []

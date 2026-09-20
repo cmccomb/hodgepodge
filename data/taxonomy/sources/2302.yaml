@@ -1,0 +1,54 @@
+---
+key: 2302
+doi: 10.48580/d4rf
+versionDoi: 10.48580/d4rf.v78
+title: " Nemys, World Database of Nematodes"
+alias: WoRMS Nematoda
+description: "Nemys offers documentation on free-living marine, brackish, fresh-water\
+  \ and terrestrial nematodes, mainly providing taxonomic information but also ecological\
+  \ information. Nemys is integrated into the World Register of Marine Species (WoRMS).\
+  \ Data are contributing to the Catalogue of Life via the WoRMS, hosted by the Flanders\
+  \ Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: nemys@marinespecies.org
+editor:
+ -
+  family: Nemys eds.
+contributor:
+ -
+  organisation: Nemys eds.
+ -
+  country: BE
+  address: Belgium
+  organisation: Universiteit Gent; Faculteit Wetenschappen; Vakgroep Biologie Onderzoeksgroep
+    Mariene Biologie
+ -
+  country: BE
+  address: Belgium
+  organisation: Belgian Science Policy
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: nematodes
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 90
+license: cc by
+url: https://nemys.ugent.be
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

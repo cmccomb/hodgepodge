@@ -1,0 +1,59 @@
+---
+key: 1080
+doi: 10.48580/d3b9
+versionDoi: 10.48580/d3b9.v8
+title: Bdellid & Cunaxid Databases
+alias: BdelloideaBase
+description: "The Bdelloidea are free-living, predatory mites with a cosmopolitan\
+  \ distribution, inhabiting practically all temperate zones. They inhabit the top\
+  \ soil layer, most vegetation strata and the marine littoral zone. The CunaxidBase\
+  \ was compiled by Dr. Jacob den Heyer (custodian), consisting of 329 species and\
+  \ 4 synonyms. The BdellidBase, consisting of 246 valid species and 66 synonyms,\
+  \ was compiled by Drs Jacob den Heyer and F.A. Hernandes (custodian). BdelloideaBase\
+  \ substituted CunaxidBase in the Catalogue of Life of 2011-2023. Since May 2024\
+  \ CunaxidBase has been separated from BdelloideaBase."
+issued: 2013-02-28
+version: Feb 2013
+contact:
+  given: J
+  family: Den Heyer
+  email: jacob.den.heyer@gmail.com
+creator:
+ -
+  given: J.
+  family: Den Heyer
+  email: jacob.den.heyer@gmail.com
+ -
+  given: F.A.
+  family: Hernandes
+contributor:
+ -
+  department: Department of Zoology & Entomology
+  city: Bloemfontein
+  country: ZA
+  address: "Bloemfontein, South Africa"
+  organisation: University of the Free State
+ -
+  department: "Acarology Laboratory, Departamento de Zoologia e Botanica"
+  city: Sao Paulo
+  country: BR
+  address: "Sao Paulo, Brazil"
+  organisation: Sao Paulo State University
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Bdellid mites
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/BdelloideaBase.png
+source: []

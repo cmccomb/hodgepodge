@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-# Exercise standalone features, compatibility names, and documentation examples.
+# All 16 primary-feature combinations, two compatibility aliases, and all-features.
 set -euo pipefail
-for features in '' serde strum 'serde strum' enum-iter enum-count; do
+for features in '' serde strum rand 'serde strum' 'serde rand' 'strum rand' 'serde strum rand'; do
+    for taxonomy in '' taxonomy; do
+        cargo test --all-targets --no-default-features --features "$features $taxonomy"
+        cargo test --doc --no-default-features --features "$features $taxonomy"
+    done
+done
+for features in enum-iter enum-count; do
     cargo test --all-targets --no-default-features --features "$features"
     cargo test --doc --no-default-features --features "$features"
 done

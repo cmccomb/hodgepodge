@@ -1,0 +1,69 @@
+---
+key: 1196
+doi: 10.48580/d3g9
+versionDoi: 10.48580/d3g9.v89
+title: World List of Scleractinia
+alias: WoRMS Scleractinia
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Bert
+  family: Hoeksema
+  email: bert.hoeksema@naturalis.nl
+editor:
+ -
+  orcid: 0000-0001-8259-3783
+  given: Bert
+  family: Hoeksema
+  email: bert.hoeksema@naturalis.nl
+ -
+  orcid: 0000-0001-7209-9271
+  given: Stephen
+  family: Cairns
+  email: cairnss@si.edu
+ -
+  given: Kaveh
+  family: Samimi-Namin
+  email: kaveh.samimi@naturalis.nl
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: NL
+  address: Netherlands
+  organisation: Naturalis Biodiversity Center Department of Marine Zoology
+ -
+  country: US
+  address: United States of America
+  organisation: Smithsonian Institution; National Museum of Natural History Department
+    of Invertebrate Zoology
+ -
+  country: NL
+  address: Netherlands
+  organisation: Naturalis Biodiversity Center
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: stony corals
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 95
+license: cc by
+url: https://www.marinespecies.org/scleractinia
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

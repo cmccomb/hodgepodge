@@ -1,0 +1,50 @@
+---
+key: 1090
+doi: 10.48580/d3bm
+versionDoi: 10.48580/d3bm.v87
+title: World Polychaeta Database
+alias: WoRMS Polychaeta
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Geoffrey
+  family: Read
+  email: Geoffrey.Read@niwa.co.nz
+editor:
+ -
+  given: Geoffrey
+  family: Read
+ -
+  given: Kristian
+  family: Fauchald
+contributor:
+ -
+  organisation: Earth Sciences New Zealand
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: bristle worms
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 92
+license: cc by
+url: https://www.marinespecies.org/polychaeta
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

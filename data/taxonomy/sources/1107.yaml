@@ -1,0 +1,67 @@
+---
+key: 1107
+doi: 10.48580/d3c7
+versionDoi: 10.48580/d3c7.v87
+title: World List of Holothuroidea
+alias: WoRMS Holothuroidea
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  given: Gustav
+  family: Paulay
+  email: paulay@flmnh.ufl.edu
+ -
+  orcid: 0000-0001-8851-3318
+  given: Antonina
+  family: Kremenetskaia
+  email: antoneene@gmail.com
+ -
+  orcid: 0000-0003-3837-3497
+  given: Mike
+  family: Reich
+  email: mike.reich@lmu.de
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: US
+  address: United States of America
+  organisation: University of Florida Florida Museum of Natural History
+ -
+  country: RU
+  address: Russian Federation
+  organisation: Russian Academy of Sciences P. P. Shirshov Institute of Oceanology
+ -
+  country: DE
+  address: Germany
+  organisation: Ludwig Maximilians University Munich; Department of Earth and Environmental
+    Sciences Paleontology and Geobiology
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: sea cucumbers
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 98
+license: cc by
+url: https://www.marinespecies.org
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

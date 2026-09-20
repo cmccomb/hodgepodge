@@ -1,0 +1,48 @@
+---
+key: 1179
+doi: 10.48580/d3fp
+versionDoi: 10.48580/d3fp.v91
+title: World List of Ceriantharia
+alias: WoRMS Ceriantharia
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  given: Tina
+  family: Molodtsova
+  email: tina@ocean.ru
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: RU
+  address: Russian Federation
+  organisation: Russian Academy of Sciences P. P. Shirshov Institute of Oceanology
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: tube anemones
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 95
+license: cc by
+url: https://www.marinespecies.org
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

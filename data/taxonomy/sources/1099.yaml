@@ -1,0 +1,63 @@
+---
+key: 1099
+doi: 10.48580/d3bx
+versionDoi: 10.48580/d3bx.v85
+title: World List of Marine Oligochaeta
+alias: WoRMS Oligochaeta
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  orcid: 0000-0001-8008-5558
+  given: Patrick
+  family: Martin
+  email: patrick.martin@naturalsciences.be
+ -
+  given: John
+  family: Reynolds
+  email: info@marinespecies.org
+ -
+  given: Ton
+  family: van Haaren
+  email: tonvanhaaren@eurofins.com
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: BE
+  address: Belgium
+  organisation: Koninklijk Belgisch Instituut voor Natuurwetenschappen
+ -
+  organisation: WoRMS Editorial Board
+ -
+  country: NL
+  address: Netherlands
+  organisation: Eurofins Aquasense
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: oligochaetes
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: https://www.marinespecies.org
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

@@ -1,0 +1,72 @@
+---
+key: 1032
+doi: 10.48580/d38m
+title: Cerambycidae database
+alias: TITAN
+description: "The database represents more than 99% of valid described species and\
+  \ subspecies of world’s Cerambycidae. It contains over 39K species, 19K bibliographic\
+  \ references and 53K types. When it's possible, the authors included information\
+  \ on geographic distribution, host and visited plants, parasites, predators, mimics,\
+  \ and common names in different languages. All suggestions for enrichment and improvement\
+  \ of the content are welcome. This version of data has been crawled in CoLDP format\
+  \ from the original TITAN website by Geoff Ower, CoL Database Manager."
+issued: 2026-04-07
+version: 2025-09-02
+contact:
+  orcid: 0000-0002-3310-1903
+  given: Gerard
+  family: Tavakilian
+  email: gerard.tavakilian@mnhn.fr
+creator:
+ -
+  orcid: 0000-0002-3310-1903
+  given: Gerard
+  family: Tavakilian
+  rorid: 03wkt5x30
+  city: Paris
+  country: FR
+  email: gerard.tavakilian@mnhn.fr
+  address: "Paris, France"
+  organisation: Muséum national d'Histoire naturelle (MNHN)
+ -
+  given: Herve
+  family: Chevillotte
+  rorid: 05q3vnk25
+  city: Paris
+  country: FR
+  email: herve.chevillotte@ird.fr
+  address: "Paris, France"
+  organisation: Institut de Recherche pour le Développement (IRD)
+contributor:
+ -
+  orcid: 0000-0002-9770-2345
+  given: Geoff
+  family: Ower
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: Illinois
+  country: US
+  email: gdower@illinois.edu
+  note: COL Pipeline Developer
+  address: "Champaign, Illinois, United States of America"
+  organisation: University of Illinois Urbana-Champaign
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: "Longhorn beetles, timber beetles"
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: http://titan.gbif.fr/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/TITAN.png
+source: []

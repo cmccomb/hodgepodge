@@ -1,0 +1,47 @@
+---
+key: 1119
+doi: 10.48580/d3cm
+versionDoi: 10.48580/d3cm.v8
+title: World checklist of freshwater Nematomorpha species
+alias: FADA Nematomorpha
+description: "The checklist includes a list of all currently known and accepted species\
+  \ of freshwater hairworms (Nematomorpha), assembled in the Freshwater Animal Diversity\
+  \ Assessment (FADA) project. Nematomorpha are parasites of terrestrial (in few cases\
+  \ aquatic) insects. For sexual reproduction, they leave their host by driving it\
+  \ into water and emerging there. Five species are marine, 356 species live in freshwater.\
+  \ Horsehair worms are found in many different aquatic habitats throughout the world."
+issued: 2010-12-11
+version: Dec 2010
+contact:
+  given: A
+  family: Schmidt-Rhaesa
+creator:
+ -
+  given: A.
+  family: Schmidt-Rhaesa
+contributor:
+ -
+  department: Zoological Museum
+  city: Hamburg
+  country: DE
+  address: "Hamburg, Germany"
+  organisation: University Hamburg
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Freshwater hairworms
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: https://web.archive.org/web/20180320182846/http%3A//fada.biodiversity.be/group/show/7
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/FADA_Nematomorpha.png
+source: []

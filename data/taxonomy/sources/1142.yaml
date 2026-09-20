@@ -1,0 +1,61 @@
+---
+key: 1142
+doi: 10.48580/d3df
+versionDoi: 10.48580/d3df.v12
+title: "Taxonomic checklist of the world’s whiteflies (Insecta: Hemiptera: Aleyrodidae)"
+alias: The White-Files
+description: "Taxonomic checklist of the world's whiteflies (Insecta: Hemiptera: Aleyrodidae)"
+issued: 2019-02-01
+version: Feb 2019
+contact:
+  orcid: 0000-0003-2931-6116
+  given: David
+  family: Ouvrard
+  email: david.ouvrard@anses.fr
+creator:
+ -
+  orcid: 0000-0003-2931-6116
+  given: David
+  family: Ouvrard
+  city: Montpellier
+  country: FR
+  email: david.ouvrard@anses.fr
+  address: "Montpellier, France"
+  organisation: Anses Laboratoire de la santé des végétaux
+ -
+  given: Jon H.
+  family: Martin
+  city: London
+  country: GB
+  address: "London, United Kingdom"
+  organisation: Natural History Museum
+contributor:
+ -
+  city: Paris
+  country: FR
+  address: "Paris, France"
+  organisation: Université Pierre et Marie Curie
+ -
+  city: Paris
+  country: FR
+  address: "Paris, France"
+  organisation: Muséum National d'Histoire Naturelle
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Whiteflies
+taxonomicGroupScope: []
+confidence: 5
+completeness: 95
+license: cc by
+url: https://flow.hemiptera-databases.org/whiteflies/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/The_White-Files.png
+source: []

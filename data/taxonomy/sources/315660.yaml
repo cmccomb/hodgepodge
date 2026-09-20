@@ -1,0 +1,41 @@
+---
+key: 315660
+doi: 10.48580/dgycv
+versionDoi: 10.48580/dgycv.v3
+title: Blattodea Species File
+alias: SF Blattodea
+description: "A database of the described species of cockroaches and termites. Information\
+  \ found here includes nomenclature, classification, taxonomic histories, research,\
+  \ scientific sources, specimen data, images, keys, and distributions for all known\
+  \ Blattodea species of the world."
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  email: cockroachdoc@gmail.com
+  organisation: Species File Group
+publisher:
+  organisation: Species File Group
+keyword:
+ - "Blattodea, Isoptera, Termitoidae, cockroach, termite"
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Worldwide
+taxonomicScope: "Cockroaches, termites."
+temporalScope: All time
+taxonomicGroupScope: []
+confidence: 5
+completeness: 98
+license: cc by
+feedbackUrl: https://www.github.com/sfg-taxonpages/cockroach/issues
+logo: https://api.checklistbank.org/dataset/315660/logo
+source: []

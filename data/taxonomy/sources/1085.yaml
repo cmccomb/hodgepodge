@@ -1,0 +1,77 @@
+---
+key: 1085
+doi: 10.48580/d3bg
+versionDoi: 10.48580/d3bg.v89
+title: World Nemertea Database
+alias: WoRMS Nemertea
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+  organisation: WoRMS Data Management Team (DMT)
+editor:
+ -
+  orcid: 0000-0001-7776-1527
+  given: Jon
+  family: Norenburg
+  email: norenbur@si.edu
+ -
+  given: Alexey
+  family: Chernyshev
+  email: nemertea1969@gmail.com
+ -
+  orcid: 0000-0001-6510-9355
+  given: Hiroshi
+  family: Kajihara
+  email: kajihara@eis.hokudai.ac.jp
+ -
+  given: Svetlana
+  family: Maslakova
+  email: svetlana@uoregon.edu
+contributor:
+ -
+  country: US
+  address: United States of America
+  organisation: Smithsonian Institution; National Museum of Natural History Department
+    of Invertebrate Zoology
+ -
+  country: RU
+  address: Russian Federation
+  organisation: Russian Academy of Sciences; Far Eastern Branch A.V. Zhirmunsky National
+    Scientific Center of Marine Biology
+ -
+  country: JP
+  address: Japan
+  organisation: Hokkaido University
+ -
+  country: US
+  address: United States of America
+  organisation: University of Oregon Oregon Institute of Marine Biology
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: ribbon worms
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 100
+license: cc by
+url: https://www.marinespecies.org/nemertea
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

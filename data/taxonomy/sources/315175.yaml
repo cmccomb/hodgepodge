@@ -1,0 +1,59 @@
+---
+key: 315175
+doi: 10.48580/dgxs5
+versionDoi: 10.48580/dgxs5.v8
+title: Selected Insecta Species File
+alias: SF Selected Insecta
+description: "This project includes: Archaeognatha, Coleorrhyncha, Embioptera, Notoptera\
+  \ (Grylloblattodea + Mantophasmatodea), Zoraptera, Zygentoma, †Archaeorthoptera,\
+  \ †Cnemidolestida, †Eoblattida, †Permopsocida, †Reculida."
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  email: cockroachdoc@gmail.com
+  organisation: Species File Group
+creator:
+ -
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  email: cockroachdoc@gmail.com
+  organisation: Species File Group
+publisher:
+  organisation: Species File Group
+contributor:
+ -
+  orcid: 0009-0009-4473-0981
+  given: Tom
+  family: Klein
+  organisation: Species File Group
+keyword:
+ - "Archaeognatha, Coleorrhyncha, Embioptera, Notoptera (Grylloblattodea + Mantophasmatodea),\
+  \ Zoraptera, Zygentoma, †Archaeorthoptera, †Cnemidolestida, †Eoblattida, †Permopsocida,\
+  \ †Reculida"
+ - "bristletails, ice-crawlers, silverfishes, heelwalkers, angel insects, webspinners,\
+  \ moss bugs"
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: "bristletails, ice-crawlers, silverfishes, heelwalkers, angel insects,\
+  \ webspinners, moss bugs and several fossil insect groups"
+temporalScope: All time
+taxonomicGroupScope: []
+confidence: 4
+completeness: 80
+license: cc by
+url: https://grylloblattodea.speciesfile.org/otus/1089079/overview
+feedbackUrl: https://www.github.com/sfg-taxonpages/grylloblattodea/issues
+source: []
+notes: Completeness varies by order. 80% completeness is offered as an overall average.

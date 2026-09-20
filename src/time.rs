@@ -2,70 +2,70 @@
 #![allow(missing_docs)]
 #![allow(clippy::missing_docs_in_private_items)]
 
-dataset_enum! {
+numeric_enum! {
     /// The days of the week
     pub enum Day {
         /// [Monday](https://en.wikipedia.org/wiki/Monday) is the first day of the week
-        Monday = 1,
+        Monday = 1 => "Monday",
 
         /// [Tuesday](https://en.wikipedia.org/wiki/Tuesday) is the second day of the week
-        Tuesday = 2,
+        Tuesday = 2 => "Tuesday",
 
         /// [Wednesday](https://en.wikipedia.org/wiki/Wednesday) is the third day of the week
-        Wednesday = 3,
+        Wednesday = 3 => "Wednesday",
 
         /// [Thursday](https://en.wikipedia.org/wiki/Thursday) is the fourth day of the week
-        Thursday = 4,
+        Thursday = 4 => "Thursday",
 
         /// [Friday](https://en.wikipedia.org/wiki/Friday) is the fifth day of the week
-        Friday = 5,
+        Friday = 5 => "Friday",
 
         /// [Saturday](https://en.wikipedia.org/wiki/Saturday) is the sixth day of the week
-        Saturday = 6,
+        Saturday = 6 => "Saturday",
 
         /// [Sunday](https://en.wikipedia.org/wiki/Sunday) is the seventh day of the week
-        Sunday = 7,
+        Sunday = 7 => "Sunday",
     }
 }
 
-dataset_enum! {
+numeric_enum! {
     /// The months of the year
     pub enum Month {
         /// [January](https://en.wikipedia.org/wiki/January) is the first month of the year
-        January = 1,
+        January = 1 => "January",
 
         /// [February](https://en.wikipedia.org/wiki/February) is the second month of the year
-        February = 2,
+        February = 2 => "February",
 
         /// [March](https://en.wikipedia.org/wiki/March) is the third month of the year
-        March = 3,
+        March = 3 => "March",
 
         /// [April](https://en.wikipedia.org/wiki/April) is the fourth month of the year
-        April = 4,
+        April = 4 => "April",
 
         /// [May](https://en.wikipedia.org/wiki/May) is the fifth month of the year
-        May = 5,
+        May = 5 => "May",
 
         /// [June](https://en.wikipedia.org/wiki/June) is the sixth month of the year
-        June = 6,
+        June = 6 => "June",
 
         /// [July](https://en.wikipedia.org/wiki/July) is the seventh month of the year
-        July = 7,
+        July = 7 => "July",
 
         /// [August](https://en.wikipedia.org/wiki/August) is the eighth month of the year
-        August = 8,
+        August = 8 => "August",
 
         /// [September](https://en.wikipedia.org/wiki/September) is the ninth month of the year
-        September = 9,
+        September = 9 => "September",
 
         /// [October](https://en.wikipedia.org/wiki/October) is the tenth month of the year
-        October = 10,
+        October = 10 => "October",
 
         /// [November](https://en.wikipedia.org/wiki/November) is the eleventh month of the year
-        November = 11,
+        November = 11 => "November",
 
         /// [December](https://en.wikipedia.org/wiki/December) is the twelfth month of the year
-        December = 12,
+        December = 12 => "December",
     }
 }
 
@@ -83,16 +83,16 @@ dataset_enum! {
     /// ```
     pub enum Season {
         /// [Winter](https://en.wikipedia.org/wiki/Winter) is the first season of the year.
-        Winter = 1,
+        Winter = 1 => "Winter",
 
         /// [Spring](https://en.wikipedia.org/wiki/Spring_(season)) is the second season of the year.
-        Spring = 2,
+        Spring = 2 => "Spring",
 
         /// [Summer](https://en.wikipedia.org/wiki/Summer) is the third season of the year.
-        Summer = 3,
+        Summer = 3 => "Summer",
 
         /// [Fall](https://en.wikipedia.org/wiki/Autumn) (autumn) is the fourth season of the year.
-        Fall = 4,
+        Fall = 4 => "Fall",
     }
 }
 
@@ -108,16 +108,16 @@ dataset_enum! {
     /// ```
     pub enum Quarter {
         /// The first quarter of the fiscal year.
-        Q1 = 1,
+        Q1 = 1 => "Quarter 1",
 
         /// The second quarter of the fiscal year.
-        Q2 = 2,
+        Q2 = 2 => "Quarter 2",
 
         /// The third quarter of the fiscal year.
-        Q3 = 3,
+        Q3 = 3 => "Quarter 3",
 
         /// The fourth quarter of the fiscal year.
-        Q4 = 4,
+        Q4 = 4 => "Quarter 4",
     }
 }
 
@@ -146,5 +146,107 @@ mod tests {
     #[test]
     fn quarters_count_matches_four() {
         assert_eq!(<Quarter as EnumCount>::COUNT, 4);
+    }
+}
+
+impl Day {
+    /// Returns the Monday-first weekday number, from 1 to 7.
+    /// Use `Day::try_from(number)` for checked conversion back.
+    #[must_use]
+    pub const fn number(self) -> u8 {
+        self as u8
+    }
+}
+
+impl Month {
+    /// Returns the calendar month number, from 1 to 12.
+    /// Use `Month::try_from(number)` for checked conversion back.
+    #[must_use]
+    pub const fn number(self) -> u8 {
+        self as u8
+    }
+}
+
+impl Day {
+    /// Returns the three-letter English abbreviation.
+    #[must_use]
+    pub const fn abbreviation(self) -> &'static str {
+        match self {
+            Self::Monday => "Mon",
+            Self::Tuesday => "Tue",
+            Self::Wednesday => "Wed",
+            Self::Thursday => "Thu",
+            Self::Friday => "Fri",
+            Self::Saturday => "Sat",
+            Self::Sunday => "Sun",
+        }
+    }
+}
+
+impl Month {
+    /// Returns the three-letter English abbreviation.
+    #[must_use]
+    pub const fn abbreviation(self) -> &'static str {
+        match self {
+            Self::January => "Jan",
+            Self::February => "Feb",
+            Self::March => "Mar",
+            Self::April => "Apr",
+            Self::May => "May",
+            Self::June => "Jun",
+            Self::July => "Jul",
+            Self::August => "Aug",
+            Self::September => "Sep",
+            Self::October => "Oct",
+            Self::November => "Nov",
+            Self::December => "Dec",
+        }
+    }
+}
+
+impl Day {
+    /// Whether this is Saturday or Sunday under the common five-day workweek convention.
+    #[must_use]
+    pub const fn is_weekend(self) -> bool {
+        matches!(self, Self::Saturday | Self::Sunday)
+    }
+}
+
+impl Month {
+    /// Returns the month length in a non-leap Gregorian year.
+    #[must_use]
+    pub const fn days_in_common_year(self) -> u8 {
+        match self {
+            Self::January
+            | Self::March
+            | Self::May
+            | Self::July
+            | Self::August
+            | Self::October
+            | Self::December => 31,
+            Self::February => 28,
+            Self::April | Self::June | Self::September | Self::November => 30,
+        }
+    }
+}
+
+impl Season {
+    /// Returns Northern Hemisphere meteorological months, in seasonal order.
+    #[must_use]
+    pub const fn months(self) -> [Month; 3] {
+        match self {
+            Self::Winter => [Month::December, Month::January, Month::February],
+            Self::Spring => [Month::March, Month::April, Month::May],
+            Self::Summer => [Month::June, Month::July, Month::August],
+            Self::Fall => [Month::September, Month::October, Month::November],
+        }
+    }
+}
+
+impl Quarter {
+    /// Returns the fiscal quarter number (1–4), independent of fiscal start month.
+    #[must_use]
+    pub const fn number(self) -> u8 {
+        self as u8
     }
 }

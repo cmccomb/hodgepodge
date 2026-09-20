@@ -1,0 +1,58 @@
+---
+key: 1030
+doi: 10.48580/d38k
+versionDoi: 10.48580/d38k.v10
+title: TicksBase
+alias: TicksBase
+description: "TicksBase is a searchable taxonomic catalogue of all known ticks (Acari:\
+  \ Ixodida) of the world and is facilitated by the International Consortium on Ticks\
+  \ and Tick-borne Diseases (ICTTD). It currently comprises 889 valid species (702\
+  \ Ixodid, 186 Argasid and 1 Nuttalliella tick (sub-)species), including their synonyms,\
+  \ (limited) distribution data and common names."
+issued: 2005-06-15
+version: Jun 2005
+contact:
+  orcid: 0000-0001-7373-2243
+  given: Ard
+  family: Nijhof
+  email: ard.nijhof@fu-berlin.de
+creator:
+ -
+  orcid: 0000-0001-7373-2243
+  given: Ard
+  family: Nijhof
+  department: Institut für Parasitologie und Tropenveterinärmedizin
+  city: Berlin
+  country: DE
+  email: ard.nijhof@fu-berlin.de
+  address: "Berlin, Germany"
+  organisation: Freie Universität Berlin
+ -
+  given: Alberto
+  family: Guglielmone
+ -
+  orcid: 0000-0002-2200-6126
+  given: Ivan
+  family: Horak
+  city: Pretoria
+  country: ZA
+  address: "Pretoria, South Africa"
+  organisation: University of Pretoria
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Ticks
+taxonomicGroupScope: []
+confidence: 5
+completeness: 98
+license: cc by
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/TicksBase.png
+source: []

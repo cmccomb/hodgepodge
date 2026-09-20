@@ -1,0 +1,53 @@
+---
+key: 1146
+doi: 10.48580/d3dk
+versionDoi: 10.48580/d3dk.v11
+title: Carabcat database
+alias: CarabCat
+description: "Carabcat is a global database of ground beetles (Insecta Coleoptera\
+  \ Trachypachidae and Carabidae sensu lato, including Rhysodinae and Cicindelinae)\
+  \ curated by Wolfgang Lorenz"
+issued: 2021-08-20
+version: 03 (08/2021)
+contact:
+  given: Wolfgang
+  family: Lorenz
+  email: faunaplan@posteo.de
+creator:
+ -
+  orcid: 0000-0003-2894-2166
+  given: Wolfgang
+  family: Lorenz
+  email: faunaplan@posteo.de
+editor:
+ -
+  orcid: 0000-0003-2894-2166
+  given: Wolfgang
+  family: Lorenz
+  email: faunaplan@posteo.de
+contributor:
+ -
+  city: Tutzing
+  country: DE
+  address: "Tutzing, Germany"
+  organisation: Faunaplan
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Ground beetles
+temporalScope: extant and extinct
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: http://www.carabidfauna2.net
+logo: https://download.catalogueoflife.org/images/dataset/1146-logo-large.png
+source: []

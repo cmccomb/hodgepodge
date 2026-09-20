@@ -1,0 +1,68 @@
+---
+key: 1039
+doi: 10.48580/d38v
+versionDoi: 10.48580/d38v.v13
+title: Electronic Catalogue of Weevil names (Curculionoidea)
+alias: WTaxa
+description: "The Electronic Catalogue of Weevil Names is a project in progress. Ultimately\
+  \ it will contain all family, genus and species-group names in the Curculionoidea,\
+  \ a group of beetles with about 60,000 described species which contains many important\
+  \ insects, including the bark beetles (Scolytinae) and powder-post beetles (Platypodinae).\
+  \ Currently the database contains all generic and family-group names, in their current\
+  \ taxonomic position, and based on Alonso-Zarazaga & Lyal's (1999, 2002, 2009) and\
+  \ Lyal & Alonso-Zarazaga's (2005) catalogue of weevil family and genus names. Species-group\
+  \ names are now added up to the end of 2014. These, and their subsequent combinations,\
+  \ have been checked against original publication and current placement for most\
+  \ names firstly published before 1801. All these names have been adequately qualified\
+  \ under the provisions of the International Code of Zoological Nomenclature, 4th\
+  \ Edition. Many duplicate names appearing in previous versions have been eliminated.\
+  \ M. Sánchez-Ruiz is acknowledged as technical editor for WTaxa database and data\
+  \ export for the Catalogue of Life."
+issued: 2021-04-04
+version: 2021-04
+contact:
+  orcid: 0000-0002-6991-0980
+  given: Miguel A
+  family: Alonso-Zarazaga
+  email: mcnaz39@mncn.csic.es
+creator:
+ -
+  orcid: 0000-0002-6991-0980
+  given: Miguel A.
+  family: Alonso-Zarazaga
+  city: Madrid
+  country: ES
+  email: mcnaz39@mncn.csic.es
+  address: "Madrid, Spain"
+  organisation: Museo Nacional de Ciencias Naturales
+ -
+  orcid: 0000-0003-3647-6222
+  given: Chris HC
+  family: Lyal
+  city: London
+  country: GB
+  address: "London, United Kingdom"
+  organisation: Natural History Museum
+editor:
+ -
+  given: M.
+  family: Sánchez-Ruiz
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Weevils
+taxonomicGroupScope: []
+confidence: 2
+completeness: 87
+license: cc by
+url: http://wtaxa.csic.es
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/WTaxa.png
+source: []
