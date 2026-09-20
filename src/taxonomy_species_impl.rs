@@ -46,6 +46,7 @@ impl Species {
 }
 
 impl crate::Dataset for Species {
+    const INFO: crate::DatasetInfo = Self::INFO;
     const ALL: &'static [Self] = Self::ALL;
     const COUNT: usize = Self::COUNT;
 

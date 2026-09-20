@@ -250,3 +250,127 @@ impl Quarter {
         self as u8
     }
 }
+
+checked_u8_enum!(Quarter, number);
+
+impl Day {
+    /// Looks up a abbreviation ignoring ASCII case; does not trim whitespace.
+    #[must_use]
+    pub fn from_abbreviation(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.abbreviation().eq_ignore_ascii_case(code))
+    }
+}
+
+impl Month {
+    /// Looks up a abbreviation ignoring ASCII case; does not trim whitespace.
+    #[must_use]
+    pub fn from_abbreviation(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.abbreviation().eq_ignore_ascii_case(code))
+    }
+}
+
+dataset_enum! {
+    /// Northern and Southern Hemisphere meteorological-season conventions.
+    /// Local tropical wet/dry seasons are outside this classification.
+    pub enum Hemisphere { Northern => "Northern", Southern => "Southern" }
+}
+
+impl Day {
+    /// Returns the following day, wrapping Sunday to Monday.
+    #[must_use]
+    pub const fn next(self) -> Self {
+        Self::ALL[self.number() as usize % 7]
+    }
+    /// Returns the preceding day, wrapping Monday to Sunday.
+    #[must_use]
+    pub const fn previous(self) -> Self {
+        Self::ALL[(self.number() as usize + 5) % 7]
+    }
+}
+
+impl Month {
+    /// Returns the following month, wrapping December to January.
+    #[must_use]
+    pub const fn next(self) -> Self {
+        Self::ALL[self.number() as usize % 12]
+    }
+    /// Returns the preceding month, wrapping January to December.
+    #[must_use]
+    pub const fn previous(self) -> Self {
+        Self::ALL[(self.number() as usize + 10) % 12]
+    }
+    /// Returns the length in a proleptic Gregorian year (astronomical year numbering).
+    #[must_use]
+    pub const fn days_in_year(self, year: i32) -> u8 {
+        if matches!(self, Self::February) && is_gregorian_leap_year(year) {
+            29
+        } else {
+            self.days_in_common_year()
+        }
+    }
+    /// Returns the meteorological season under the specified hemisphere convention.
+    #[must_use]
+    pub const fn season(self, hemisphere: Hemisphere) -> Season {
+        let north = match self {
+            Self::December | Self::January | Self::February => Season::Winter,
+            Self::March | Self::April | Self::May => Season::Spring,
+            Self::June | Self::July | Self::August => Season::Summer,
+            Self::September | Self::October | Self::November => Season::Fall,
+        };
+        match hemisphere {
+            Hemisphere::Northern => north,
+            Hemisphere::Southern => north.opposite(),
+        }
+    }
+    /// Returns the quarter with an explicit fiscal start month; January gives calendar quarters.
+    #[must_use]
+    pub const fn quarter(self, fiscal_start: Self) -> Quarter {
+        Quarter::ALL[((self.number() as usize + 12 - fiscal_start.number() as usize) % 12) / 3]
+    }
+}
+
+/// Whether a year is leap in the proleptic Gregorian calendar, including year zero.
+#[must_use]
+pub const fn is_gregorian_leap_year(year: i32) -> bool {
+    year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
+}
+
+impl Season {
+    /// Returns the season six months away in the four-season convention.
+    #[must_use]
+    pub const fn opposite(self) -> Self {
+        match self {
+            Self::Winter => Self::Summer,
+            Self::Summer => Self::Winter,
+            Self::Spring => Self::Fall,
+            Self::Fall => Self::Spring,
+        }
+    }
+    /// Returns meteorological months for the specified hemisphere.
+    #[must_use]
+    pub const fn months_in(self, hemisphere: Hemisphere) -> [Month; 3] {
+        match hemisphere {
+            Hemisphere::Northern => self.months(),
+            Hemisphere::Southern => self.opposite().months(),
+        }
+    }
+}
+
+impl Quarter {
+    /// Returns months in fiscal order for an explicit fiscal start month.
+    #[must_use]
+    pub const fn months(self, fiscal_start: Month) -> [Month; 3] {
+        let first = (fiscal_start.number() as usize - 1 + (self.number() as usize - 1) * 3) % 12;
+        [
+            Month::ALL[first],
+            Month::ALL[(first + 1) % 12],
+            Month::ALL[(first + 2) % 12],
+        ]
+    }
+}

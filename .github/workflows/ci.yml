@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "codex/**"]
   pull_request:
   workflow_dispatch:
 
@@ -16,13 +16,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        toolchain: ["1.71.0", stable, beta, nightly]
+        toolchain: ["1.71.0", stable]
     steps:
       - uses: actions/checkout@v4
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: ${{ matrix.toolchain }}
+      - name: Cache Rust dependencies and build artifacts
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.toolchain }}
       - name: Test feature combinations and documentation examples
         run: bash scripts/test-features.sh
 
@@ -36,6 +40,10 @@ jobs:
         with:
           toolchain: stable
           components: rustfmt, clippy
+      - name: Cache Rust dependencies and build artifacts
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: quality
       - name: Set up Python for offline source validation
         uses: actions/setup-python@v5
         with:
@@ -66,4 +74,24 @@ jobs:
           cargo run --example explore_datasets
           cargo run --example taxonomy_browser --features taxonomy > "$RUNNER_TEMP/animals.html"
       - name: Verify release package
-        run: cargo package --all-features
+        run: |
+          cargo package --all-features
+          python scripts/check_package.py
+
+  compatibility:
+    name: Rust ${{ matrix.toolchain }} compatibility
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain: [beta, nightly]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.toolchain }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.toolchain }}
+      - run: cargo check --all-targets --no-default-features
+      - run: cargo check --all-targets --all-features

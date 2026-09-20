@@ -3,9 +3,12 @@
 
 Fetch (resumable): --cache /path/to/cache --fetch
 Build from cached release and captured Wikidata: --cache /path/to/cache
-Check packaged data without network: --check
+Check full source data offline from a Git checkout: --check
 """
 import argparse
+import os
+import shutil
+import tempfile
 import collections
 import concurrent.futures
 import csv
@@ -113,7 +116,8 @@ def eligible(r):
     return r['rank'] == 'species' and r['extinct'] == 'false' and r['status'] == 'accepted'
 
 
-def fetch_wikidata(cache, col):
+def fetch_wikidata(cache, col, data=None):
+    data = DATA if data is None else data
     ids = sorted(r['id'] for r in col.values() if eligible(r))
     batches = [ids[i:i + 15000] for i in range(0, len(ids), 15000)]
     request_limit = {'ids': 15000}
@@ -220,7 +224,7 @@ def fetch_wikidata(cache, col):
             results.append(result)
             print(f'Wikidata {n}/{len(batches)} batches; {len(result["rows"])} rows', flush=True)
     rows = sorted({tuple(row) for r in results for row in r['rows']})
-    output = DATA / 'wikidata.tsv.gz'
+    output = data / 'wikidata.tsv.gz'
     write_tsv(output, WD_HEAD, rows)
     capture = {'endpoint': 'https://query.wikidata.org/sparql', 'license': 'CC0-1.0',
                'first_retrieved_at': min(r.get('first_retrieved_at', r['retrieved_at']) for r in results),
@@ -230,8 +234,8 @@ def fetch_wikidata(cache, col):
                'query_template_sha256': hashlib.sha256((QUERY + '\n').encode()).hexdigest(),
                'execution': 'Logical query; some batches use optimizer None to evaluate bound IDs first.',
                'normalized_snapshot_sha256': sha(output)}
-    (DATA / 'wikidata-capture.json').write_text(json.dumps(capture, indent=2) + '\n')
-    (DATA / 'query.rq').write_text(QUERY + '\n')
+    (data / 'wikidata-capture.json').write_text(json.dumps(capture, indent=2) + '\n')
+    (data / 'query.rq').write_text(QUERY + '\n')
 
 
 def select(col, candidates):
@@ -282,23 +286,23 @@ def select(col, candidates):
     return selected, closure, dict(sorted(reasons.items())), dict(sorted(phyla.items()))
 
 
-def build(cache, col):
-    candidates = list(read_tsv(DATA / 'wikidata.tsv.gz'))
+def _build(cache, col, data, paths, species):
+    candidates = list(read_tsv(data / 'wikidata.tsv.gz'))
     selected, closure, exclusions, phyla = select(col, candidates)
     rows = []
     for identifier in sorted(closure):
         r = col[identifier]
         qid, label, wiki = selected.get(identifier, ('', '', ''))
         rows.append([identifier, r['parent_id'], r['scientific_name'], r['rank'], r['extinct'], label, qid, wiki, r['source_id']])
-    write_tsv(DATA / 'taxa.tsv', HEAD, rows)
-    generate_taxonomy_paths.write()
+    write_tsv(data / 'taxa.tsv', HEAD, rows)
+    generate_taxonomy_paths.write(data / 'taxa.tsv', paths, species)
     # Compact authoritative input permits deterministic offline regeneration of
     # the shipped selection. Full eligibility audit uses the pinned archive.
     input_ids = closure | {r['id'] for r in candidates if r['id'] in col}
-    write_tsv(DATA / 'col-selection.tsv.gz', COL_HEAD, [[col[i][k] for k in COL_HEAD] for i in sorted(input_ids)])
+    write_tsv(data / 'col-selection.tsv.gz', COL_HEAD, [[col[i][k] for k in COL_HEAD] for i in sorted(input_ids)])
     sources = sorted({col[i]['source_id'] for i in input_ids if col[i]['source_id']})
     with zipfile.ZipFile(cache / 'col.zip') as archive:
-        folder = DATA / 'sources'
+        folder = data / 'sources'
         folder.mkdir(exist_ok=True)
         for old in folder.glob('*.yaml'):
             old.unlink()
@@ -306,7 +310,7 @@ def build(cache, col):
             if not re.fullmatch(r'[0-9]+', source):
                 raise ValueError(f'Unexpected contributing dataset ID: {source}')
             (folder / f'{source}.yaml').write_bytes(archive.read(f'source/{source}.yaml'))
-        (DATA / 'col-metadata.yaml').write_bytes(archive.read('metadata.yaml'))
+        (data / 'col-metadata.yaml').write_bytes(archive.read('metadata.yaml'))
     counts = {'taxa': len(rows), 'selected_species': len(selected), 'ancestors': len(closure) - len(selected),
               'eligible_col_species': sum(eligible(r) for r in col.values()), 'wikidata_candidate_rows': len(candidates),
               'phyla': len(phyla),
@@ -314,7 +318,7 @@ def build(cache, col):
     manifest = {'schema_version': 1, 'selection': 'Accepted, explicitly extant animal species in the pinned COL Base Release, with one exact scientific-name/ID Wikidata match of species rank and an English Wikipedia sitelink; include every source ancestor.',
                 'col': {'version': VERSION, 'dataset_key': DATASET, 'doi': DOI, 'archive_url': COL_URL,
                         'archive_sha256': sha(cache / 'col.zip'), 'license': 'CC-BY-4.0'},
-                'wikidata': json.loads((DATA / 'wikidata-capture.json').read_text()),
+                'wikidata': json.loads((data / 'wikidata-capture.json').read_text()),
                 'counts': counts, 'exclusions': exclusions,
                 'exclusion_count_units': 'Name mismatches and ineligible records count normalized candidate rows; ambiguous matches count COL IDs.',
                 'accepted_animal_species_by_extinction_flag': dict(collections.Counter(r['extinct'] or 'unspecified' for r in col.values() if r['rank'] == 'species' and r['status'] == 'accepted')), 'selected_species_by_phylum': phyla,
@@ -324,23 +328,26 @@ def build(cache, col):
                                     'Exact accepted-name matching excludes synonyms and renamed taxa.',
                                     'Only selected species and their ancestors; children are incomplete.',
                                     'Wikidata batches were captured over a time interval, not an atomic database snapshot.'],
-                'sha256': {p.relative_to(DATA).as_posix(): sha(p) for p in [DATA / name for name in ['taxa.tsv', 'col-selection.tsv.gz', 'wikidata.tsv.gz', 'wikidata-capture.json', 'query.rq', 'col-metadata.yaml']] + sorted((DATA / 'sources').glob('*.yaml'))}}
-    (DATA / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
+                'sha256': {p.relative_to(data).as_posix(): sha(p) for p in [data / name for name in ['taxa.tsv', 'col-selection.tsv.gz', 'wikidata.tsv.gz', 'wikidata-capture.json', 'query.rq', 'col-metadata.yaml']] + sorted((data / 'sources').glob('*.yaml'))}}
+    (data / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
     print(json.dumps(counts, indent=2), flush=True)
-    check()
+    check(data, paths, species)
 
 
-def check():
-    manifest = json.loads((DATA / 'manifest.json').read_text())
+def check(data=None, paths=None, species=None):
+    data = DATA if data is None else data
+    if not (data / 'col-selection.tsv.gz').exists() or not (data / 'wikidata.tsv.gz').exists():
+        raise ValueError("Full source audit requires a repository checkout; import inputs are excluded from the published crate")
+    manifest = json.loads((data / 'manifest.json').read_text())
     for name, checksum in manifest['sha256'].items():
-        if sha(DATA / name) != checksum:
+        if sha(data / name) != checksum:
             raise ValueError(f'Checksum mismatch: {name}')
-    rows = list(read_tsv(DATA / 'taxa.tsv'))
-    col_rows = list(read_tsv(DATA / 'col-selection.tsv.gz'))
+    rows = list(read_tsv(data / 'taxa.tsv'))
+    col_rows = list(read_tsv(data / 'col-selection.tsv.gz'))
     col = {r['id']: r for r in col_rows}
     if len(col_rows) != len(col):
         raise ValueError('Duplicate source IDs in the normalized input')
-    candidates = list(read_tsv(DATA / 'wikidata.tsv.gz'))
+    candidates = list(read_tsv(data / 'wikidata.tsv.gz'))
     selected, closure, exclusions, phyla = select(col, candidates)
     expected = []
     for identifier in sorted(closure):
@@ -351,10 +358,56 @@ def check():
         raise ValueError('Snapshot does not reproduce from normalized source inputs')
     if len(rows) != len({r['id'] for r in rows}) or exclusions != manifest['exclusions']:
         raise ValueError('Duplicate output IDs or irreproducible exclusion counts')
-    if sha(DATA / 'query.rq') != manifest['wikidata']['query_template_sha256']:
+    if sha(data / 'query.rq') != manifest['wikidata']['query_template_sha256']:
         raise ValueError('Logical query template checksum mismatch')
     print(f'Verified {len(rows):,} taxa / {len(selected):,} species offline', flush=True)
-    generate_taxonomy_paths.check()
+    generate_taxonomy_paths.check(data / 'taxa.tsv', paths, species)
+
+
+def _install_snapshot(replacements, backup_dir):
+    """Install already-validated paths, restoring originals on Python exceptions.
+
+    This is not a filesystem-wide atomic commit against power loss. Keep the
+    repository clean and avoid concurrent readers/builds during an explicit refresh.
+    """
+    moved = []
+    try:
+        for number, (staged, destination) in enumerate(replacements):
+            backup = backup_dir / str(number)
+            existed = destination.exists()
+            if existed:
+                os.replace(destination, backup)
+            moved.append((destination, backup, existed))
+            os.replace(staged, destination)
+    except BaseException:
+        for destination, backup, existed in reversed(moved):
+            if destination.is_dir():
+                shutil.rmtree(destination)
+            elif destination.exists():
+                destination.unlink()
+            if existed:
+                os.replace(backup, destination)
+        raise
+
+
+def build(cache, col, *, fetch=False):
+    """Stage capture, generation, attribution and validation before replacing files."""
+    with tempfile.TemporaryDirectory(prefix='.taxonomy-stage-', dir=ROOT) as temporary:
+        stage = Path(temporary)
+        data = stage / 'data'
+        if DATA.exists():
+            shutil.copytree(DATA, data)
+        else:
+            data.mkdir()
+        paths = stage / 'taxonomy_paths.rs'
+        species = stage / 'taxonomy_species.rs'
+        if fetch:
+            fetch_wikidata(cache, col, data)
+        _build(cache, col, data, paths, species)
+        backups = stage / 'backups'
+        backups.mkdir()
+        _install_snapshot([(data, DATA), (paths, generate_taxonomy_paths.OUTPUT),
+                           (species, generate_taxonomy_paths.SPECIES_OUTPUT)], backups)
 
 
 def main():
@@ -373,9 +426,7 @@ def main():
     if args.fetch:
         download(COL_URL, args.cache / 'col.zip')
     col = {r['id']: r for r in read_tsv(extract_col(args.cache))}
-    if args.fetch:
-        fetch_wikidata(args.cache, col)
-    build(args.cache, col)
+    build(args.cache, col, fetch=args.fetch)
 
 
 if __name__ == '__main__':

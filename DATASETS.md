@@ -73,7 +73,7 @@ The original release and contributing-checklist metadata accompany the
 [attribution notice](data/taxonomy/NOTICE.md). The taxonomy data is CC BY 4.0;
 Wikidata enrichment is CC0. No Wikipedia prose or images are copied.
 
-Maintainers can validate the shipped tree offline:
+Maintainers can validate the shipped tree offline from a Git checkout:
 
 ```sh
 python3 -m unittest discover -s scripts -p 'test_*.py'
@@ -89,10 +89,21 @@ python3 scripts/import_taxonomy.py --cache /path/to/taxonomy-cache --fetch
 
 The importer is resumable, backs off failed requests, rejects incomplete JSON,
 and makes no network requests without `--fetch`. Captured normalized Wikidata
-inputs and a compact source extract are checked in for offline reproduction.
+inputs and a compact source extract are checked into Git for offline reproduction.
+`wikidata.tsv.gz` and `col-selection.tsv.gz` are excluded from the published crate;
+use the matching Git revision for the full importer check. The crate still
+contains `taxa.tsv`, generated Rust, the manifest, query/capture metadata,
+license notice and all contributing-source attribution. The generation-only
+check (`python3 scripts/generate_taxonomy_paths.py --check`) works from either
+a Git checkout or an unpacked crate.
 Rerunning `--fetch` against an empty cache captures newer Wikidata statements;
 that is an explicit data update, not guaranteed to reproduce the old capture.
 Rebuilding with the original archive and checked-in enrichment omits `--fetch`.
+Refreshes stage capture, generation, attribution and validation before installation.
+Caught installation failures restore the preceding snapshot. This is not a
+filesystem-wide power-loss transaction: do not run refreshes concurrently with
+builds, and keep the Git checkout clean before refreshing.
+
 A new COL release requires reviewing the pinned constants, source identities,
 removed/renamed IDs, coverage changes, and downstream stored-ID migration.
 
@@ -102,8 +113,9 @@ The optional `Species` enum has one variant for every selected species and
 implements the common `Dataset` API. Its canonical variant names are generated
 from scientific names in PascalCase (`Panthera leo` → `PantheraLeo`). Labels
 retain the accepted scientific spelling. Parsing ignores ASCII case but accepts
-only complete canonical variant names; Serde uses exact canonical names and
-normal unit-enum representation. English labels and short path aliases are not
+only complete canonical variant names. Serde uses a normal unit-enum
+representation: JSON stores exact canonical names; binary formats may store
+variant indexes. Neither is promised as a stable identity across snapshots. English labels and short path aliases are not
 serialization or parsing aliases. Numeric discriminants are snapshot-specific.
 
 Taxonomic modules re-export the same variants: `panthera::Leo` and
@@ -131,7 +143,8 @@ python3 scripts/generate_taxonomy_paths.py
 The offline importer check verifies both generated files exactly against their
 source data. New source snapshots can add/remove variants, rename paths, or
 change numeric values; review these as public API changes. Persist Catalogue
-of Life IDs together with the source version when durable identity is needed.
+of Life IDs together with the source version when durable identity is needed, using `Taxon::key()` and
+`TaxonKey::resolve()` for exact-release validation.
 
 ### Build and documentation costs
 
@@ -195,3 +208,112 @@ convention, and implications for exhaustive matches and stored Serde names.
 The remaining legacy `Country` list needs its own explicit migration decision
 before modernization. Other numeric discriminants without a documented meaning
 remain enum identifiers, not stable external codes.
+
+## Dataset relationships and descriptors
+
+All 56 compact enum datasets and the optional `taxonomy::Species` implement
+`Dataset::INFO`; inherent `Type::INFO` and the public `DATASETS` slice expose the
+same descriptor. Each descriptor has a qualified ID, scope, coverage category,
+source references with recorded editions/check dates, and a representation
+license. Referenced publications retain their own copyright/licensing terms.
+Library-defined conventions explicitly cite this document rather than imply an
+external standard. Helpers such as `DatasetInfo`, errors and `CodonMeaning` are
+not separate enum datasets.
+
+Code lookups are separate from canonical `FromStr`: element symbols and SI
+symbols require exact case; postal codes, three-letter amino-acid codes, calendar
+abbreviations and ISO alphabetic codes ignore ASCII case. None trims whitespace.
+ISO numeric codes require three digits, retaining leading zeroes. Checked `u8`
+conversion covers day/month/die, elements, planets, card ranks, medals, ordinals,
+quarters, Earth/atmospheric layers and Inferno circles, using documented numeric
+meanings rather than declaration indexes.
+
+Parent groups enumerate their members for geology, rocks and anatomy. Traversal
+covers this library's selection: an empty Hadean era list does not invent eras.
+Bone mirroring exchanges left/right counterparts and leaves unpaired midline
+bones unchanged. Color-to-RGB lookup returns all matching aliases. Taxonomic
+ranks support both `broader()` and `narrower()` in the eight-rank teaching model.
+
+## RNA and the standard genetic code
+
+`RnaBase` contains A/C/G/U. `DnaBase::coding_rna()` converts a **coding-strand**
+base, replacing T with U, and `RnaBase::coding_dna()` reverses this. Template-strand
+transcription additionally needs complementing and antiparallel orientation.
+`complement()` implements canonical Watson-Crick pairs, not wobble pairing.
+
+`Codon` covers all 64 RNA triplets written 5-prime to 3-prime. Canonical variant
+names use PascalCase (`Aug`); `sequence()`/`label()` return uppercase RNA (`AUG`).
+`from_sequence()` rejects DNA T, ambiguity symbols and whitespace. `bases()` and
+`from_bases()` convert typed triplets; `reverse_complement()` reverses orientation
+and complements all three bases. `standard_meaning()` uses NCBI **table 1** during
+elongation and returns an amino acid or stop. It is not a universal genetic code.
+`is_standard_start()` reports the table's AUG/UUG/CUG initiation markers; actual
+initiation is context-dependent and incorporates methionine. `standard_codons()`
+provides the reverse amino-acid mapping under the same elongation convention.
+
+Source: [NCBI genetic codes](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1),
+page updated 2024-09-23, checked 2026-09-20. Only factual table assignments are
+transcribed, with T replaced by U for RNA.
+
+## SI quantities and prefixes
+
+`SiBaseQuantity` and `SiBaseUnit` cover the seven corresponding SI quantities and
+units, with bidirectional `unit()`/`quantity()` mapping and exact unit symbols.
+`Unit` remains the legacy quantity selection; `base_quantity()` returns `None`
+for volume, angle and energy. `SiPrefix` unifies all 24 prefixes in increasing
+signed-exponent order and accepts conversions from `PrefixSmall`/`PrefixLarge`.
+Exponent zero is an absent prefix, not a 25th official prefix. Prefix symbols
+are case-sensitive and micro uses U+00B5; ASCII u and Greek mu are not aliases.
+These datasets describe units/prefixes; they are not a dimension-checked quantity
+arithmetic or automatic unit-conversion engine. In particular, prefixing mass
+uses gram conventions rather than mechanically prefixing the symbol kg.
+
+Sources: BIPM [base units](https://www.bipm.org/en/measurement-units/si-base-units)
+and [prefixes](https://www.bipm.org/en/measurement-units/si-prefixes), checked 2026-09-20.
+
+## Country and area codes
+
+`IsoCountry` contains 249 assigned ISO 3166-1 country/area entries with alpha-2,
+alpha-3 and numeric codes. This includes territories and does not assert that
+all entries are independent sovereign states. The 248-row English
+[UN M49 table](https://unstats.un.org/unsd/methodology/m49/overview/) was captured
+2026-09-20. Taiwan's TW/TWN/158 entry is supplemented from the
+[W3C DPV Locations Extension ISO table](https://www.w3.org/community/reports/dpvcg/CG-FINAL-loc-20240801/)
+(2024-08-01), which references ISO OBP and EU vocabularies. Unassigned/reserved
+codes and user-assigned XK are excluded. Names/codes are factual transcriptions;
+source prose is not copied.
+
+Labels retain source names. Rust identifiers use ASCII PascalCase with explicit
+short forms for long names (for example `UnitedStates`, `UnitedKingdom`, `Iran`,
+`NorthKorea`, `VaticanCity`, `HongKong`, and `Taiwan`). `Nauru` retains the familiar
+Rust spelling while the captured UN label is `Naoero`. The complete mapping is
+recorded in `tests/fixtures/iso-countries.tsv`; compare names and codes before
+updating this dated snapshot. Enum indexes are not ISO numeric codes.
+
+The legacy `Country` list and its parsing remain unchanged. `iso_country()`
+returns a reviewed mapping, with Burma/Myanmar sharing one entry and Kosovo
+returning `None` because this dataset has no assigned ISO code for it.
+`IsoCountry::legacy_countries()` retains every alias rather than choosing one.
+EU members map to both representations; US states and Canadian subdivisions
+expose their country, and those countries enumerate their included subdivisions.
+
+## Calendar conventions
+
+`Season::months()` retains Northern Hemisphere meteorological months.
+`months_in(Hemisphere)` and `Month::season(Hemisphere)` make that choice explicit;
+local tropical wet/dry seasons are outside scope. `Quarter::months(start)` and
+`Month::quarter(start)` require a fiscal start month; January gives calendar
+quarters. Day/month `next()` and `previous()` wrap. `days_in_year(year)` uses the
+proleptic Gregorian calendar, with astronomical year zero allowed.
+
+Sources: [NOAA seasons](https://www.ncei.noaa.gov/news/meteorological-versus-astronomical-seasons)
+and [US Naval Observatory leap years](https://aa.usno.navy.mil/faq/leap_years),
+checked 2026-09-20.
+
+## Publication size budget
+
+CI runs `scripts/check_package.py` against the actual compressed `.crate` and
+rejects packages above **8 MiB**, leaving headroom below the registry's default
+10 MiB limit. It also checks that runtime taxonomy and attribution remain present
+and the two repository-only import inputs remain excluded. This controls download
+size; compilation and rustdoc costs of the full generated enum remain substantial.

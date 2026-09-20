@@ -43,3 +43,10 @@ license expression includes CC-BY-4.0 because it distributes this attributed
 dataset. Reuse of the classification should retain this notice and source
 attribution. Enabling the Rust feature controls compilation, not the licensing
 of the source files distributed in the package.
+
+Packaging note: `col-selection.tsv.gz` and the captured `wikidata.tsv.gz` import
+inputs remain in the matching Git revision but are omitted from the `.crate`
+to reduce downloads. The runtime selection, manifest, capture metadata, this
+notice and all contributing-source metadata remain bundled. Full importer
+reproduction requires the repository checkout; generation-only verification
+works from the unpacked package.

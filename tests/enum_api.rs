@@ -52,6 +52,13 @@ macro_rules! all_datasets {
         $check::<GeologicPeriod>();
         $check::<GeologicEpoch>();
         $check::<InfernoCircle>();
+        $check::<Hemisphere>();
+        $check::<SiPrefix>();
+        $check::<SiBaseQuantity>();
+        $check::<SiBaseUnit>();
+        $check::<RnaBase>();
+        $check::<Codon>();
+        $check::<IsoCountry>();
     };
 }
 
@@ -168,4 +175,24 @@ fn every_dataset_supports_caller_seeded_sampling() {
         }
     }
     all_datasets!(check);
+}
+
+#[test]
+fn every_dataset_has_explicit_provenance_and_unique_identity() {
+    fn check<T: Dataset>() {
+        assert!(!T::INFO.id.is_empty());
+        assert!(!T::INFO.scope.is_empty());
+        assert!(!T::INFO.license.is_empty());
+        assert!(!T::INFO.sources.is_empty());
+        assert!(DATASETS.contains(&T::INFO));
+        for source in T::INFO.sources {
+            assert!(source.url.starts_with("https://"));
+        }
+    }
+    all_datasets!(check);
+    let ids: std::collections::HashSet<_> = DATASETS.iter().map(|info| info.id).collect();
+    assert_eq!(ids.len(), DATASETS.len());
+    assert_eq!(DATASETS.len(), 56 + usize::from(cfg!(feature = "taxonomy")));
+    assert_eq!(Country::INFO.coverage, DatasetCoverage::LegacyIllustration);
+    assert_eq!(Muscle::INFO.coverage, DatasetCoverage::CuratedSelection);
 }

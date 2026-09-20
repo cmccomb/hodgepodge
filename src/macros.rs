@@ -41,6 +41,7 @@ macro_rules! dataset_enum {
         }
 
         impl crate::Dataset for $name {
+            const INFO: crate::DatasetInfo = Self::INFO;
             const ALL: &'static [Self] = Self::ALL;
             const COUNT: usize = Self::COUNT;
             fn as_str(self) -> &'static str { self.as_str() }
@@ -121,6 +122,13 @@ macro_rules! color_enum {
                 [red, green, blue]
             }
 
+            /// Returns every palette entry sharing an exact packed RGB value.
+            /// Aliases retain their identity; values above 0xFFFFFF have no matches.
+            #[must_use]
+            pub fn matching_rgb(rgb: u32) -> impl DoubleEndedIterator<Item = Self> {
+                Self::ALL.iter().copied().filter(move |color| color.rgb() == rgb)
+            }
+
             /// Returns the packed 24-bit RGB value (`0xRRGGBB`).
             ///
             /// Use this method instead of casting the enum to an integer.
@@ -135,6 +143,37 @@ macro_rules! color_enum {
         impl std::fmt::LowerHex for $name {
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 f.pad_integral(true, "0x", &format!("{:06x}", self.rgb()))
+            }
+        }
+    };
+}
+
+// Checked conversions use documented values, never incidental declaration indexes.
+macro_rules! checked_u8_enum {
+    ($name:ident, $method:ident) => {
+        impl TryFrom<u8> for $name {
+            type Error = crate::EnumValueError;
+            fn try_from(value: u8) -> Result<Self, Self::Error> {
+                Self::ALL
+                    .iter()
+                    .copied()
+                    .find(|item| item.$method() == value)
+                    .ok_or_else(|| crate::EnumValueError::new(stringify!($name), value))
+            }
+        }
+    };
+}
+
+macro_rules! group_members {
+    ($parent:ident, $method:ident, $child:ident, $relation:ident) => {
+        impl $parent {
+            /// Enumerates matching members of this library's documented selection.
+            #[must_use]
+            pub fn $method(self) -> impl DoubleEndedIterator<Item = $child> {
+                $child::ALL
+                    .iter()
+                    .copied()
+                    .filter(move |member| member.$relation() == self)
             }
         }
     };

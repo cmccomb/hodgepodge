@@ -30,7 +30,7 @@ shared `Dataset` trait. `strum` traits remain supported. If importing `EnumCount
 solely for `Type::COUNT`, the import may now be unused; remove it or explicitly
 write `<Type as EnumCount>::COUNT` when testing that integration.
 
-`Display`, `as_str()`, `FromStr`, and Serde retain canonical variant names.
+`Display`, `as_str()`, `FromStr`, and JSON serialization retain canonical variant names.
 `label()` is presentation text and is not a parsing alias. Adding new root
 exports can make wildcard imports ambiguous with names from other crates;
 qualify those names or import individual types.
@@ -67,7 +67,10 @@ Additional source ranks are preserved as strings; `rank()` returns `None` for
 ranks outside the introductory enum. Taxon handles do not implement the enum
 `Dataset`, Serde, or random-sampling contracts. Persist the COL ID together with
 the source release version. Species discriminants and declaration order are
-snapshot-specific; do not persist numeric casts.
+snapshot-specific; do not persist numeric casts or binary enum indexes across
+releases. `Taxon::key()` stores the COL ID together with its source version and
+resolves only against that exact release. Its JSON/binary Serde representation
+contains strings, independent of `Species` ordering.
 
 The software license remains MIT OR Apache-2.0. Because the package includes
 Catalogue of Life classification data, its combined license expression is now
@@ -125,7 +128,7 @@ Update exhaustive matches accordingly. The EU dataset now has 27 members.
 There is no automatic replacement for a combined Spain/Sweden record: select
 the intended country or split the record using application context.
 
-Serde stores variant names. Migrate previously stored `"Antartica"` and
+JSON stores variant names. Binary Serde formats may instead store variant indexes. Migrate previously stored `"Antartica"` and
 `"Fuschia"` strings and resolve `"SpainAndSweden"` records before deserializing
 them with 0.3. Other variant strings remain unchanged; color aliases retain
 their distinct names even when their RGB values agree.
@@ -176,3 +179,16 @@ The `strum`, `serde`, `enum-iter`, and `enum-count` feature names are retained.
 Other dataset membership and numeric conventions are unchanged in this release.
 See [dataset scope](DATASETS.md) for the retained historical and illustrative
 lists before using them as current reference data.
+
+## Additive relationship APIs
+
+The new `INFO` descriptor is part of `Dataset`; downstream custom implementations
+must provide it. All library implementations do so. Canonical enum names and
+existing external-code parsing rules remain unchanged; new named constructors
+provide reverse code lookup. `Country` and `Unit` retain their legacy variants;
+`IsoCountry` and `SiBaseQuantity`/`SiBaseUnit` provide explicitly scoped modern
+views. `Season::months()` retains its original Northern Hemisphere convention.
+
+The full importer audit now runs from a repository checkout. Two large source
+input files are excluded from `.crate` packages; runtime data, attribution and
+code-generation inputs remain included. See `DATASETS.md` for the package budget.

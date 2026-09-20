@@ -292,3 +292,38 @@ impl std::fmt::Display for Taxon {
         f.write_str(self.scientific_name())
     }
 }
+
+/// A durable source-release/ID pair for storage, independent of enum ordering.
+/// Resolution deliberately rejects a different source version; cross-release
+/// taxonomic identity changes require a reviewed migration.
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct TaxonKey {
+    /// The Catalogue of Life source release, such as `2026-09-11`.
+    pub source_version: String,
+    /// The case-sensitive Catalogue of Life ID within that source release.
+    pub col_id: String,
+}
+
+impl TaxonKey {
+    /// Resolves this key only against the exact bundled source release.
+    #[must_use]
+    pub fn resolve(&self) -> Option<Taxon> {
+        if self.source_version == SOURCE_VERSION {
+            Taxon::by_id(&self.col_id)
+        } else {
+            None
+        }
+    }
+}
+
+impl Taxon {
+    /// Creates an owned, versioned key suitable for long-lived serialized storage.
+    #[must_use]
+    pub fn key(self) -> TaxonKey {
+        TaxonKey {
+            source_version: SOURCE_VERSION.to_owned(),
+            col_id: self.id().to_owned(),
+        }
+    }
+}

@@ -286,3 +286,11 @@ impl GeologicEpoch {
         }
     }
 }
+
+checked_u8_enum!(EarthLayer, ordinal);
+checked_u8_enum!(AtmosphereLayer, ordinal);
+
+group_members!(RockClass, rocks, Rock, class);
+group_members!(GeologicEon, eras, GeologicEra, eon);
+group_members!(GeologicEra, periods, GeologicPeriod, era);
+group_members!(GeologicPeriod, epochs, GeologicEpoch, period);

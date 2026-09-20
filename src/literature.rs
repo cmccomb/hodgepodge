@@ -25,3 +25,5 @@ impl InfernoCircle {
         self as u8
     }
 }
+
+checked_u8_enum!(InfernoCircle, number);

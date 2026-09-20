@@ -94,3 +94,16 @@ and the [University of Texas Danteworlds *Inferno* guide](https://danteworlds.la
 OpenStax references are by J. Gordon Betts and colleagues, *Anatomy and Physiology
 2e*, Rice University (2022). Only anatomical facts and our chosen identifiers are
 used here; source text and illustrations are not included in the crate.
+
+## Relationship additions (checked 2026-09-20)
+
+- `standard-genetic-code.tsv`: RNA codon, ordinary amino-acid/stop meaning, and
+  initiation marker extracted from NCBI standard table 1. Source uses T; this
+  RNA fixture uses U. Tests distinguish elongation from initiation semantics.
+- `si-base-units.tsv`: seven base quantities, corresponding units and symbols
+  transcribed from BIPM. Existing prefix fixtures also test the unified view.
+- `iso-countries.tsv`: explicit Rust identifier, source label, ISO alpha-2,
+  alpha-3 and three-digit numeric code. The 248 English UN M49 table entries
+  are supplemented with Taiwan from the W3C Locations Extension ISO table.
+  See `DATASETS.md` for scope, source links, naming rules and legacy aliases.
+  `iso-countries-source.json` records capture/check metadata and checksums.

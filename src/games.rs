@@ -295,3 +295,17 @@ impl Rank {
         matches!(self, Self::Jack | Self::Queen | Self::King)
     }
 }
+
+checked_u8_enum!(Rank, ordinal);
+
+impl RoundOutcome {
+    /// Returns the result from the other player's perspective.
+    #[must_use]
+    pub const fn reversed(self) -> Self {
+        match self {
+            Self::Win => Self::Loss,
+            Self::Loss => Self::Win,
+            Self::Draw => Self::Draw,
+        }
+    }
+}

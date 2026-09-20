@@ -7,6 +7,7 @@ import io
 import json
 from pathlib import Path
 import tempfile
+import zipfile
 import import_taxonomy as importer
 
 
@@ -145,6 +146,98 @@ class ImportTests(unittest.TestCase):
                 capture = json.loads((data / 'wikidata-capture.json').read_text())
                 self.assertEqual(capture['queried_col_ids'], 15001)
                 self.assertEqual(capture['query_template_sha256'], importer.sha(data / 'query.rq'))
+
+
+
+class TransactionTests(unittest.TestCase):
+    def fixture(self, root, *, missing_source=False):
+        data = root / 'data'
+        data.mkdir()
+        (data / 'sources').mkdir()
+        (data / 'sources/99.yaml').write_text('previous attribution')
+        (data / 'taxa.tsv').write_text('previous snapshot')
+        (data / 'manifest.json').write_text('previous manifest')
+        (data / 'query.rq').write_text(importer.QUERY + '\n')
+        (data / 'wikidata-capture.json').write_text(json.dumps({
+            'query_template_sha256': importer.sha(data / 'query.rq')}))
+        importer.write_tsv(data / 'wikidata.tsv.gz', importer.WD_HEAD,
+                           [['Z', 'Q1', 'Testus example', 'Example', 'https://en.wikipedia.org/wiki/Example']])
+        col = {
+            'N': dict(zip(importer.COL_HEAD, ['N', '', 'Animalia', 'kingdom', '', '123', 'accepted'])),
+            'Z': dict(zip(importer.COL_HEAD, ['Z', 'N', 'Testus example', 'species', 'false', '123', 'accepted']))}
+        with zipfile.ZipFile(root / 'col.zip', 'w') as archive:
+            archive.writestr('metadata.yaml', 'test metadata')
+            if not missing_source:
+                archive.writestr('source/123.yaml', 'new attribution')
+        paths = root / 'taxonomy_paths.rs'
+        species = root / 'taxonomy_species.rs'
+        paths.write_text('previous paths')
+        species.write_text('previous species')
+        return data, paths, species, col
+
+    def contents(self, data, paths, species):
+        return {str(path): path.read_bytes() for path in [*data.rglob('*'), paths, species] if path.is_file()}
+
+    def test_build_failure_preserves_previous_snapshot_and_attribution(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            data, paths, species, col = self.fixture(root, missing_source=True)
+            before = self.contents(data, paths, species)
+            with mock.patch.object(importer, 'ROOT', root), mock.patch.object(importer, 'DATA', data), \
+                 mock.patch.object(importer.generate_taxonomy_paths, 'OUTPUT', paths), \
+                 mock.patch.object(importer.generate_taxonomy_paths, 'SPECIES_OUTPUT', species), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                with self.assertRaises(KeyError):
+                    importer.build(root, col)
+            self.assertEqual(self.contents(data, paths, species), before)
+            self.assertFalse(list(root.glob('.taxonomy-stage-*')))
+
+    def test_install_failure_rolls_back_all_three_destinations(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            data, paths, species, col = self.fixture(root)
+            before = self.contents(data, paths, species)
+            replace = importer.os.replace
+            def interrupted(source, destination):
+                if Path(destination) == species and Path(source).name == 'taxonomy_species.rs':
+                    raise OSError('injected install failure')
+                return replace(source, destination)
+            with mock.patch.object(importer, 'ROOT', root), mock.patch.object(importer, 'DATA', data), \
+                 mock.patch.object(importer.generate_taxonomy_paths, 'OUTPUT', paths), \
+                 mock.patch.object(importer.generate_taxonomy_paths, 'SPECIES_OUTPUT', species), \
+                 mock.patch.object(importer.os, 'replace', side_effect=interrupted), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                with self.assertRaisesRegex(OSError, 'injected'):
+                    importer.build(root, col)
+            self.assertEqual(self.contents(data, paths, species), before)
+
+    def test_capture_failure_never_overwrites_checked_in_inputs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            data, paths, species, col = self.fixture(root)
+            before = self.contents(data, paths, species)
+            def interrupted(cache, records, staged):
+                (staged / 'wikidata.tsv.gz').write_bytes(b'partial new input')
+                raise OSError('injected fetch failure')
+            with mock.patch.object(importer, 'ROOT', root), mock.patch.object(importer, 'DATA', data), \
+                 mock.patch.object(importer, 'fetch_wikidata', side_effect=interrupted):
+                with self.assertRaisesRegex(OSError, 'injected'):
+                    importer.build(root, col, fetch=True)
+            self.assertEqual(self.contents(data, paths, species), before)
+
+    def test_success_installs_a_complete_reproducible_snapshot(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            data, paths, species, col = self.fixture(root)
+            with mock.patch.object(importer, 'ROOT', root), mock.patch.object(importer, 'DATA', data), \
+                 mock.patch.object(importer.generate_taxonomy_paths, 'OUTPUT', paths), \
+                 mock.patch.object(importer.generate_taxonomy_paths, 'SPECIES_OUTPUT', species), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                importer.build(root, col)
+                importer.check(data, paths, species)
+            self.assertEqual(json.loads((data / 'manifest.json').read_text())['counts']['selected_species'], 1)
+            self.assertFalse((data / 'sources/99.yaml').exists())
+            self.assertEqual((data / 'sources/123.yaml').read_text(), 'new attribution')
 
 
 if __name__ == '__main__':

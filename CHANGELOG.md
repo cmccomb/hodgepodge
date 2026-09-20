@@ -1,12 +1,23 @@
 # Changelog
 
-## 0.4.0 — Unreleased
+## 0.4.0 — 2026-09-20
 
 ### Added
 
+- Shared source/scope/license descriptors, reverse code and numeric lookups,
+  parent-to-member traversal, bone mirrors, and rank/outcome reversal helpers.
+- RNA bases, all 64 RNA codons and NCBI standard-code translation; seven SI base
+  quantities/units, a unified 24-prefix view, and 249 ISO country/area entries.
+- Explicit hemisphere/fiscal-calendar mappings, Gregorian leap-year lengths,
+  calendar cycling, and modern/legacy geography bridges.
+- Versioned `TaxonKey` storage that rejects mismatched source releases.
+- Staged taxonomy refreshes with exception rollback and failure-injection tests.
+- An 8 MiB release-package budget retaining runtime data and attribution while
+  excluding two repository-only import inputs; cached, less redundant CI coverage.
+
 - Shared `Dataset` metadata and feature-free `ALL`, `COUNT`, and human-readable
-  `label()` for all 49 enums, preserving canonical parsing and Serde names.
-- Standard 52-card decks, optional seeded RNG integration for every enum and
+  `label()` for all 56 compact enums, with canonical parsing and format-specific Serde representations.
+- Standard 52-card decks, optional seeded RNG integration for every dataset enum and
   `Card`, deck shuffling, coins, rock–paper–scissors, and round outcomes.
 - The conventional 206 adult bones with side/region/division metadata, a selected
   set of 92 skeletal muscle types, DNA complements, and 20 standard amino acids.

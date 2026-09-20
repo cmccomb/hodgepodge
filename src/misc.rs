@@ -37,7 +37,7 @@ dataset_enum! {
         /// A [Silver Medal](https://en.wikipedia.org/wiki/Silver_medal) is typical awarded for second place
         Silver = 2 => "Silver",
 
-        /// A [Bronze Medal](https://en.wikipedia.org/wiki/Silver_medal) is typical awarded for third place
+        /// A [Bronze Medal](https://en.wikipedia.org/wiki/Bronze_medal) is typical awarded for third place
         Bronze = 3 => "Bronze",
     }
 }
@@ -94,3 +94,6 @@ impl Ordinal {
         self as u8
     }
 }
+
+checked_u8_enum!(Medal, place);
+checked_u8_enum!(Ordinal, number);

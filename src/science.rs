@@ -467,3 +467,287 @@ impl Planet {
         self as u8
     }
 }
+
+checked_u8_enum!(Element, atomic_number);
+checked_u8_enum!(Planet, orbital_order);
+
+impl Element {
+    /// Looks up a symbol with exact case; does not trim whitespace.
+    #[must_use]
+    pub fn from_symbol(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.symbol() == code)
+    }
+}
+
+impl PrefixSmall {
+    /// Looks up a symbol with exact case; does not trim whitespace.
+    #[must_use]
+    pub fn from_symbol(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.symbol() == code)
+    }
+}
+
+impl PrefixLarge {
+    /// Looks up a symbol with exact case; does not trim whitespace.
+    #[must_use]
+    pub fn from_symbol(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.symbol() == code)
+    }
+}
+
+impl PrefixSmall {
+    /// Looks up a signed power of ten. Zero has no SI prefix.
+    #[must_use]
+    pub fn from_exponent(exponent: i8) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.exponent() == exponent)
+    }
+}
+
+impl PrefixLarge {
+    /// Looks up a signed power of ten. Zero has no SI prefix.
+    #[must_use]
+    pub fn from_exponent(exponent: i8) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.exponent() == exponent)
+    }
+}
+
+impl TaxonomicRank {
+    /// Returns the next narrower rank in this eight-rank teaching hierarchy.
+    #[must_use]
+    pub const fn narrower(self) -> Option<Self> {
+        match self {
+            Self::Domain => Some(Self::Kingdom),
+            Self::Kingdom => Some(Self::Phylum),
+            Self::Phylum => Some(Self::Class),
+            Self::Class => Some(Self::Order),
+            Self::Order => Some(Self::Family),
+            Self::Family => Some(Self::Genus),
+            Self::Genus => Some(Self::Species),
+            Self::Species => None,
+        }
+    }
+}
+
+dataset_enum! {
+    /// All 24 official SI prefixes, in increasing power-of-ten order.
+    /// No prefix represents zero exponent; use `None` for an unprefixed unit.
+    pub enum SiPrefix {
+        Quecto = -30 => "Quecto",
+        Ronto = -27 => "Ronto",
+        Yocto = -24 => "Yocto",
+        Zepto = -21 => "Zepto",
+        Atto = -18 => "Atto",
+        Femto = -15 => "Femto",
+        Pico = -12 => "Pico",
+        Nano = -9 => "Nano",
+        Micro = -6 => "Micro",
+        Milli = -3 => "Milli",
+        Centi = -2 => "Centi",
+        Deci = -1 => "Deci",
+        Deca = 1 => "Deca",
+        Hecto = 2 => "Hecto",
+        Kilo = 3 => "Kilo",
+        Mega = 6 => "Mega",
+        Giga = 9 => "Giga",
+        Tera = 12 => "Tera",
+        Peta = 15 => "Peta",
+        Exa = 18 => "Exa",
+        Zetta = 21 => "Zetta",
+        Yotta = 24 => "Yotta",
+        Ronna = 27 => "Ronna",
+        Quetta = 30 => "Quetta",
+    }
+}
+impl SiPrefix {
+    /// Returns the signed power of ten.
+    #[must_use]
+    pub const fn exponent(self) -> i8 {
+        self as i8
+    }
+    /// Returns the exact SI symbol; micro is U+00B5, not ASCII u.
+    #[must_use]
+    pub const fn symbol(self) -> &'static str {
+        match self {
+            Self::Deca => "da",
+            Self::Hecto => "h",
+            Self::Kilo => "k",
+            Self::Mega => "M",
+            Self::Giga => "G",
+            Self::Tera => "T",
+            Self::Peta => "P",
+            Self::Exa => "E",
+            Self::Zetta => "Z",
+            Self::Yotta => "Y",
+            Self::Ronna => "R",
+            Self::Quetta => "Q",
+            Self::Deci => "d",
+            Self::Centi => "c",
+            Self::Milli => "m",
+            Self::Micro => "µ",
+            Self::Nano => "n",
+            Self::Pico => "p",
+            Self::Femto => "f",
+            Self::Atto => "a",
+            Self::Zepto => "z",
+            Self::Yocto => "y",
+            Self::Ronto => "r",
+            Self::Quecto => "q",
+        }
+    }
+    /// Looks up an exact, case-sensitive SI symbol without trimming.
+    #[must_use]
+    pub fn from_symbol(symbol: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|prefix| prefix.symbol() == symbol)
+    }
+    /// Looks up a signed exponent; returns None for zero or a non-SI exponent.
+    #[must_use]
+    pub fn from_exponent(exponent: i8) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|prefix| prefix.exponent() == exponent)
+    }
+}
+impl From<PrefixSmall> for SiPrefix {
+    fn from(value: PrefixSmall) -> Self {
+        match value {
+            PrefixSmall::Deci => Self::Deci,
+            PrefixSmall::Centi => Self::Centi,
+            PrefixSmall::Milli => Self::Milli,
+            PrefixSmall::Micro => Self::Micro,
+            PrefixSmall::Nano => Self::Nano,
+            PrefixSmall::Pico => Self::Pico,
+            PrefixSmall::Femto => Self::Femto,
+            PrefixSmall::Atto => Self::Atto,
+            PrefixSmall::Zepto => Self::Zepto,
+            PrefixSmall::Yocto => Self::Yocto,
+            PrefixSmall::Ronto => Self::Ronto,
+            PrefixSmall::Quecto => Self::Quecto,
+        }
+    }
+}
+impl From<PrefixLarge> for SiPrefix {
+    fn from(value: PrefixLarge) -> Self {
+        match value {
+            PrefixLarge::Deca => Self::Deca,
+            PrefixLarge::Hecto => Self::Hecto,
+            PrefixLarge::Kilo => Self::Kilo,
+            PrefixLarge::Mega => Self::Mega,
+            PrefixLarge::Giga => Self::Giga,
+            PrefixLarge::Tera => Self::Tera,
+            PrefixLarge::Peta => Self::Peta,
+            PrefixLarge::Exa => Self::Exa,
+            PrefixLarge::Zetta => Self::Zetta,
+            PrefixLarge::Yotta => Self::Yotta,
+            PrefixLarge::Ronna => Self::Ronna,
+            PrefixLarge::Quetta => Self::Quetta,
+        }
+    }
+}
+dataset_enum! {
+    /// The seven SI base quantities; distinct from the legacy Unit selection.
+    pub enum SiBaseQuantity {
+        Time => "Time",
+        Length => "Length",
+        Mass => "Mass",
+        ElectricCurrent => "Electric Current",
+        ThermodynamicTemperature => "Thermodynamic Temperature",
+        AmountOfSubstance => "Amount of Substance",
+        LuminousIntensity => "Luminous Intensity",
+    }
+}
+dataset_enum! {
+    /// The seven SI base units, including kilogram as the unit of mass.
+    pub enum SiBaseUnit {
+        Second => "Second",
+        Metre => "Metre",
+        Kilogram => "Kilogram",
+        Ampere => "Ampere",
+        Kelvin => "Kelvin",
+        Mole => "Mole",
+        Candela => "Candela",
+    }
+}
+impl SiBaseQuantity {
+    /// Returns the corresponding SI base unit.
+    #[must_use]
+    pub const fn unit(self) -> SiBaseUnit {
+        match self {
+            Self::Time => SiBaseUnit::Second,
+            Self::Length => SiBaseUnit::Metre,
+            Self::Mass => SiBaseUnit::Kilogram,
+            Self::ElectricCurrent => SiBaseUnit::Ampere,
+            Self::ThermodynamicTemperature => SiBaseUnit::Kelvin,
+            Self::AmountOfSubstance => SiBaseUnit::Mole,
+            Self::LuminousIntensity => SiBaseUnit::Candela,
+        }
+    }
+}
+impl SiBaseUnit {
+    /// Returns the corresponding SI base quantity.
+    #[must_use]
+    pub const fn quantity(self) -> SiBaseQuantity {
+        match self {
+            Self::Second => SiBaseQuantity::Time,
+            Self::Metre => SiBaseQuantity::Length,
+            Self::Kilogram => SiBaseQuantity::Mass,
+            Self::Ampere => SiBaseQuantity::ElectricCurrent,
+            Self::Kelvin => SiBaseQuantity::ThermodynamicTemperature,
+            Self::Mole => SiBaseQuantity::AmountOfSubstance,
+            Self::Candela => SiBaseQuantity::LuminousIntensity,
+        }
+    }
+    /// Returns the exact case-sensitive SI symbol.
+    #[must_use]
+    pub const fn symbol(self) -> &'static str {
+        match self {
+            Self::Second => "s",
+            Self::Metre => "m",
+            Self::Kilogram => "kg",
+            Self::Ampere => "A",
+            Self::Kelvin => "K",
+            Self::Mole => "mol",
+            Self::Candela => "cd",
+        }
+    }
+    /// Looks up an exact SI base-unit symbol without trimming.
+    #[must_use]
+    pub fn from_symbol(symbol: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|unit| unit.symbol() == symbol)
+    }
+}
+impl Unit {
+    /// Returns a corresponding base quantity when this legacy category has one.
+    /// Volume, angle and energy are derived quantities and return None.
+    #[must_use]
+    pub const fn base_quantity(self) -> Option<SiBaseQuantity> {
+        match self {
+            Self::Time => Some(SiBaseQuantity::Time),
+            Self::Length => Some(SiBaseQuantity::Length),
+            Self::Mass => Some(SiBaseQuantity::Mass),
+            Self::Temperature => Some(SiBaseQuantity::ThermodynamicTemperature),
+            Self::Volume | Self::Angle | Self::Energy => None,
+        }
+    }
+}

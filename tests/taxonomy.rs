@@ -208,3 +208,44 @@ fn familiar_species_have_source_paths_and_intermediate_ranks() {
     assert_eq!(Taxon::named("not a taxon").count(), 0);
     assert_eq!(lion.children().len(), 0);
 }
+
+#[test]
+fn durable_keys_reject_wrong_releases_and_unknown_ids() {
+    use hodgepodge::taxonomy::{Species, TaxonKey, SOURCE_VERSION};
+    let lion = Species::PantheraLeo.taxon();
+    let key = lion.key();
+    assert_eq!(key.resolve(), Some(lion));
+    assert_eq!(key.source_version, SOURCE_VERSION);
+    assert_eq!(key.col_id, lion.id());
+    let wrong_release = TaxonKey {
+        source_version: "1900-01-01".into(),
+        ..key.clone()
+    };
+    assert_eq!(wrong_release.resolve(), None);
+    let wrong_id = TaxonKey {
+        col_id: "not-a-col-id".into(),
+        ..key
+    };
+    assert_eq!(wrong_id.resolve(), None);
+}
+
+#[cfg(feature = "serde")]
+#[test]
+fn durable_keys_round_trip_in_json_and_binary_without_species_indexes() {
+    use hodgepodge::taxonomy::{Species, TaxonKey};
+    let key = Species::PantheraLeo.taxon().key();
+    let json = serde_json::to_string(&key).unwrap();
+    assert!(json.contains("source_version"));
+    assert!(json.contains("col_id"));
+    assert_eq!(serde_json::from_str::<TaxonKey>(&json).unwrap(), key);
+    let binary = bincode::serialize(&key).unwrap();
+    assert_eq!(bincode::deserialize::<TaxonKey>(&binary).unwrap(), key);
+    assert_eq!(key.resolve(), Some(Species::PantheraLeo.taxon()));
+    // Enum serialization itself is intentionally unchanged and format-specific.
+    let species_bytes = bincode::serialize(&Species::PantheraLeo).unwrap();
+    assert_eq!(species_bytes.len(), 4);
+    assert_eq!(
+        bincode::deserialize::<Species>(&species_bytes).unwrap(),
+        Species::PantheraLeo
+    );
+}

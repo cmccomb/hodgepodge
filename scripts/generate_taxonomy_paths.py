@@ -174,22 +174,25 @@ def render_species(rows, checksum):
     return '\n'.join(lines)
 
 
-def generated():
-    raw = INPUT.read_bytes()
-    with INPUT.open(encoding='utf-8', newline='') as source:
+def generated(input_path=None, output=None, species_output=None):
+    input_path = INPUT if input_path is None else input_path
+    output = OUTPUT if output is None else output
+    species_output = SPECIES_OUTPUT if species_output is None else species_output
+    raw = input_path.read_bytes()
+    with input_path.open(encoding='utf-8', newline='') as source:
         rows = list(csv.DictReader(source, delimiter='\t', quoting=csv.QUOTE_NONE))
     checksum = hashlib.sha256(raw).hexdigest()
-    return {OUTPUT: render(rows, checksum), SPECIES_OUTPUT: render_species(rows, checksum)}
+    return {output: render(rows, checksum), species_output: render_species(rows, checksum)}
 
 
-def write():
-    for path, content in generated().items():
+def write(input_path=None, output=None, species_output=None):
+    for path, content in generated(input_path, output, species_output).items():
         path.write_text(content, encoding='utf-8')
-        print(f'Generated {path.relative_to(ROOT)} ({path.stat().st_size:,} bytes)')
+        print(f'Generated {path.name} ({path.stat().st_size:,} bytes)')
 
 
-def check():
-    for path, content in generated().items():
+def check(input_path=None, output=None, species_output=None):
+    for path, content in generated(input_path, output, species_output).items():
         if not path.exists() or path.read_text() != content:
             raise ValueError(f'{path.name} is stale; run python3 scripts/generate_taxonomy_paths.py')
     print('Verified Species and every taxonomy alias against the bundled snapshot')

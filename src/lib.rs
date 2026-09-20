@@ -10,16 +10,16 @@
 //! sample data.
 //!
 //! Bring everything into scope with `use hodgepodge::*;`, then iterate over the
-//! variants (with the `strum` feature), format their values, or serialize them
+//! variants through `ALL` (or with the `strum` feature), format their values, or serialize them
 //! (with the `serde` feature) depending on what the example calls for.
 //!
 //! ## Names, equality, and lookup
 //!
-//! Every enum implements `Copy`, `Clone`, `PartialEq`, `Eq`, `Hash`, `Display`,
+//! Every enum dataset implements `Copy`, `Clone`, `PartialEq`, `Eq`, `Hash`, `Display`,
 //! and `FromStr`. `as_str()` and `Display` return the Rust variant name.
 //! Parsing ignores ASCII case but requires the complete name without whitespace.
 //! These operations require no optional features or runtime dependencies.
-//! Every enum also exposes `ALL`, `COUNT`, and a human-readable `label()`,
+//! Every enum dataset also exposes `ALL`, `COUNT`, and a human-readable `label()`,
 //! with generic access through [`Dataset`].
 //!
 //! ```
@@ -114,14 +114,19 @@
 mod macros;
 mod parse;
 pub use parse::ParseEnumError;
+pub mod metadata;
 mod value;
+pub use metadata::{DatasetCoverage, DatasetInfo, DatasetSource, DATASETS};
 pub use value::EnumValueError;
 
 /// Metadata shared by every enum dataset, without optional features.
 ///
 /// `ALL` follows declaration order. Labels are presentation text; use `as_str()`
-/// for canonical names accepted by `FromStr` and serialized by Serde.
+/// for canonical names accepted by `FromStr` and used by JSON serialization.
+/// Other Serde formats may encode enum indexes; they are not stable storage IDs.
 pub trait Dataset: Copy + 'static {
+    /// The dataset scope, source references, coverage and representation license.
+    const INFO: DatasetInfo;
     /// Every variant in declaration order.
     const ALL: &'static [Self];
     /// The number of variants.
@@ -140,6 +145,10 @@ mod migration {}
 #[cfg(all(doctest, feature = "serde", feature = "strum"))]
 #[doc = include_str!("../README.md")]
 mod readme {}
+
+#[cfg(all(doctest, feature = "serde", feature = "strum"))]
+#[doc = include_str!("../GUIDE.md")]
+mod guide {}
 
 /// Color palettes ranging from ROYGBIV to CSS keywords.
 pub mod colors;
@@ -165,7 +174,7 @@ pub use games::*;
 pub mod misc;
 pub use misc::*;
 
-/// DNA bases and the twenty standard amino acids.
+/// DNA/RNA bases, standard-code codons, and the twenty standard amino acids.
 pub mod biology;
 pub use biology::*;
 

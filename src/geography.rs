@@ -528,3 +528,134 @@ impl Direction {
         }
     }
 }
+
+impl States {
+    /// Looks up a postal abbreviation ignoring ASCII case; does not trim whitespace.
+    #[must_use]
+    pub fn from_postal_abbreviation(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.postal_abbreviation().eq_ignore_ascii_case(code))
+    }
+}
+
+impl CanadianProvince {
+    /// Looks up a postal abbreviation ignoring ASCII case; does not trim whitespace.
+    #[must_use]
+    pub fn from_postal_abbreviation(code: &str) -> Option<Self> {
+        Self::ALL
+            .iter()
+            .copied()
+            .find(|value| value.postal_abbreviation().eq_ignore_ascii_case(code))
+    }
+}
+
+#[path = "iso_country.rs"]
+mod iso_country;
+pub use iso_country::IsoCountry;
+
+impl EU {
+    /// Returns the corresponding legacy Country value, including its historical spelling.
+    #[must_use]
+    pub const fn country(self) -> Country {
+        match self {
+            Self::Austria => Country::Austria,
+            Self::Belgium => Country::Belgium,
+            Self::Bulgaria => Country::Bulgaria,
+            Self::Croatia => Country::Croatia,
+            Self::RepublicOfCyprus => Country::Cyprus,
+            Self::CzechRepublic => Country::CzechRepublic,
+            Self::Denmark => Country::Denmark,
+            Self::Estonia => Country::Estonia,
+            Self::Finland => Country::Finland,
+            Self::France => Country::France,
+            Self::Germany => Country::Germany,
+            Self::Greece => Country::Greece,
+            Self::Hungary => Country::Hungary,
+            Self::Ireland => Country::RepublicOfIreland,
+            Self::Italy => Country::Italy,
+            Self::Latvia => Country::Latvia,
+            Self::Lithuania => Country::Lithuania,
+            Self::Luxembourg => Country::Luxembourg,
+            Self::Malta => Country::Malta,
+            Self::Netherlands => Country::Netherlands,
+            Self::Poland => Country::Poland,
+            Self::Portugal => Country::Portugal,
+            Self::Romania => Country::Romania,
+            Self::Slovakia => Country::Slovakia,
+            Self::Slovenia => Country::Slovenia,
+            Self::Spain => Country::Spain,
+            Self::Sweden => Country::Sweden,
+        }
+    }
+    /// Returns the member's assigned ISO country/area entry.
+    #[must_use]
+    pub const fn iso_country(self) -> IsoCountry {
+        match self {
+            Self::Austria => IsoCountry::Austria,
+            Self::Belgium => IsoCountry::Belgium,
+            Self::Bulgaria => IsoCountry::Bulgaria,
+            Self::Croatia => IsoCountry::Croatia,
+            Self::RepublicOfCyprus => IsoCountry::Cyprus,
+            Self::CzechRepublic => IsoCountry::Czechia,
+            Self::Denmark => IsoCountry::Denmark,
+            Self::Estonia => IsoCountry::Estonia,
+            Self::Finland => IsoCountry::Finland,
+            Self::France => IsoCountry::France,
+            Self::Germany => IsoCountry::Germany,
+            Self::Greece => IsoCountry::Greece,
+            Self::Hungary => IsoCountry::Hungary,
+            Self::Ireland => IsoCountry::Ireland,
+            Self::Italy => IsoCountry::Italy,
+            Self::Latvia => IsoCountry::Latvia,
+            Self::Lithuania => IsoCountry::Lithuania,
+            Self::Luxembourg => IsoCountry::Luxembourg,
+            Self::Malta => IsoCountry::Malta,
+            Self::Netherlands => IsoCountry::Netherlands,
+            Self::Poland => IsoCountry::Poland,
+            Self::Portugal => IsoCountry::Portugal,
+            Self::Romania => IsoCountry::Romania,
+            Self::Slovakia => IsoCountry::Slovakia,
+            Self::Slovenia => IsoCountry::Slovenia,
+            Self::Spain => IsoCountry::Spain,
+            Self::Sweden => IsoCountry::Sweden,
+        }
+    }
+}
+impl From<EU> for Country {
+    fn from(value: EU) -> Self {
+        value.country()
+    }
+}
+impl From<EU> for IsoCountry {
+    fn from(value: EU) -> Self {
+        value.iso_country()
+    }
+}
+impl States {
+    /// Returns the country containing this subdivision.
+    #[must_use]
+    pub const fn country(self) -> Country {
+        Country::UnitedStates
+    }
+    /// Returns the corresponding ISO country/area entry.
+    #[must_use]
+    pub const fn iso_country(self) -> IsoCountry {
+        IsoCountry::UnitedStates
+    }
+}
+impl CanadianProvince {
+    /// Returns the country containing this subdivision.
+    #[must_use]
+    pub const fn country(self) -> Country {
+        Country::Canada
+    }
+    /// Returns the corresponding ISO country/area entry.
+    #[must_use]
+    pub const fn iso_country(self) -> IsoCountry {
+        IsoCountry::Canada
+    }
+}
+group_members!(Country, states, States, country);
+group_members!(Country, canadian_provinces, CanadianProvince, country);
