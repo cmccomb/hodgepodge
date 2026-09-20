@@ -1,0 +1,60 @@
+---
+key: 1070
+doi: 10.48580/d39x
+versionDoi: 10.48580/d39x.v8
+title: Mites GSD Phytoseiidae
+alias: Mites GSD Phytoseiidae
+description: "The Phytoseiidae are predatory mites found mostly on plants, playing\
+  \ an important role in the control of mite and small insect pests. This database\
+  \ was prepared based mostly on information summarized by Moraes et al. (1986, 2004),\
+  \ updated to include the new species described in the last 5 years and in accordance\
+  \ with the publications by Chant & McMurtry (2003-2007). It provides information\
+  \ on the 2186 species names."
+issued: 2009-09-24
+version: Sep 2009
+contact:
+  given: Gilberto
+  family: de Moraes
+  email: moraesg@usp.br
+creator:
+ -
+  given: R.C.
+  family: Castilho
+  email: raphael.castilho@usp.br
+ -
+  given: J.P.Z.
+  family: Narita
+ -
+  given: G.J.
+  family: de Moraes
+  email: moraesg@usp.br
+ -
+  given: J.A.
+  family: McMurtry
+  email: mcmurtry921@gmail.com
+contributor:
+ -
+  department: Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ)
+  city: São Paulo
+  country: BR
+  address: "São Paulo, Brazil"
+  organisation: Universidade de São Paulo
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Phytoseiid mites
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: http://www.lea.esalq.usp.br/phytoseiidae/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/PhytoseiidBase.png
+source: []

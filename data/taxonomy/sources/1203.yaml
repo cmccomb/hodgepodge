@@ -1,0 +1,96 @@
+---
+key: 1203
+doi: 10.48580/d3gj
+versionDoi: 10.48580/d3gj.v31
+title: Providing information on the World's thrips
+alias: ThripsWiki
+description: "ThripsWiki site was designed and produced in Canberra by Inkeri Lehtinen\
+  \ with Laurence Mound. Data was drawn from a web-based checklist that since 2005\
+  \ was available through CSIRO Australia, but which for technical reasons has had\
+  \ to be abandoned. \"Thysanoptera (Thrips) of the World - a checklist\" originated\
+  \ from card-catalogues maintained over many years at the Natural History Museum,\
+  \ London, and at the Senckenberg Museum, Frankfurt. GBIF funded visits to check\
+  \ data at the major thrips collections in Frankfurt, London and Washington DC for\
+  \ the 2005 system. The available data has been extensively revised and enriched\
+  \ through bibliographic and web searches, and production of this new site was supported\
+  \ by DAFF Australia."
+issued: 2025-09-12
+version: 2025-09-12
+contact:
+  orcid: 0000-0002-6019-4762
+  given: Laurence
+  family: Mound
+  email: laurence.mound@csiro.au
+creator:
+ -
+  family: ThripsWiki
+contributor:
+ -
+  orcid: 0000-0003-4163-6745
+  given: Adriano
+  family: Cavalleri
+  country: BR
+  address: Brazil
+  organisation: Universidade Federal do Rio Grande
+ -
+  orcid: 0000-0001-9049-2448
+  given: Masami
+  family: Masumoto
+  country: JP
+  address: Japan
+  organisation: Tokyo University of Agriculture
+ -
+  orcid: 0000-0002-0168-178X
+  given: Kambiz
+  family: Minaei
+  department: Department of Plant Protection
+  country: IR
+  address: "Iran, Islamic Republic of"
+  organisation: Shiraz University
+ -
+  orcid: 0000-0002-6019-4762
+  given: Laurence
+  family: Mound
+  department: Australian National Insect Collection
+  country: AU
+  address: Australia
+  organisation: CSIRO
+ -
+  orcid: 0000-0002-2639-4867
+  given: Manfred
+  family: Ulitzka
+  country: DE
+  address: Germany
+  organisation: Thrisp-ID
+ -
+  orcid: 0000-0002-9770-2345
+  given: Geoffrey
+  family: Ower
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: Illinois
+  country: US
+  email: gdower@illinois.edu
+  note: COL Pipeline Developer
+  address: "Champaign, Illinois, United States of America"
+  organisation: University of Illinois Urbana-Champaign
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Thrips
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: https://thrips.info
+logo: https://api.checklistbank.org/dataset/1203/logo
+source: []

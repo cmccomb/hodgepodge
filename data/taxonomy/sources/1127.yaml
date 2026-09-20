@@ -1,0 +1,48 @@
+---
+key: 1127
+doi: 10.48580/d3cw
+versionDoi: 10.48580/d3cw.v84
+title: World List of Cestoda
+alias: WoRMS Cestoda
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  given: Rod
+  family: Bray
+  email: r.bray@nhm.ac.uk
+contributor:
+ -
+  country: GB
+  address: United Kingdom
+  organisation: Natural History Museum Department of Zoology
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: tapeworms
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 4
+completeness: 90
+license: cc by
+url: https://www.marinespecies.org
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

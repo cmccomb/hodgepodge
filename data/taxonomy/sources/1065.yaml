@@ -1,0 +1,124 @@
+---
+key: 1065
+doi: 10.48580/d39r
+versionDoi: 10.48580/d39r.v47
+title: Plecoptera Species File
+alias: SF Plecoptera
+description: |-
+  The Plecoptera Species File website includes valid names, their synonyms,
+  bibliographic data, specimen data, images, sounds, and distributions for stoneflies
+  of the world. A key to all 16 families is provided, but currently is not illustrated.
+  Authors of research involving stoneflies are encouraged to provide pdfs or full
+  references of their papers to the authors. We also accept images and sounds, attribution
+  and metadata included, for posting on the website.
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0001-9985-9250
+  given: R Edward
+  family: DeWalt
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  email: dewalt@illinois.edu
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+creator:
+ -
+  orcid: 0000-0001-9985-9250
+  given: R Edward
+  family: DeWalt
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Author
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+ -
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  rorid: 047426m28
+  city: Ithaca
+  state: NY
+  country: US
+  note: Author
+  address: "Ithaca, NY, United States of America"
+  organisation: University of Illinois
+ -
+  given: U
+  family: Neu-Becker
+  rorid: 02rbfnr22
+  city: Munich
+  country: DE
+  note: Author
+  address: "Munich, Germany"
+  organisation: Max Planck Institute
+ -
+  given: G
+  family: Stueber
+  rorid: 02rbfnr22
+  city: Munich
+  country: DE
+  note: Author
+  address: "Munich, Germany"
+  organisation: Max Planck Institute
+publisher:
+  rorid: 047426m28
+  department: "Species File Group, Illinois Natural History Survey, Prairie Research\
+    \ Institute"
+  city: Champaign
+  state: IL
+  country: US
+  email: dlpaul@illinois.edu
+  url: https://speciesfilegroup.org
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+contributor:
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Principal Database Developer
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+ -
+  orcid: 0000-0003-4573-0536
+  given: Michael D
+  family: Maehr
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: "Past author, now inactive"
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Stoneflies
+taxonomicGroupScope: []
+confidence: 5
+completeness: 99
+license: cc by
+url: https://plecoptera.speciesfile.org
+feedbackUrl: https://github.com/sfg-taxonpages/plecoptera/issues
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/SF_Plecoptera.png
+source: []

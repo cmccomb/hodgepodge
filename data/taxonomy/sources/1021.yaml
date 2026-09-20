@@ -1,0 +1,107 @@
+---
+key: 1021
+doi: 10.48580/d388
+versionDoi: 10.48580/d388.v56
+title: Orthoptera Species File
+alias: SF Orthoptera
+description: |-
+  The Orthoptera Species File is a taxonomic database of the world's Orthoptera
+  (grasshoppers, locusts, katydids and crickets), both living and fossil. It has full
+  synonymic and taxonomic information for more than 28,070 valid species, 45,850 scientific
+  names, 213,200 citations to 14,200 references, 96,300 images, 1630 sound recordings,
+  and 99,700 specimen records.
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0002-8840-2121
+  given: María Marta
+  family: Cigliano
+  rorid: 01tjs6929
+  department: División Entomología
+  city: La Plata
+  country: AR
+  email: cigliano@fcnym.unlp.edu.ar
+  url: https://github.com/sfg-taxonpages/orthoptera/issues/
+  address: "La Plata, Argentina"
+  organisation: "Museo de La Plata, CEPAVE - CONICET"
+creator:
+ -
+  orcid: 0000-0002-8840-2121
+  given: María Marta
+  family: Cigliano
+  rorid: 01tjs6929
+  department: División Entomología
+  city: La Plata
+  country: AR
+  address: "La Plata, Argentina"
+  organisation: "Museo de La Plata, CEPAVE - CONICET"
+ -
+  orcid: 0000-0002-1069-8794
+  given: Holger
+  family: Braun
+  rorid: 01tjs6929
+  department: División Entomología
+  city: La Plata
+  country: AR
+  address: "La Plata, Argentina"
+  organisation: "Museo de La Plata, CEPAVE - CONICET"
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+ -
+  given: Daniel
+  family: Otte
+  department: The Academy of Natural Sciences of Philadelphia
+  city: Philadelphia
+  state: PA
+  country: US
+  address: "Philadelphia, PA, United States of America"
+  organisation: Drexel University
+publisher:
+  city: Champaign
+  state: IL
+  country: US
+  email: SpeciesFileGroup@listserv.illinois.edu
+  url: http://software.speciesfile.org
+  note: Host
+  address: "Champaign, IL, United States of America"
+  organisation: Species File Group
+contributor:
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Principal Database Developer
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: "Grasshoppers, locusts, katydids, crickets"
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: https://orthoptera.speciesfile.org
+feedbackUrl: https://github.com/sfg-taxonpages/orthoptera/issues/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/SF_Orthoptera.png
+source: []

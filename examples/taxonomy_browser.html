@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hodgepodge · Animal tree</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#172d2b;background:#f5f6f1;line-height:1.5}*{box-sizing:border-box}body{margin:0 auto;max-width:1180px;padding:40px 24px}header{border-bottom:1px solid #b9c9bd;margin-bottom:28px;padding-bottom:24px}h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.04em;line-height:1.1;margin:10px 0 16px}h2{font-size:20px}p{max-width:80ch}.eyebrow{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:#466b5c}.stats{display:flex;gap:36px;flex-wrap:wrap}.stats strong{font-size:28px;display:block}.muted{color:#52655d;font-size:14px}main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,1fr);gap:28px}section{min-width:0}input{width:100%;font:inherit;padding:12px;border:1px solid #8fa799;border-radius:8px;background:white}button{font:inherit;border:1px solid #8fa799;border-radius:5px;padding:5px 10px;background:#fff;color:#174a39;cursor:pointer}button:hover{background:#e4eee5}button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #dd9c2c;outline-offset:3px}#results{list-style:none;margin:12px 0;padding:0;max-height:230px;overflow:auto}#results li{border-bottom:1px solid #d4ded5;padding:12px 0}#results button{text-align:left;width:100%;border:0;background:transparent;padding:0}#results strong{display:block}#detail{background:#fff;border:1px solid #d4ded5;border-radius:12px;padding:24px;margin-top:24px;overflow-wrap:anywhere}#detail h2{font-size:26px;margin-top:0}#tree{background:#fff;border:1px solid #d4ded5;border-radius:12px;padding:16px;max-height:70vh;overflow:auto}details{margin:4px 0 4px 12px}summary{cursor:pointer;padding:4px 0;overflow-wrap:anywhere}summary .rank,.leaf .rank{font-size:12px;color:#5a6e61;margin-left:8px}summary .count{font-size:12px;color:#5a6e61;margin-left:6px}.selected>summary,.leaf.selected>button{background:#e3eee0;border-radius:4px}.source-links{display:flex;flex-wrap:wrap;gap:8px 14px}.leaf{margin:4px 0 4px 12px}.leaf>button{border:0;background:transparent;padding:4px 0;text-align:left;color:inherit;max-width:100%;overflow-wrap:anywhere}.children{border-left:1px solid #d4ded5;padding-left:4px}.crumbs{font-size:13px;color:#52655d}a{color:#176142}footer{border-top:1px solid #b9c9bd;margin-top:32px;padding-top:20px;font-size:13px;color:#52655d}#status{min-height:21px}@media(max-width:760px){main{grid-template-columns:1fr}body{padding:24px 16px}#tree{max-height:55vh}}
+</style>
+<header><div class="eyebrow">Hodgepodge / living animals</div><h1>A tree you can explore.</h1><p>Follow the classification from domain to species, or search for an animal. This is the Wikipedia-linked selection from Catalogue of Life, preserving its intermediate ranks.</p><div class="stats"><div><strong id="speciesCount">—</strong><span class="muted">selected species</span></div><div><strong id="taxaCount">—</strong><span class="muted">taxa with ancestry</span></div><div><strong>2026-09-11</strong><span class="muted">Catalogue of Life release</span></div></div></header>
+<main><section aria-labelledby="browseHeading"><h2 id="browseHeading">Browse the classification</h2><p class="muted">Expand a group to see its included children. This is a partial tree of Animalia; other kingdoms are outside this selection.</p><div id="tree"></div></section><section aria-labelledby="searchHeading"><h2 id="searchHeading">Find an animal or group</h2><label for="search" class="muted">Scientific name, English label, or Catalogue of Life ID</label><input id="search" type="search" placeholder="Try lion, octopus, or Panthera" autocomplete="off"><p id="status" class="muted" aria-live="polite">Type at least two characters.</p><ul id="results"></ul><div id="detail" aria-live="polite"><h2>Start with a branch</h2><p>Select any taxon to see its ancestry and source details.</p></div></section></main>
+<footer>Classification adapted from Bánki et al., <a href="https://doi.org/10.48580/dgz5n">Catalogue of Life (2026-09-11)</a>, Catalogue of Life Foundation, under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Labels and links from <a href="https://www.wikidata.org/wiki/Wikidata:Licensing">Wikidata (CC0)</a>. Selected, joined, and reformatted by hodgepodge. English labels may be scientific names. Inclusion reflects source coverage, English Wikipedia coverage, and an explicit extant flag; it is not a representative sample of animal diversity. No Wikipedia article text or images are included.</footer>
+<script>
+'use strict';
+const raw = __TAXONOMY_DATA__;
+const records = raw.trimEnd().split('\n').slice(1).map(line => {
+ const [id,parent,name,rank,extinct,label,qid,wiki,source] = line.split('\t');
+ return {id,parent,name,rank,extinct,label,qid,wiki,source,children:[],search:(name+' '+label+' '+id).toLowerCase()};
+});
+const taxa = new Map(records.map(r=>[r.id,r]));
+for(const r of records) if(r.parent) taxa.get(r.parent).children.push(r);
+for(const r of records) r.children.sort((a,b)=>a.name.localeCompare(b.name)||a.id.localeCompare(b.id));
+const roots = records.filter(r=>!r.parent), elements = new Map();
+const tree = document.querySelector('#tree'), detail = document.querySelector('#detail');
+const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
+const number=n=>n.toLocaleString('en-US');
+document.querySelector('#speciesCount').textContent=number(records.filter(r=>r.qid).length);
+document.querySelector('#taxaCount').textContent=number(records.length);
+function path(r){const list=[];while(r){list.unshift(r);r=taxa.get(r.parent);}return list;}
+function show(r){
+ detail.replaceChildren(el('div',path(r).slice(0,-1).map(x=>x.name).join(' › '),'crumbs'),el('h2',r.name));
+ if(r.label&&r.label!==r.name)detail.append(el('p',r.label));
+ detail.append(el('p',r.rank+' · COL '+r.id,'muted'),el('p',r.qid?'Selected species · explicitly extant in source.':'Ancestry record · '+number(r.children.length)+' included direct children.'));
+ const links=el('p',undefined,'source-links');
+ for(const [label,url] of [['Catalogue of Life','https://www.checklistbank.org/dataset/316321/taxon/'+encodeURIComponent(r.id)],...(r.source?[['Contributing checklist','https://www.checklistbank.org/dataset/'+encodeURIComponent(r.source)]]:[]),...(r.qid?[['Wikidata','https://www.wikidata.org/wiki/'+encodeURIComponent(r.qid)],['Wikipedia',r.wiki]]:[])]){
+  const a=el('a',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';links.append(a);
+ }
+ detail.append(links);
+ for(const e of elements.values())e.classList.remove('selected');
+ elements.get(r.id)?.classList.add('selected');
+}
+function fill(r,d){if(d.dataset.loaded)return;d.dataset.loaded='true';const children=el('div',undefined,'children');for(const c of r.children)children.append(node(c));d.append(children);}
+function node(r){
+ const leaf=!r.children.length,d=el(leaf?'div':'details',undefined,leaf?'leaf':undefined),s=el(leaf?'button':'summary');s.append(document.createTextNode(r.name+' '),el('span',r.rank,'rank'));
+ if(r.children.length)s.append(el('span',' ('+number(r.children.length)+')','count'));
+ d.append(s);elements.set(r.id,d);
+ s.addEventListener('click',()=>show(r));
+ if(!leaf)d.addEventListener('toggle',()=>{if(d.open)fill(r,d);});
+ return d;
+}
+for(const r of roots){const d=node(r);tree.append(d);d.open=true;fill(r,d);}
+function reveal(r){for(const a of path(r).slice(0,-1)){const d=elements.get(a.id);d.open=true;fill(a,d);}show(r);elements.get(r.id).scrollIntoView({block:'nearest'});detail.scrollIntoView({block:'nearest'});}
+let timer;
+document.querySelector('#search').addEventListener('input',event=>{
+ clearTimeout(timer);const query=event.target.value.trim().toLowerCase();timer=setTimeout(()=>{
+  const results=document.querySelector('#results');results.replaceChildren();
+  if(query.length<2){document.querySelector('#status').textContent='Type at least two characters.';return;}
+  let total=0;const exact=[],partial=[];
+  for(const r of records){
+   if(!r.search.includes(query))continue;
+   total++;
+   const destination=(r.name.toLowerCase()===query||r.label.toLowerCase()===query||r.id.toLowerCase()===query)?exact:partial;
+   if(destination.length<50)destination.push(r);
+  }
+  const matches=exact.concat(partial);
+  document.querySelector('#status').textContent=number(total)+(total===1?' match':' matches')+(total>50?' · showing the first 50':'');
+  for(const r of matches.slice(0,50)){const li=el('li'),button=el('button');button.append(el('strong',r.name),el('span',[r.label!==r.name?r.label:'',r.rank].filter(Boolean).join(' · '),'muted'));button.addEventListener('click',()=>reveal(r));li.append(button);results.append(li);}
+ },180);
+});
+</script>
+</html>

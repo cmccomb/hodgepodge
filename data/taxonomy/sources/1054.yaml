@@ -1,0 +1,54 @@
+---
+key: 1054
+doi: 10.48580/d39d
+versionDoi: 10.48580/d39d.v11
+title: Psylloidea database
+alias: Psyllist
+description: "Psyl'list is an online database dedicated to Jumping Plant-Lice (Insecta,\
+  \ Hemiptera, Psylloidea). The aim of this ongoing project is primarily to make up\
+  \ the absence of world catalogues for Psylloidea, in organizing taxonomic data and\
+  \ providing easy access to the published taxonomic data already available, but scattered\
+  \ in literature. In the future, information about Psylloidea morphology, host-plants\
+  \ and biogeography, as well as linked molecular data, will be added."
+issued: 2019-02-01
+version: Feb 2019
+contact:
+  given: David
+  family: Ouvrard
+  city: Paris
+  country: FR
+  address: "Paris, France"
+  organisation: Muséum National d’Histoire Naturelle
+creator:
+ -
+  given: David
+  family: Ouvrard
+  city: Paris
+  country: FR
+  address: "Paris, France"
+  organisation: Muséum National d’Histoire Naturelle
+contributor:
+ -
+  city: London
+  country: GB
+  address: "London, United Kingdom"
+  organisation: The Natural History Museum
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Jumping plant lice
+taxonomicGroupScope: []
+confidence: 4
+completeness: 88
+license: cc by
+url: https://flow.hemiptera-databases.org/psyllist/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/Psyllist.png
+source: []

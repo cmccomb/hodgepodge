@@ -1,0 +1,75 @@
+---
+key: 1193
+doi: 10.48580/d3g6
+versionDoi: 10.48580/d3g6.v88
+title: "World List of turbellarian worms: Acoelomorpha, Catenulida, Rhabditophora"
+alias: WoRMS Turbellarians
+description: "The world list of Turbellarian worms, including the Acoelomorpha, Catenulida\
+  \ and Rhabditophora contains 3.425 accepted species names and is one of the most\
+  \ complete existing resources for Turbellarian taxa. This taxonomic database covers\
+  \ all turbellarian flatworms, freshwater as well as marine ones, and including parasitic\
+  \ turbellarians."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Seth
+  family: Tyler
+  email: styler@maine.edu
+editor:
+ -
+  given: Seth
+  family: Tyler
+  email: styler@maine.edu
+ -
+  orcid: 0000-0002-2491-7273
+  given: Tom
+  family: Artois
+  email: tom.artois@uhasselt.be
+ -
+  given: Steve
+  family: Schilling
+ -
+  orcid: 0000-0003-3410-6914
+  given: Matthew
+  family: Hooge
+  email: info@marinespecies.org
+ -
+  given: Louise
+  family: Bush
+contributor:
+ -
+  country: US
+  address: United States of America
+  organisation: University of Maine School of Biology and Ecology
+ -
+  country: BE
+  address: Belgium
+  organisation: "Universiteit Hasselt; Faculteit Wetenschappen; Vakgroep Biologie\
+    \ en Geologie; Centrum voor Milieukunde Onderzoeksgroep Dierkunde: Biodiversiteit\
+    \ en Toxicologie"
+ -
+  organisation: WoRMS Editorial Board
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Turbellarians
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 5
+completeness: 98
+license: cc by
+url: https://www.marinespecies.org/turbellarians
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

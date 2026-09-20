@@ -1,0 +1,48 @@
+---
+key: 1143
+doi: 10.48580/d3dg
+versionDoi: 10.48580/d3dg.v10
+title: Illustrated catalog of Tessaratomidae
+alias: Tessaratomidae Database
+description: "The objective of this database is to build an illustrated catalogue\
+  \ of the world Tessaratomidae. It will take some time, as the author has not seen\
+  \ all species in this family, not yet photographed all the bugs he has seen, and\
+  \ more is not sure, for half of them, of the species they belong to. It will evolve\
+  \ with the knowledge of the author, so any contribution is welcome (bugs, pictures,\
+  \ identification)."
+issued: 2019-02-01
+version: Feb 2019
+contact:
+  orcid: 0000-0002-2637-7522
+  given: Philippe
+  family: Magnien
+  email: philippe@heteroptera.fr
+creator:
+ -
+  orcid: 0000-0002-2637-7522
+  given: Philippe
+  family: Magnien
+  city: Paris
+  country: FR
+  email: philippe@heteroptera.fr
+  address: "Paris, France"
+  organisation: Muséum National d'Histoire Naturelle
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Tessaratomids
+taxonomicGroupScope: []
+confidence: 4
+completeness: 85
+license: cc by
+url: http://hemiptera-databases.com/tessaratomidae/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/Tessaratomidae_Database.png
+source: []

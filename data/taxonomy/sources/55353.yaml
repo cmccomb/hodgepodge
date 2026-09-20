@@ -1,0 +1,54 @@
+---
+key: 55353
+doi: 10.48580/d49tr
+title: "Checklist of the Sesiidae of the world (Lepidoptera: Ditrysia)"
+alias: Sesiidae
+description: "This checklist covers all species of clearwing moths (Lepidoptera: Sesiidae).\
+  \ It is based on the 2004 publication: Pühringer, F. & Kallies, A. (2004): Provisional\
+  \ checklist of the Sesiidae of the world (Lepidoptera: Ditrysia). – Mitteilungen\
+  \ der Entomologischen Arbeitsgemeinschaft Salzkammergut 4, 1-85. The list has been\
+  \ maintained and updated by F. Pühringer. Updates are automatically uploaded to\
+  \ ChecklistBank for inclusion in the Catalogue of Life."
+issued: 2026-01-24
+version: 2026-01-24
+creator:
+ -
+  orcid: 0000-0001-6512-0730
+  given: Franz
+  family: Pühringer
+  department: Biologiezentrum
+  city: Linz
+  country: AT
+  email: f.puehringer@sesiidae.net
+  address: "Linz, Austria"
+  organisation: Oberösterreichisches Landesmuseum
+ -
+  orcid: 0000-0002-6312-6968
+  given: Axel
+  family: Kallies
+  rorid: 01ej9dk98
+  city: Melbourne
+  state: Victoria
+  country: AU
+  email: axel.kallies@unimelb.edu.au
+  address: "Melbourne, Victoria, Australia"
+  organisation: University of Melbourne
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Clearwing moths
+temporalScope: Modern
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: http://www.sesiidae.net/Checklst.htm
+source: []

@@ -1,0 +1,94 @@
+---
+key: 1062
+doi: 10.48580/d39n
+versionDoi: 10.48580/d39n.v45
+title: Mantodea Species File
+alias: SF Mantodea
+description: |-
+  The Mantodea Species File is a taxonomic database of the world's
+  praying mantids (Order Mantodea), both of fossil and living species. It has full
+  synonymic and taxonomic information for over 2,400 valid species and provides many
+  images of specimens deposited in museums worldwide, as well as pictures of living
+  praying mantids in the wild and in captivity.
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0003-2639-7520
+  given: Deborah
+  family: Paul
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  email: dlpaul@illinois.edu
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+creator:
+ -
+  given: Daniel
+  family: Otte
+  rorid: 04bdffz58
+  department: The Academy of Natural Sciences of Philadelphia
+  city: Philadelphia
+  state: PA
+  country: US
+  address: "Philadelphia, PA, United States of America"
+  organisation: Drexel University
+ -
+  given: Lauren
+  family: Spearman
+  rorid: 05vt9qd57
+  department: Department of Ecology and Evolution
+  city: New Brunswick
+  state: NJ
+  country: US
+  address: "New Brunswick, NJ, United States of America"
+  organisation: Rutgers University
+ -
+  given: Martin B D
+  family: Stiewe
+  rorid: 039zvsn29
+  city: London
+  country: GB
+  address: "London, United Kingdom"
+  organisation: The Natural History Museum
+publisher:
+  city: Champaign
+  state: IL
+  country: US
+  email: SpeciesFileGroup@listserv.illinois.edu
+  url: http://software.speciesfile.org
+  note: Host
+  address: "Champaign, IL, United States of America"
+  organisation: Species File Group
+contributor:
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Principal Database Developer
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Praying mantids
+taxonomicGroupScope: []
+confidence: 4
+completeness: 90
+license: cc by
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/SF_Mantodea.png
+source: []

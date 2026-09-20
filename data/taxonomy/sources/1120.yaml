@@ -1,0 +1,48 @@
+---
+key: 1120
+doi: 10.48580/d3cn
+versionDoi: 10.48580/d3cn.v7
+title: World checklist of freshwater Ephemeroptera species
+alias: FADA Ephemeroptera
+description: "The checklist is supplied for the Catalogue of Life by FADA project.\
+  \ FADA, the Freshwater Animal Diversity Assessment is an informal network of scientists\
+  \ specialized in freshwater biodiversity. Barber-James, H., Sartori, M., Gattolliat,\
+  \ J-L. and J. Webb, 2013 Jan 21, World checklist of freshwater Ephemeroptera species."
+issued: 2013-02-07
+version: Feb 2013
+creator:
+ -
+  given: H.
+  family: Barber-James
+ -
+  given: M.
+  family: Sartori
+ -
+  given: J.-L.
+  family: Gattolliat
+ -
+  given: J.
+  family: Webb
+editor: []
+contributor:
+ -
+  organisation: Freshwater Animal Diversity Assessment project (FADA)
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Mayflies
+taxonomicGroupScope: []
+confidence: 4
+completeness: 95
+license: cc by
+url: https://web.archive.org/web/20181204102127/http%3A//fada.biodiversity.be/group/show/35
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/FADA_Ephemeroptera.png
+source: []

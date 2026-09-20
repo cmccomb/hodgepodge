@@ -1,0 +1,52 @@
+---
+key: 1204
+doi: 10.48580/d3gk
+versionDoi: 10.48580/d3gk.v20
+title: StaphBase
+alias: StaphBase
+description: "The project is an ongoing effort to build and maintain a catalog all\
+  \ family-, genus- and species-group names in the beetle group Staphyliniformia (superfamilies\
+  \ Staphylinoidea (including Jacobsoniidae), Hydrophiloidea & Histeroidea, but excluding\
+  \ Scarabaeoidea added to this group very recently), including all named fossils.\
+  \ All original descriptions were consulted to verify original data, and the current\
+  \ status, distribution, and in many cases significant subsequent literature and\
+  \ type depositories and type localities for species are indicated. It is an extension\
+  \ of the database catalogs initiated as a US-NSF PEET project (see http://archive.fieldmuseum.org/peet_staph),\
+  \ initially based on multiple sources as listed there, but subsequently extensively\
+  \ edited and actively updated."
+issued: 2022-08-22
+version: Aug 2022
+contact:
+  orcid: 0000-0001-9885-6306
+  given: Alfred
+  family: Newton
+  email: anewton@fieldmuseum.org
+creator:
+ -
+  orcid: 0000-0001-9885-6306
+  given: Alfred
+  family: Newton
+  city: Chicago
+  country: US
+  email: anewton@fieldmuseum.org
+  address: "Chicago, United States of America"
+  organisation: Field Museum of Natural History
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: "Rove beetles, clown beetles & water scavenger beetles"
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+url: http://archive.fieldmuseum.org/peet_staph
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/StaphBase.png
+source: []

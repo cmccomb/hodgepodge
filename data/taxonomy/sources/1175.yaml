@@ -1,0 +1,111 @@
+---
+key: 1175
+doi: 10.48580/d3fk
+versionDoi: 10.48580/d3fk.v92
+title: World Ostracoda Database
+alias: WoRMS Ostracoda
+description: "The Recent or extant taxa from the World Ostracoda Database-World Register\
+  \ of Marine Species includes mostly marine species, and was data-mined from thousands\
+  \ of publications (see sources in WoRMS). Concerning the Recent non-marine  Ostracoda,\
+  \ very few of the 2,000 species and approximately 200 genera of are included in\
+  \ the present data, because they have already been compiled by Martens et al. (2007).\
+  \ Concerning the high level classification (i.e., down to family level), we follow\
+  \ different authors. The Recent Podocopa classification mostly follows Horne et\
+  \ al. (2002), with two exceptions. First, we include Platycopida within the subclass\
+  \ Platycopa, while Horne et al. (2002) place it within Podocopa. Second, we place\
+  \ the superfamily Puncioidea (which includes a few Recent species) directly in the\
+  \ subclass Palaeocopa, while Horne et al (2002) include it within Subclass Podocopa,\
+  \ order Palaeocopida and  Suborder Kirkbyocopina. The classification of Recent Myodocopa\
+  \ follows diverse classifications of Kornicker and collaborators (e.g. Kornicker\
+  \ et al., 2007).\r\n\r\nHorne, D.J., Cohen, A.C. & Martens, K. (2002). Taxonomy,\
+  \ morphology and biology of Quaternary and living Ostracoda. In: J. Holmes and A.\
+  \ Chivas (Eds), The Ostracoda. Applications in Quaternary Research. Geophysical\
+  \ Monograph. American Geophysical Union, Washington, DC, pp. 5-35. \r\n\r\nKornicker,\
+  \ L.S., Iliffe, T.M. & Harrison-Nelson, E. (2007) Ostracoda (Myodocopa) from anchialine\
+  \ caves and ocean blue holes. Zootaxa 1565, 3-151. \r\n\r\nMartens, K., Schön, I.,\
+  \ Meisch, C. & Horne, D.J. (2008) Global diversity of ostracods (Ostracoda, Crustacea)\
+  \ in freshwater. Hydrobiologia 595, 185-193."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Simone
+  family: Brandão
+  email: brandao.sn.100@gmail.com
+editor:
+ -
+  orcid: 0000-0002-3487-6129
+  given: Simone
+  family: Brandão
+  email: brandao.sn.100@gmail.com
+ -
+  given: Lucas Silveira
+  family: Antonietto
+  email: antoniettols@gmail.com
+ -
+  given: Ana Beatriz Gomes de Linz
+  family: Carvalho
+  email: anabeatriz13dn@gmail.com
+ -
+  given: Julia da Silva
+  family: Pereira
+  email: juliaunbio@gmail.com
+ -
+  given: Sávio Gabriel Gomes
+  family: Pereira
+  email: savio.gabriel@ufrpe.br
+ -
+  given: Rayran Araújo
+  family: Praxedes
+  email: rayranpraxedes@gmail.com
+ -
+  given: Heitor Almeida Batista
+  family: Sá
+  email: heitorb@hotmail.com
+ -
+  given: Lara Milena
+  family: Sabater
+  email: sabaterlara@gmail.com
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: BR
+  address: Brazil
+  organisation: Universidade Federal Rural de Pernambuco Unidade Acadêmica de Serra
+    Talhada
+ -
+  country: BR
+  address: Brazil
+  organisation: Regional University of Cariri Museu de Paleontologia Plácido Cidade
+    Nuvens
+ -
+  organisation: Federal University of Paraiba Department of Systematics and Ecology
+ -
+  country: BR
+  address: Brazil
+  organisation: Universidade Estadual de Santa Cruz
+ -
+  organisation: National Scientific and Technical Research Council; Center for Applied
+    Ecology of the Coast Herbivory and Biological Control Laboratory
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: seed shrimps
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 3
+completeness: 60
+license: cc by
+url: https://www.marinespecies.org/ostracoda
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

@@ -1,0 +1,44 @@
+---
+key: 1144
+doi: 10.48580/d3dh
+versionDoi: 10.48580/d3dh.v12
+title: "Lace Bugs Database (Hemiptera: Tingidae)"
+alias: Lace Bugs Database
+description: "A database of all the species described in Tingidae family (Insecta:\
+  \ Heteroptera) with references, distribution and pictures."
+issued: 2019-02-01
+version: Feb 2019
+contact:
+  given: Eric
+  family: Guilbert
+  email: guilbert@mnhn.fr
+creator:
+ -
+  given: Eric
+  family: Guilbert
+  email: guilbert@mnhn.fr
+contributor:
+ -
+  city: Paris
+  country: FR
+  address: "Paris, France"
+  organisation: Muséum National d'Histoire Naturelle
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Lace bugs
+taxonomicGroupScope: []
+confidence: 4
+completeness: 85
+license: cc by
+url: http://hemiptera-databases.com/tingidae/
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/Lace_Bugs_Database.png
+source: []

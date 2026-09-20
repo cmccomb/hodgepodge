@@ -1,0 +1,72 @@
+---
+key: 1037
+doi: 10.48580/d38s
+title: Vespidae based on Zoological-Botanical Database
+alias: Vespidae
+description: |-
+  The wasp family Vespidae is a large insect family comprising the subfamilies Eumeninae, Masarinae, Polistinae and Vespinae. This dataset is based on the original work by Josef Gusenleitner (Austria) using ZOBODAT. (ZOBODAT is a digitally organised biogeographical database including facilities for analysis, documentation and communication. Founded in 1972 by Univ. Prof. Dr. Ernst Rudolf Reichl, ZOBODAT was taken over by the federal county of Upper Austria in 1999. It is located at the Biology Centre of the Museum of Upper Austria. The original database includes information about the temporal and spatial distribution of animal and plant species and various supporting information topics. Most of the data traditionally refer to insects of Austria, but ZOBODAT can be used for all groups of organisms and world-wide).
+
+  The original dataset was not updated in the Catalogue of Life since 2011. In order to apply feedback and other changes received by the Catalogue of Life and GBIF, the data was placed in github for further editing and released initially as version 4.1.
+issued: 2025-06-30
+version: 4.2
+contact:
+  given: Markus
+  family: Döring
+  city: Berlin
+  country: DE
+  email: mdoering@gbif.org
+  address: "Berlin, Germany"
+  organisation: Global Biodiversity Information Facility (GBIF)
+creator:
+ -
+  given: Josef
+  family: Gusenleitner
+  city: Linz
+  country: AT
+  address: "Linz, Austria"
+  organisation: Oberostereichisches Landesmuseum
+ -
+  orcid: 0009-0002-9660-242X
+  given: Brian
+  family: Dagley
+  country: US
+  url: https://www.inaturalist.org/people/3069707
+  address: United States of America
+editor:
+ -
+  orcid: 0000-0003-2137-2690
+  given: Yury
+  family: Roskov
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+ -
+  orcid: 0000-0001-7757-1889
+  given: Markus
+  family: Döring
+  rorid: 05fjyn938
+  city: Berlin
+  country: DE
+  address: "Berlin, Germany"
+  organisation: GBIF
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Vespid wasps
+taxonomicGroupScope: []
+confidence: 4
+completeness: 0
+license: cc by
+url: https://github.com/CatalogueOfLife/data-vespoidea
+source: []

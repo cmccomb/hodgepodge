@@ -11,7 +11,7 @@ fn elements_use_atomic_numbers_as_discriminants() {
 fn planets_follow_orbital_order() {
     assert_eq!(Planet::Mercury as u8, 1);
     assert_eq!(Planet::Earth as u8, 3);
-    assert_eq!(Planet::Pluto as u8, 9);
+    assert_eq!(Planet::Neptune as u8, 8);
     assert!(Planet::Venus as u8 > Planet::Mercury as u8);
 }
 

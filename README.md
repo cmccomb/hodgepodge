@@ -4,146 +4,77 @@
 
 # hodgepodge
 
-Ready-made Rust enums for lessons, prototypes, and test fixtures. Use colors,
-calendar names, chemical elements, places, and game pieces to demonstrate
-iteration, pattern matching, lookup, and serialization with familiar inputs.
+Ready-made Rust datasets for teaching, prototypes, simulations, and test fixtures.
+**56 compact enums** cover colors, chemistry, anatomy, biology, geography, geologic
+time, calendars, and games. Optional taxonomy adds **80,868 animal species**.
 
-Every dataset supports `Copy`, `Clone`, `PartialEq`, `Eq`, `Hash`, `Display`,
-`FromStr`, and an allocation-free `as_str()`. The default build has no dependencies.
-Iteration and serialization are optional.
+Rust **1.71+**. No default dependencies.
 
-Version **0.3.0** introduces consistent enum APIs and corrects dataset values.
-See [the migration guide](https://github.com/cmccomb/hodgepodge/blob/v0.3.0/MIGRATION.md)
-for changes from 0.2, [the changelog](https://github.com/cmccomb/hodgepodge/blob/v0.3.0/CHANGELOG.md)
-for release details, and [dataset scope](https://github.com/cmccomb/hodgepodge/blob/v0.3.0/DATASETS.md)
-for sources and teaching conventions.
-
-## Installation
-
-Version 0.3 requires Rust 1.71 or newer. Add it to your dependencies:
+## Quick start
 
 ```toml
 [dependencies]
-hodgepodge = "0.3"
+hodgepodge = "0.4"
 ```
-
-Enable `strum` for iteration and `serde` for serialization:
-
-```toml
-[dependencies]
-hodgepodge = { version = "0.3", features = ["strum", "serde"] }
-serde_json = "1.0"
-```
-
-## Parse names and use them as keys
-
-`Display` and `as_str()` return the Rust variant name, such as `NorthAmerica`.
-Parsing ignores ASCII case and otherwise requires that complete name. Whitespace,
-spaces between words, numeric strings, and abbreviations are rejected; call
-`trim()` explicitly when processing whitespace-delimited input.
 
 ```rust
-use hodgepodge::{Month, ParseEnumError};
-use std::collections::HashMap;
+use hodgepodge::{Bone, Codon, Element, IsoCountry, States};
 
-fn main() -> Result<(), ParseEnumError> {
-    let month: Month = "september".parse()?;
-    let visits = HashMap::from([(month, 3)]);
-    assert_eq!(visits[&Month::September], 3);
-    println!("{month}: {} visits", visits[&month]);
-    Ok(())
+assert_eq!(Element::from_symbol("Fe"), Some(Element::Iron));
+assert_eq!(Bone::COUNT, 206);
+assert_eq!(Bone::LeftFemur.mirrored(), Bone::RightFemur);
+assert_eq!(States::NewYork.postal_abbreviation(), "NY");
+assert_eq!(IsoCountry::Canada.canadian_provinces().count(), 13);
+assert_eq!(Codon::Aug.sequence(), "AUG");
+
+for element in Element::ALL {
+    println!("{}: {}", element.label(), element.atomic_number());
 }
 ```
 
-## Work with exact color values
+Every enum dataset supports comparison, hashing, display, parsing, `ALL`, `COUNT`,
+`label()`, and source/scope metadata through `INFO`. Parsing accepts canonical
+variant names without spaces, ignoring ASCII case; named constructors handle
+external codes. Relationships connect bones to regions, epochs to periods,
+codons to amino acids, countries to subdivisions, and more.
 
-Use `rgb()` to obtain a packed `0xRRGGBB` value from any color enum. Distinct CSS
-names can represent the same RGB value. Hex formatting produces six lowercase
-digits by default; `#` adds the Rust `0x` prefix.
+## Optional features
 
-```rust
-use hodgepodge::CSS;
-
-fn main() {
-    assert_ne!(CSS::Aqua, CSS::Cyan);
-    assert_eq!(CSS::Aqua.rgb(), CSS::Cyan.rgb());
-    assert_eq!(CSS::Aqua.rgb(), 0x00ffff);
-    println!("{}: #{:x}", CSS::Aqua, CSS::Aqua);
-}
-```
-
-Color enum discriminants are identifiers. Replace color-to-integer casts with
-`rgb()` when upgrading from 0.2.
-
-## Iterate through a dataset
-
-With the `strum` feature, the helper traits are re-exported by `hodgepodge`:
-
-```rust
-use hodgepodge::{Element, EnumCount, IntoEnumIterator};
-
-fn main() {
-    assert_eq!(Element::COUNT, 118);
-    for element in Element::iter() {
-        println!("{element} has atomic number {}", element as u16);
-    }
-}
-```
-
-## Save and recover fixtures
-
-With the `serde` feature, enums serialize to their exact variant names. Serde
-deserialization is case-sensitive even though `FromStr` ignores ASCII case.
-
-```rust
-use hodgepodge::DiceFace;
-
-fn main() -> Result<(), serde_json::Error> {
-    let rolls = vec![DiceFace::One, DiceFace::Six];
-    let json = serde_json::to_string(&rolls)?;
-    let recovered: Vec<DiceFace> = serde_json::from_str(&json)?;
-    assert_eq!(recovered, rolls);
-    Ok(())
-}
-```
-
-## Features
-
-| Feature | Effect |
+| Feature | Adds |
 | --- | --- |
-| Default | Common traits, names, parsing, and color conversions; no dependencies |
-| `strum` | `EnumIter`, `EnumCount`, and re-exported helper traits |
-| `enum-iter`, `enum-count` | Compatibility names that each enable `strum` |
-| `serde` | `Serialize` and `Deserialize` on every dataset |
+| `serde` | Serialization for dataset enums, cards, codon meanings, and taxonomy keys |
+| `rand` | Uniform sampling and deck shuffling with a caller-supplied rand 0.9 RNG |
+| `strum` | Iterator/count traits; also enabled by legacy `enum-iter` and `enum-count` |
+| `taxonomy` | Bundled animal records and nested species paths; no runtime network access |
 
-## Complete teaching examples
+Enable features with `hodgepodge = { version = "0.4", features = ["taxonomy"] }`.
 
-Run these from the checkout:
+## Animal taxonomy
 
-```sh
-cargo run --example lookup
-cargo run --example palette --features strum
-cargo run --example fixtures --features serde
+```rust
+# #[cfg(feature = "taxonomy")]
+# {
+use hodgepodge::taxonomy::{animalia, Species};
+use animalia::chordata::mammalia::carnivora::felidae::panthera;
+
+let lion = panthera::Leo;
+assert_eq!(lion, Species::PantheraLeo);
+assert_eq!(lion.taxon().parent(), Some(panthera::TAXON));
+println!("{}", lion.taxon().wikipedia_url().unwrap());
+# }
 ```
 
-- `lookup` parses names and counts visits using enum map keys.
-- `palette` groups the 148 CSS names by exact RGB value, exposing aliases.
-- `fixtures` saves and restores deterministic dice rolls and color names as JSON.
+This dated selection includes every source ancestor, not every animal species.
+Taxonomy adds substantial compile/documentation cost; its source files remain in
+the download even when disabled. For persistent taxonomy identity, use
+`Taxon::key()`; serialized enum names/indexes may change between snapshots.
 
-## Development
+## More
 
-```sh
-cargo fmt --all --check
-cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic
-bash scripts/test-features.sh
-RUSTUP_TOOLCHAIN=1.71.0 bash scripts/test-features.sh
-RUSTDOCFLAGS="-D warnings" cargo doc --no-deps --no-default-features
-RUSTDOCFLAGS="-D warnings" cargo doc --no-deps --all-features
-cargo package --all-features
-```
+- [API reference](https://docs.rs/hodgepodge) and [usage guide](GUIDE.md)
+- [Dataset scope and sources](DATASETS.md)
+- [Migration guide](MIGRATION.md) and [changelog](CHANGELOG.md)
+- [Runnable examples](examples) and [contributing](CONTRIBUTING.md)
 
-The test script covers standalone and combined features, compatibility feature
-names, every example target, and documentation tests. Reference fixtures are
-checked in; tests do not fetch external data.
-
-Licensed under MIT OR Apache-2.0.
+Software: **MIT OR Apache-2.0**. Taxonomy classification: **CC BY 4.0**;
+Wikidata enrichment: **CC0**. Retain the bundled [attribution](data/taxonomy/NOTICE.md).

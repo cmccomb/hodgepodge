@@ -1,0 +1,76 @@
+---
+key: 54170
+doi: 10.48580/d48fy
+title: Robert E. Lewis World Species Flea (Siphonaptera) List
+alias: LWS fleas
+description: "The Robert E. Lewis World Species Flea (Siphonaptera) List was originally\
+  \ a list of valid species compiled and maintained by the late Robert E. Lewis (16\
+  \ th edition, 2009 was his last listing). During his tenure, he distributed these\
+  \ extremely valuable informal, unpublished texts to a limited number of flea specialists\
+  \ around the world. Following his death, the list was converted to an Excel file\
+  \ with sorting capabilities. After the initial conversion of the LWS, Michael Hastriter\
+  \ and Robert Bossard continued to maintain and record many changes in nomenclature,\
+  \ synonyms, and newly described taxa. Currently there are 19 recognized Siphonapteran\
+  \ families, 259 flea genera (252 extant and 7 fossils), 2,695 valid extant species\
+  \ (including subspecies), and 17 fossil species. This is the most comprehensive\
+  \ listing of valid Siphonapteran taxa. There are also 965 synonyms included. The\
+  \ database provides classification designations for Infraorders, Superfamilies,\
+  \ Families, Subfamilies, Tribes, Genera, Subgenera and Species. The LWS list will\
+  \ be also published in Flea News on an annual basis."
+issued: 2025-07-16
+version: 3.0
+contact:
+  given: Michael W.
+  family: Hastriter
+  department: Monte L. Bean Life Science Museum
+  city: Provo
+  state: Utah
+  country: US
+  email: michaelhastriter@comcast.net
+  address: "Provo, Utah, United States of America"
+  organisation: Brigham Young University
+editor:
+ -
+  given: Michael W.
+  family: Hastriter
+  department: Monte L. Bean Life Science Museum
+  city: Provo
+  state: Utah
+  country: US
+  email: michaelhastriter@comcast.net
+  address: "Provo, Utah, United States of America"
+  organisation: Brigham Young University
+ -
+  orcid: 0000-0001-8382-9508
+  given: Robert L.
+  family: Bossard
+  city: Salt Lake City
+  state: Utah
+  country: US
+  email: bossardtech@gmail.com
+  address: "Salt Lake City, Utah, United States of America"
+  organisation: Bossard Consulting
+contributor:
+ -
+  orcid: 0000-0002-1632-9818
+  given: Camila Andrea
+  family: Plata Corredor
+  email: camila.plata@catalogueoflife.org
+  organisation: Catalogue of Life
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Fleas
+taxonomicGroupScope: []
+confidence: 5
+completeness: 100
+license: cc by
+source: []

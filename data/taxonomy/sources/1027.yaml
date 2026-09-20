@@ -1,0 +1,54 @@
+---
+key: 1027
+doi: 10.48580/d38g
+versionDoi: 10.48580/d38g.v182
+title: World Scarabaeidae Database
+alias: Scarabs
+description: |-
+  The World Scarabaeidae Database is currently only accessible through this checklist. It is included in the Catalogue of Life by kind permission of Paul Schoolmeesters.
+  The Scarabids are a large family of beetles, believed to include over 40,000 species.
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Paul
+  family: Schoolmeesters
+  email: schoolmeesterspaul@gmail.com
+  organisation: Individual custodian
+creator:
+ -
+  orcid: 0000-0002-0721-6002
+  given: Paul
+  family: Schoolmeesters
+  email: schoolmeesterspaul@gmail.com
+  organisation: Schoolmeesters P.
+contributor:
+ -
+  orcid: 0000-0002-9770-2345
+  given: Geoff
+  family: Ower
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: Illinois
+  email: gdower@illinois.edu
+  note: COL Pipeline Developer
+  address: "Champaign, Illinois"
+  organisation: University of Illinois Urbana-Champaign
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Scarab beetles
+taxonomicGroupScope: []
+confidence: 4
+completeness: 99
+license: cc by
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/Scarabs.png
+source: []

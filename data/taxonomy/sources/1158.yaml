@@ -1,0 +1,98 @@
+---
+key: 1158
+doi: 10.48580/d3dy
+versionDoi: 10.48580/d3dy.v50
+title: Dermaptera Species File
+alias: SF Dermaptera
+description: |-
+  The Dermaptera Species File website and database contain taxonomic information
+  about earwigs.
+issued: 2026-09-01
+version: Sep 2026
+contact:
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  rorid: 047426m28
+  city: Ithaca
+  state: NY
+  country: US
+  email: cockroachdoc@gmail.com
+  address: "Ithaca, NY, United States of America"
+  organisation: University of Illinois
+creator:
+ -
+  orcid: 0000-0003-0961-4554
+  given: Heidi
+  family: Hopkins
+  rorid: 047426m28
+  city: Ithaca
+  state: NY
+  country: US
+  note: Author
+  address: "Ithaca, NY, United States of America"
+  organisation: University of Illinois
+ -
+  orcid: 0000-0002-5918-2262
+  given: Fabian
+  family: Haas
+  city: Nairobi
+  country: KE
+  note: Data provider
+  address: "Nairobi, Kenya"
+  organisation: African Insect Science for Food and Health (ICIPE)
+publisher:
+  rorid: 047426m28
+  department: "Species File Group, Illinois Natural History Survey, Prairie Research\
+    \ Institute"
+  city: Champaign
+  state: IL
+  country: US
+  email: dlpaul@illinois.edu
+  url: https://speciesfilegroup.org
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+contributor:
+ -
+  given: David C
+  family: Eades
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: Principal Database Developer
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+ -
+  orcid: 0000-0003-4573-0536
+  given: Michael D
+  family: Maehr
+  rorid: 047426m28
+  department: Illinois Natural History Survey
+  city: Champaign
+  state: IL
+  country: US
+  note: "Past author, now inactive"
+  address: "Champaign, IL, United States of America"
+  organisation: University of Illinois
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: Earwigs
+taxonomicGroupScope: []
+confidence: 4
+completeness: 90
+license: cc by
+url: https://dermaptera.speciesfile.org
+feedbackUrl: https://www.github.com/sfg-taxonpages/dermaptera/issues
+logo: https://github.com/Sp2000/colplus-repo/raw/master/logos/SF_Dermaptera.png
+source: []

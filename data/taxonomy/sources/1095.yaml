@@ -1,0 +1,53 @@
+---
+key: 1095
+doi: 10.48580/d3bs
+versionDoi: 10.48580/d3bs.v85
+title: World Asteroidea Database
+alias: WoRMS Asteroidea
+description: "The core of the World Asteroidea Database (WAD) is derived from the\
+  \ \"Asteroid Names List\" developed primarily by Ailsa M. Clark. However the WAD\
+  \ is complimented by numerous other echinoderm compendia (e.g., Clark & Downey's\
+  \ Starfishes of the Atlantic, Rowe & Gate's Zoological Catalogue of Australia, etc)\
+  \ and will eventually include all subsequent taxonomic changes and newly described\
+  \ taxa. Data have been contributed to the Catalogue of Life via the WoRMS, hosted\
+  \ by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  given: Christopher
+  family: Mah
+editor:
+ -
+  orcid: 0000-0002-0178-8237
+  given: Christopher
+  family: Mah
+contributor:
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+ -
+  country: US
+  address: United States of America
+  organisation: Smithsonian Institution; National Museum of Natural History Department
+    of Invertebrate Zoology
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: sea stars
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 5
+completeness: 96
+license: cc by
+url: https://www.marinespecies.org/asteroidea
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

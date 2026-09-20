@@ -1,0 +1,57 @@
+---
+key: 1194
+doi: 10.48580/d3g7
+versionDoi: 10.48580/d3g7.v88
+title: World List of Antipatharia
+alias: WoRMS Antipatharia
+description: "This global marine species list is part of the World Register of Marine\
+  \ Species database, which aims to provide the most authoritative list of names of\
+  \ all marine species globally. Data have been contributed to the Catalogue of Life\
+  \ via the WoRMS, hosted by the Flanders Marine Institute (VLIZ)."
+issued: 2026-09-01
+version: 2026-09-01
+contact:
+  email: info@marinespecies.org
+editor:
+ -
+  given: Tina
+  family: Molodtsova
+  email: tina@ocean.ru
+ -
+  given: Dennis
+  family: Opresko
+  email: dmopresko@hotmail.com
+contributor:
+ -
+  country: RU
+  address: Russian Federation
+  organisation: Russian Academy of Sciences P. P. Shirshov Institute of Oceanology
+ -
+  country: US
+  address: United States of America
+  organisation: Smithsonian Institution; National Museum of Natural History Department
+    of Invertebrate Zoology
+ -
+  country: BE
+  address: Belgium
+  organisation: Vlaams Instituut voor de Zee
+keyword: []
+containerKey: 316321
+containerTitle: Catalogue of Life
+containerVersion: 2026-09-11
+containerPublisher:
+  city: Amsterdam
+  country: NL
+  address: "Amsterdam, Netherlands"
+  organisation: Catalogue of Life Foundation
+containerIssued: 2026-09-11
+geographicScope: Global
+taxonomicScope: black corals
+temporalScope: 1758-2026
+taxonomicGroupScope: []
+confidence: 3
+completeness: 90
+license: cc by
+url: https://www.marinespecies.org
+logo: https://www.marinespecies.org/documents/WoRMS%20branding/WoRMS_logo_blue_negative.png
+source: []

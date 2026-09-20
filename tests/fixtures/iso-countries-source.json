@@ -1,0 +1,16 @@
+{
+  "checked_on": "2026-09-20",
+  "primary_url": "https://unstats.un.org/unsd/methodology/m49/overview/",
+  "primary_table": "downloadTableEN",
+  "primary_rows": 248,
+  "primary_html_sha256": "b9048114f6e7f2abda83bf03d4263c9d7cd1bd7230e3d0461025ee7839a7a1fb",
+  "supplement": {
+    "label": "Taiwan (Province of China)",
+    "alpha2": "TW",
+    "alpha3": "TWN",
+    "numeric": "158",
+    "url": "https://www.w3.org/community/reports/dpvcg/CG-FINAL-loc-20240801/"
+  },
+  "fixture_sha256": "851078549a99880f3f9de8770dcbd68b6c43fa5f8b80dd5f85b04150186ec101",
+  "names": "Source labels retained; ASCII PascalCase Rust identifiers with documented short forms."
+}
