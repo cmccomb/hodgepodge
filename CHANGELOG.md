@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 — 2026-09-20
+
+- Use explicit versioned documentation links in the concise README so the guide,
+  source notes, migration instructions, examples, and attribution remain reachable
+  from crates.io and docs.rs as well as GitHub. Library code and datasets are unchanged.
+
 ## 0.4.0 — 2026-09-20
 
 ### Added

@@ -71,10 +71,10 @@ the download even when disabled. For persistent taxonomy identity, use
 
 ## More
 
-- [API reference](https://docs.rs/hodgepodge) and [usage guide](GUIDE.md)
-- [Dataset scope and sources](DATASETS.md)
-- [Migration guide](MIGRATION.md) and [changelog](CHANGELOG.md)
-- [Runnable examples](examples) and [contributing](CONTRIBUTING.md)
+- [API reference](https://docs.rs/hodgepodge) and [usage guide](https://github.com/cmccomb/hodgepodge/blob/v0.4.1/GUIDE.md)
+- [Dataset scope and sources](https://github.com/cmccomb/hodgepodge/blob/v0.4.1/DATASETS.md)
+- [Migration guide](https://github.com/cmccomb/hodgepodge/blob/v0.4.1/MIGRATION.md) and [changelog](https://github.com/cmccomb/hodgepodge/blob/v0.4.1/CHANGELOG.md)
+- [Runnable examples](https://github.com/cmccomb/hodgepodge/tree/v0.4.1/examples) and [contributing](https://github.com/cmccomb/hodgepodge/blob/v0.4.1/CONTRIBUTING.md)
 
 Software: **MIT OR Apache-2.0**. Taxonomy classification: **CC BY 4.0**;
-Wikidata enrichment: **CC0**. Retain the bundled [attribution](data/taxonomy/NOTICE.md).
+Wikidata enrichment: **CC0**. Retain the bundled [attribution](https://github.com/cmccomb/hodgepodge/blob/v0.4.1/data/taxonomy/NOTICE.md).
